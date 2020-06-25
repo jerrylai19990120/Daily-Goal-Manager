@@ -62,7 +62,7 @@
     height: 54vh;
     background-color: #001529;
     border-radius: 16px;
-    padding-top: 100px;
+    padding-top: 74px;
     border: 2px solid #55637E;
 }
 
@@ -137,9 +137,68 @@ div.ant-picker-calendar.ant-picker-calendar-mini{
     margin-left: 18vw;
     margin-top: -26vh;
     border-radius: 6px;
-    border: 1px solid rgb(199, 199, 199);
 }
 
 .ant-timeline-item-tail{
     border-left: 2px solid rgb(56, 148, 235);
+}
+
+.buttonGroup{
+    list-style: none;
+    float: left;
+    margin-top: -98px;
+}
+
+.btn{
+    width: 160px;
+    margin-top: 10px;
+    margin-left: 10px;
+    border: 2px solid #FFCB35;
+    background-color: #242F43;
+    color: #FFCB35;
+}
+
+.btn:hover{
+    border: 2px solid #FFCB35;
+    background-color: #405375;
+    color: #FFCB35;
+}
+
+.btn:focus{
+    border: 2px solid #FFCB35;
+    background-color: #405375;
+    color: #FFCB35;
+}
+
+.viewGoal{
+    width: 100vw;
+    height: 1600px;
+    float: left;
+    background-color: #242F43;
+    padding-top: 90px;
+}
+
+.comments{
+    width: 100vw;
+    height: 1600px;
+    background-color: #242F43;
+    padding-top: 16vh;
+}
+
+.comment{
+    background-color: rgb(243, 255, 198);
+    width: 40vw;
+    height: 26vh;
+    margin-left: 360px;
+    border-radius: 3px;
+    border: 1px solid rgb(201, 201, 201);
+}
+
+.detail{
+    width: 50vw;
+    margin-left: 266px;
+    height: 500px;
+    background-color: #303e58;
+    border-radius: 3px;
+    border: 2px solid gray;
 }
