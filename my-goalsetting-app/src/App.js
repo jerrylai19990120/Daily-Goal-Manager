@@ -1,26 +1,22 @@
 import React from 'react';
-import logo from './logo.svg';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Admin from './temp/Admin';
+
+class App extends React.Component {
+
+  state = {
+    abc: "123"
+  }
+
+  render() {
+    return (
+      <div className="App">
+        <Admin state={this.state}/>
+      </div>
+    );
+  }
 }
 
 export default App;
