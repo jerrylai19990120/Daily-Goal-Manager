@@ -11,6 +11,7 @@ import {BellTwoTone, HeartTwoTone, SmileTwoTone, LeftCircleTwoTone} from '@ant-d
 import HeaderGoals from './header-goals';
 import HeaderPast from './header-past';
 import HeaderCommon from './header-common';
+import Profile from './profile'
 
 
 
@@ -53,12 +54,14 @@ class Goal extends React.Component{
                         <Route path='/goals' component={HeaderGoals}/>
                         <Route path='/common' component={HeaderCommon}/>
                         <Route path='/pastGoals' component={HeaderPast}/>
+                        <Route path='/profile' component={HeaderPast}/>
                     </Header>
                     <Layout>
                     <Content>
                         <Route path='/goals' component={Description}/>
                         <Route path='/common' component={Common}/>
                         <Route path='/pastGoals' component={PastGoals}/>
+                        <Route path='/profile' component={Profile}/>
                     </Content>
                     
                     <div id='right-sider'>
