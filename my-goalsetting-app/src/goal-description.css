@@ -1,0 +1,145 @@
+
+.header-title{
+    color: white;
+    font-size: 2vw;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    float: left;
+    margin-left: 1vw;
+}
+
+#container{
+    width: 100vw;
+    height: 100vh;
+    background-color: #242F43;
+}
+
+
+#sider{
+    overflow: auto;
+    left: 0;
+    height: 100vh;
+    position: fixed;
+}
+
+.ant-menu{
+    height: 100vh;
+}
+
+.ant-menu-dark .ant-menu-item, .ant-menu-dark .ant-menu-item-group-title, .ant-menu-dark .ant-menu-item > a, .ant-menu-dark .ant-menu-item > span > a {
+    color: #FFCB35;
+}
+
+
+
+.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected{
+    background-color: #FFCB35;
+}
+
+#description{
+    height: 1600px;
+    background-color: #121A29;
+    padding-top: 1vh;
+}
+
+#common{
+    height: 2000px;
+    background-color: #FFCB35;
+}
+
+#ratings{
+    height: 2000px;
+    background-color: aqua;
+}
+
+.site-layout{
+    margin-left: 200;
+}
+
+.goal{
+    margin-top: 16vh;
+    margin-left: 20vw;
+    width: 50vw;
+    height: 54vh;
+    background-color: #001529;
+    border-radius: 16px;
+    padding-top: 100px;
+    border: 2px solid #55637E;
+}
+
+.ant-progress-circle .ant-progress-text{
+    color: white;
+}
+
+.progress{
+    margin-left: -460px;
+}
+
+.goal-title{
+    color: white;
+    font-size: 4vh;
+    margin-top: -160px;
+    margin-left: 54px;
+}
+
+.icons{
+    margin-left: 540px;
+    margin-top: 100px;
+    width: 100px;
+}
+
+#right-sider{
+    overflow: auto;
+    right: 0;
+    height: 1600px;
+    width: 350px;
+    float: right;
+    position: absolute;
+}
+
+.quote{
+    margin-top: 100px;
+    width: 240px;
+    margin-left: 60px;
+}
+
+.ant-timeline{
+    margin-top: 120px;
+    width: 200px;
+    color: white;
+    margin-left: 70px;
+}
+
+div.ant-picker-calendar.ant-picker-calendar-mini{
+    margin-top: 160px;
+    margin-right: 10px;
+}
+
+.ant-layout-header{
+    background-color: #001529;
+    border-bottom: 1px solid #55637E;
+}
+
+.ant-timeline-item{
+    color: white;
+}
+
+.header-icon{
+    width: 40px;
+    float: left;
+    margin-left: 36vw;
+    margin-top: 1.6vh;
+}
+
+.info{
+    box-shadow: 0 2px 2px 2px rgb(83, 83, 83);
+    width: 20vw;
+    height: 28vh;
+    margin-left: 18vw;
+    margin-top: -26vh;
+    border-radius: 6px;
+    border: 1px solid rgb(199, 199, 199);
+}
+
+.ant-timeline-item-tail{
+    border-left: 2px solid rgb(56, 148, 235);
+}
