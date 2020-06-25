@@ -1,22 +1,13 @@
 import React from 'react';
-
 import './App.css';
+import Goal from './goal-description'
 
-import Admin from './temp/Admin';
-
-class App extends React.Component {
-
-  state = {
-    abc: "123"
-  }
-
-  render() {
-    return (
-      <div className="App">
-        <Admin state={this.state}/>
-      </div>
-    );
-  }
+function App() {
+  return (
+    <div className="App">
+      <Goal />
+    </div>
+  );
 }
 
 export default App;

@@ -50,6 +50,26 @@ const cssModuleRegex = /\.module\.css$/;
 const sassRegex = /\.(scss|sass)$/;
 const sassModuleRegex = /\.module\.(scss|sass)$/;
 
+module.exports = {
+  module: {
+    rules: [
+      {
+        test: /\.less$/,
+        loader: 'less-loader', // compiles Less to CSS
+        options: {
+                lessOptions: { // If you are using less-loader@5 please spread the lessOptions to options directly
+                  modifyVars: {
+                    'primary-color': '#1DA57A',
+                    'link-color': '#1DA57A',
+                    'border-radius-base': '2px',
+                  },
+                  javascriptEnabled: true,
+                },
+              },
+      },
+    ],
+  },
+};
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
 module.exports = function(webpackEnv) {
