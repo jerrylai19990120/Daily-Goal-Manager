@@ -2,7 +2,7 @@
 import React from 'react';
 import { Form , Input , Button , Typography } from 'antd';
 
-import "./styles.css";
+import "./../styles.css";
 
 const { Title } = Typography;
 
@@ -15,11 +15,11 @@ class Login extends React.Component {
   render() {
     return (
       <div className="login">
-        <Title className="title">Welcome Back</Title>
+        <Title className="login_title">Welcome Back</Title>
         <Title level={4}>Some inspiring slogan</Title>
         <Form
         name="normal_login"
-        className="login-form"
+        className="login_form"
         initialValues={{ remember: true }}
         //onFinish={onFinish}
         >
@@ -36,10 +36,10 @@ class Login extends React.Component {
             <Input type="password" placeholder="Password"/>
           </Form.Item>
           <Form.Item>
-            <Button type="primary" htmlType="submit" className="login-form-button">
+            <Button type="primary" htmlType="submit" className="login_button">
             Log in
             </Button>
-            Or <a href="">Sign Up</a>
+            <p>Or <a href="">Sign Up</a></p>
           </Form.Item>
         </Form>
       </div>
