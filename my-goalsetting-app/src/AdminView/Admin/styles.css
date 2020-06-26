@@ -1,0 +1,12 @@
+@import '~antd/dist/antd.css';
+
+.divider {
+  margin: 10px 50px;
+  color: red;
+  max-width: 300px
+}
+
+.collapse {
+  margin: 30px 50px;
+  text-align: left;
+}

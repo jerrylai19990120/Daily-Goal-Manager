@@ -1,7 +1,7 @@
 
 Paste this code into App.js file in src folder in order to view the Goal List View
 
--------------------------- App.js for GoalListView components------------------------------------------
+---------------------- App.js for GoalListView components---------------------------------
 
 import React from 'react';
 import './App.css';
@@ -27,3 +27,42 @@ class App extends React.Component {
 export default App;
 
 --------------------------------------------------------------------------------------------
+import React from 'react';
+import './App.css';
+import Goal from './goal-description'
+
+function App() {
+  return (
+    <div className="App">
+      <Goal />
+    </div>
+  );
+}
+
+export default App;
+
+
+---------------------- App.js for GoalListView components---------------------------------
+
+import React from 'react';
+import './App.css';
+
+import GoalList from './GoalListView/components/GoalList';
+
+class App extends React.Component {
+
+  state = {
+    abc: "123"
+  }
+
+  render(){
+    return (
+      <div className="App">
+            <GoalList state={this.state}/>
+        </div>
+      );
+  }
+
+}
+
+export default App;

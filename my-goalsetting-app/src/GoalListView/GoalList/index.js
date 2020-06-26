@@ -1,5 +1,4 @@
 import React from "react";
-
 import Header from './../Header';  
 import Goal from "./../Goal";
 import Listings from './../List'; 
