@@ -14,22 +14,8 @@ export const addGoal = table => {
     title: table.state.goalTitle,
     description: table.state.goalDescription,
     duration: table.state.goalDuration
-  };
-
-  // Adding at a particular position   --------------- delete?
-  const position = parseInt(table.state.position);
-
-  if (position > goalList.length || !position) {
-    log("here");
-    goalList.push(goal);
-  } else {
-    log("here2");
-    goalList.splice(position - 1, 0, goal);
   }
 
-  table.setState({
-    goals: goalList
-  });
 };
 
 class Goal extends React.Component {

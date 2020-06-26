@@ -5,10 +5,13 @@ import 'antd/dist/antd.css';
 import { Table, Button } from 'antd';
 import { ArrowRightOutlined } from '@ant-design/icons';
 
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import './../../App.css';
+
 import Goal from "./../Goal";
 
 
-class antListings extends React.Component{
+class Listings extends React.Component{
 	render() {
 
 		const Column = Table;
@@ -32,4 +35,4 @@ class antListings extends React.Component{
 	}
 }
 
-export default antListings;
+export default Listings;
