@@ -3,11 +3,12 @@ import './App.css';
 import './goal-description.css';
 import 'antd/dist/antd.css';
 import {Progress, Button, Divider, Row, Col, Popover} from 'antd';
-import {LikeOutlined, ShareAltOutlined, CommentOutlined, StarOutlined, CheckOutlined, SendOutlined, SmileOutlined} from '@ant-design/icons';
+import {HeartFilled, ShareAltOutlined, CommentOutlined, StarOutlined, CheckOutlined, SendOutlined, SmileOutlined} from '@ant-design/icons';
 import Comment from './comment';
 import TextareaAutosize from 'react-textarea-autosize';
 import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
+import Ratings from './rateit'
 
 
 
@@ -16,6 +17,7 @@ class GoalSection extends React.Component{
     constructor(){
         super();
         this.state = {
+            ratingStars: false,
             visible: false,
             pic: './images/profilePic.jpg',
             kudos: 0,
@@ -43,6 +45,16 @@ class GoalSection extends React.Component{
 
     handleVisibleChange = visible => {
         this.setState({ visible });
+    }
+    
+    hide2 = () => {
+        this.setState({
+            ratingStars: false,
+        });
+    }
+
+    handleVisibleChange2 = visible => {
+        this.setState({ ratingStars: visible });
     }  
     
     commentFocus = () => {
@@ -59,6 +71,13 @@ class GoalSection extends React.Component{
             comments.push(<Comment key={comments.length} content={content}/>);
             this.setState({comments: comments});
             document.getElementById('enterComment').value = '';
+    }
+
+    addLikes = () => {
+        let kudos = this.state.kudos;
+        kudos++;
+        this.setState({kudos: kudos});
+        document.getElementsByClassName('likeBtn')[0].style.color = '#E2264D';
     }
 
 
@@ -86,7 +105,6 @@ class GoalSection extends React.Component{
             document.getElementById('enterComment').value += emoji;
         };
 
-        
 
         const colors = [];
         colors.push(<li className='color color1'><div className='color-item item1' onClick={()=> {this.setState({color: '#4232EB'});check(0);}}><CheckOutlined className='checked'/></div></li>);
@@ -125,13 +143,22 @@ class GoalSection extends React.Component{
                 <Divider />
 
                 <Row>
-                    <Col span={5}><button className='btn2'><LikeOutlined /> Kudo</button></Col>
+                    <Col span={5}><button className='btn2' onClick={this.addLikes}><HeartFilled className='likeBtn'/> Kudo</button></Col>
                     <Divider type="vertical"/>
                     <Col span={6}><button className='btn2' onClick={this.commentFocus}><CommentOutlined /> Comment</button></Col>
                     <Divider type="vertical"/>
                     <Col span={6}><button className='btn2'><ShareAltOutlined /> Share</button></Col>
                     <Divider type="vertical"/>
-                    <Col span={5}><button className='btn2'><StarOutlined /> Rate It</button></Col>
+                    <Col span={5}>
+                        <Popover
+                            content={<Ratings />}
+                            trigger="click"
+                            visible={this.state.ratingStars}
+                            onVisibleChange={this.handleVisibleChange2}
+                        >
+                            <button className='btn2'><StarOutlined /> Rate It</button>
+                        </Popover>
+                    </Col>
                 </Row>
                 
                 <Divider />

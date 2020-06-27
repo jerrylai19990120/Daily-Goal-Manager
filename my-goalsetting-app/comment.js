@@ -7,10 +7,17 @@ class Comment extends React.Component{
 
     constructor(){
         super();
+        const date = new Date();
+        let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        let day = date.getDate();
+        let num_m = date.getMonth();
+        let year = date.getFullYear();
+        let hour = date.getHours();
+        let mins = date.getMinutes();
         this.state = {
             user: 'Jerry',
             pic: './images/profilePic.jpg',
-            date: 'May 20, 2020'
+            date: `${hour}:${mins}, ${months[num_m-1]} ${day}, ${year}`
         }
     }
 
