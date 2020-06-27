@@ -21,7 +21,7 @@ class GoalSection extends React.Component{
             kudos: 0,
             rating: 0,
             days: 0,
-            numOfComments: 2,
+            comments: [],
             enrolled: false,
             color: '#F646AC',
             description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia'
@@ -39,27 +39,31 @@ class GoalSection extends React.Component{
         this.setState({
             visible: false,
         });
-    };
+    }
 
     handleVisibleChange = visible => {
         this.setState({ visible });
-    };  
+    }  
     
+    commentFocus = () => {
+        document.getElementById('enterComment').focus();
+    }
+    
+
+    send = () => {
+            let content = document.getElementById('enterComment').value;
+            if(content === ''){
+                return;
+            }
+            let comments = this.state.comments;
+            comments.push(<Comment key={comments.length} content={content}/>);
+            this.setState({comments: comments});
+            document.getElementById('enterComment').value = '';
+    }
 
 
     render(){
 
-        const comments = [];
-
-        const send = () => {
-            let content = document.getElementById('enterComment').value;
-            let num = this.state.numOfComments;
-            num++;
-            this.setState({numOfComments: num});
-            comments.push(<Comment content={content}/>);
-        }
-
-        
 
         const check = (index)=>{
                 let checks = document.getElementsByClassName('checked');
@@ -70,6 +74,11 @@ class GoalSection extends React.Component{
                         checks[i].style.visibility = 'hidden';
                     }
                 }
+                if(index===5){
+                    document.getElementById('init').style.visibility = 'visible';
+                }else{
+                    document.getElementById('init').style.visibility = 'hidden';
+                }
         };
 
         const addEmojis = (e) => {
@@ -77,22 +86,15 @@ class GoalSection extends React.Component{
             document.getElementById('enterComment').value += emoji;
         };
 
-        for(let i=0;i<this.state.numOfComments;i++){
-            comments.push(<Comment content='
-            Lorem ipsum dolor sit amet, consectetur 
-            adipiscing elit, sed do eiusmod tempor incididunt ut labore 
-            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation 
-            lamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit 
-            in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint'/>);
-        }
+        
 
         const colors = [];
         colors.push(<li className='color color1'><div className='color-item item1' onClick={()=> {this.setState({color: '#4232EB'});check(0);}}><CheckOutlined className='checked'/></div></li>);
         colors.push(<li className='color'><div className='color-item item2' onClick={()=> {this.setState({color: '#FF4A4D'});check(1);}}><CheckOutlined className='checked'/></div></li>);
         colors.push(<li className='color'><div className='color-item item3' onClick={()=> {this.setState({color: '#4497FF'});check(2);}}><CheckOutlined className='checked'/></div></li>);
         colors.push(<li className='color'><div className='color-item item4' onClick={()=> {this.setState({color: '#2ACB63'});check(3);}}><CheckOutlined className='checked'/></div></li>);
-        colors.push(<li className='color'><div className='color-item item5' onClick={()=> {this.setState({color: '#F646AC'});check(4);}}><CheckOutlined className='checked'/></div></li>);
-        colors.push(<li className='color'><div className='color-item item6' onClick={()=> {this.setState({color: '#ff9102'});check(5);}}><CheckOutlined className='checked'/></div></li>);
+        colors.push(<li className='color'><div className='color-item item5' onClick={()=> {this.setState({color: '#F646AC'});check(5);}}><CheckOutlined id='init'/></div></li>);
+        colors.push(<li className='color'><div className='color-item item6' onClick={()=> {this.setState({color: '#ff9102'});check(4);}}><CheckOutlined className='checked'/></div></li>);
         
         
         return(
@@ -125,7 +127,7 @@ class GoalSection extends React.Component{
                 <Row>
                     <Col span={5}><button className='btn2'><LikeOutlined /> Kudo</button></Col>
                     <Divider type="vertical"/>
-                    <Col span={6}><button className='btn2'><CommentOutlined /> Comment</button></Col>
+                    <Col span={6}><button className='btn2' onClick={this.commentFocus}><CommentOutlined /> Comment</button></Col>
                     <Divider type="vertical"/>
                     <Col span={6}><button className='btn2'><ShareAltOutlined /> Share</button></Col>
                     <Divider type="vertical"/>
@@ -146,11 +148,14 @@ class GoalSection extends React.Component{
                         <button className='emojis'><SmileOutlined /></button>
                         </Popover>
                     </Col>
-                    <Col span={3}><button className="sendBtn" onClick={send}><SendOutlined /></button></Col>
+                    <Col span={3}><button className="sendBtn" onClick={this.send}><SendOutlined /></button></Col>
                     
                 </Row>
                 
-                {comments}
+                {this.state.comments.map((comment) => (
+                    comment
+                ))}
+                
 
             </div>
         );
