@@ -94,15 +94,6 @@ class Profile extends React.Component{
     render(){
         return(
       <Layout className="layout">
-      <Header>
-        <div className="logo" />
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['3']}>
-          <Menu.Item key="1">Home</Menu.Item>
-          <Menu.Item key="2">Goals</Menu.Item>
-          <Menu.Item key="3">Profile</Menu.Item>
-        </Menu>
-      </Header>
-      <Content style={{ padding: '0 50px' }}>
         <div className="site-card-wrapper">
         <Row>
           <Col span={3}>
@@ -144,7 +135,6 @@ class Profile extends React.Component{
           </Col>
         </Row>
       </div>
-      </Content>
         </Layout> 
         );
 
