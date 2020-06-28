@@ -1,0 +1,15 @@
+@import '~antd/dist/antd.css';
+
+.title{
+  font-weight: bold;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+ font-size: x-large;
+}
+.button{
+  margin: 20px 0;
+}
+
+.listItem{
+  border: solid lightgray 1px;
+  background-color: white;
+}
