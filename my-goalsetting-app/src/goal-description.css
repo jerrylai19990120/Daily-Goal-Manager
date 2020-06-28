@@ -293,6 +293,12 @@ div.ant-picker-calendar.ant-picker-calendar-mini{
     border: none;
 }
 
+.likeBtn{
+    color: white;
+    background-color: transparent;
+    border: none;
+}
+
 .btn2:hover{
     background-color: lightcoral;
     border: none;
@@ -340,6 +346,32 @@ div.ant-picker-calendar.ant-picker-calendar-mini{
     width: 40px;
     height: 40px;
     margin-left: -14px;
+}
+
+.star{
+    color: rgb(216, 216, 216);
+    width: 20px;
+    height: 20px;
+}
+
+
+#starList{
+    list-style: none;
+    margin-left: -36px;
+    margin-bottom: 20px;
+}
+
+.starItem{
+    float: left;
+}
+
+.ant-popover-inner{
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.ant-popover-arrow{
+    border: transparent;
 }
 
 

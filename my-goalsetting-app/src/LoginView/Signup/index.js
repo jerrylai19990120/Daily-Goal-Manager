@@ -1,6 +1,7 @@
 /* Sign-Up view page */
 import React from 'react';
 import { Form , Input , Button , Typography } from 'antd';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 import "./../styles.css";
 
@@ -21,6 +22,10 @@ class Signup extends React.Component {
   state = {
   }
 
+  onFinish = values => {
+    console.log(values);
+  };
+
   render() {
     return (
       <div className="signup">
@@ -30,7 +35,7 @@ class Signup extends React.Component {
         className="login_form"
         validateMessages={validateMessages}
         initialValues={{ remember: true }}
-        //onFinish={onFinish}
+        onFinish={this.onFinish}
         >
           <Form.Item
             name="username"
@@ -54,7 +59,7 @@ class Signup extends React.Component {
             <Button type="primary" htmlType="submit" className="login_button">
             Sign Up
             </Button>
-            <p>Been here before? <a href="">Log in</a></p>
+            <p>Been here before? <a href="login">Log in</a></p>
           </Form.Item>
         </Form>
       </div>
