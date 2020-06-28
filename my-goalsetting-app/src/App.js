@@ -2,7 +2,6 @@ import React from 'react';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import './App.css';
 import Goal from './goal-description-component/goal-section'
-
 import Home from './Home';
 import Login from './LoginView/Login';
 import Signup from './LoginView/Signup';
@@ -27,9 +26,8 @@ class App extends React.Component {
     return (
 
       <div className="App">
-        <Goal />
 
-        {/*<BrowserRouter>
+        <BrowserRouter>
           <Switch>
             <Route exact path='/login' render={() =>
                             (<Login state={this.state}/>)}/>
@@ -37,7 +35,7 @@ class App extends React.Component {
                             (<Signup state={this.state}/>)}/>
             <Home state={this.state}/>
           </Switch>
-        </BrowserRouter>*/}
+        </BrowserRouter>
 
       </div>
       );
