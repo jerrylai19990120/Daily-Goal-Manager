@@ -15,6 +15,7 @@ class Comment extends React.Component{
         let hour = date.getHours();
         let mins = date.getMinutes();
         let zone = (hour>=12 ? 'PM' : 'AM');
+        hour = (hour>12 ? hour-12 : hour);
         let prefix = (mins<10 ? '0' : '');
         this.state = {
             user: 'Jerry',
