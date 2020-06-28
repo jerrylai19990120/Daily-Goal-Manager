@@ -1,24 +1,6 @@
 import React from "react";
-
-import { Table, Button } from 'antd';
-import { ArrowRightOutlined } from '@ant-design/icons';
-
-const log = console.log;
-
-// Function to add a goal, needs to be exported
-export const addGoal = table => {
-  log("adding goal");
-  const goalList = table.state.goals;
-
-  const goal = {
-    title: table.state.goalTitle,
-    description: table.state.goalDescription,
-    duration: table.state.goalDuration
-  }
-
-};
-
-class Goal extends React.Component {
+import { Table } from 'antd';
+export class Goal extends React.Component {
 	constructor(props) {
 		super(props);
 	}
@@ -29,10 +11,11 @@ class Goal extends React.Component {
 
 		return (
 		    <Table dataSource=
-		    { goal.title, goal.description, goal.duration }
+		    { goal.goalTitle, goal.goalDescription, goal.goalDuration }
 			/>
 		 );
 
 	}
 }
+export default Goal;
 

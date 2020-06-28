@@ -9,8 +9,8 @@ class Header extends React.Component {
 
     return (
       <div className="header">
-        <h1>{title}</h1>
-        <h3>{subtitle}</h3>
+        <h1 className="title">{title}</h1>
+        <h3 className="subtitle">{subtitle}</h3>
       </div>
     );
   }

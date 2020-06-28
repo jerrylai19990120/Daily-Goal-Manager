@@ -10,27 +10,38 @@ import './../../App.css';
 
 import Goal from "./../Goal";
 
+import Detail from "./../GoalDetail";
+
+const Column = Table;
 
 class Listings extends React.Component{
 	render() {
 
-		const Column = Table;
-
 		const { goals , listComponent } = this.props;
 
 		return (
+
+			<Router>
 		    <Table dataSource={goals}>
-				<Column title="Goal Title" dataIndex="title" key="title" />
-				<Column title="Description" dataIndex="description" key="description" />
-				<Column title="Duration (days)" dataIndex="duration" key="duration" /> 
+				<Column title="Goal Title" dataIndex="goalTitle" key="goalTitle" />
+				<Column title="Description" dataIndex="goalDescription" key="goalDescription" /> 
+				<Column title="Duration (days)" dataIndex="goalDuration" key="goalDuration" /> 
 			    <Column
 			      align="right"
 			      key="action"
 			      render={text => (
-			        <Button>More Info <ArrowRightOutlined /></Button>
+			      	<Link to={"./../GoalDetail"}>
+			        	<Button>More Info <ArrowRightOutlined /></Button>
+			        </Link>
 			      )}
+
 			    />
 			</Table>
+			<div>
+				<Route path='/GoalDetail' component={Detail}/>
+			</div>
+			</Router>
+
 		 );
 	}
 }

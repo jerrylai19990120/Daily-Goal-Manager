@@ -1,6 +1,15 @@
-/* Styles for the Header React component */
 .header {
   margin-top: 40px;
-  margin-bottom: 40px;
+  margin-bottom: 20px;
   text-align: left;
+  
+}
+
+.title {
+	font-weight: bold;
+	font-size: x-large;
+}
+
+.subtitle {
+	font-size: large;
 }

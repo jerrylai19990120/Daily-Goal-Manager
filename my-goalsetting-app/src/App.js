@@ -23,7 +23,7 @@ class App extends React.Component {
     return (
 
       <div className="App">
-            <Home state={this.state}/>
+            <Home/>
       </div>
       );
   }

@@ -1,6 +1,7 @@
 import React from "react";
 import { Layout, Menu } from 'antd';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {Switch} from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './../App.css';
 import Profile from './../profile'
@@ -34,12 +35,17 @@ class Home extends React.Component {
           </Menu>
         </Header>
 
-         
-        <Content style={{ padding: '0 30px' }}>
-            <div >
-              <Route path='/goalsPage' component={GoalList}/>
-            </div>
-            <Route path='/profilePage' component={Profile}/>
+          
+        <Content style={{ padding: '0px 50px 30px 50px' }}>
+          <Switch> 
+            <Route exact path='/' render={() => 
+                            (<GoalList />)}/>
+            <Route exact path='/goalsPage' render={() => 
+                            (<GoalList />)}/>
+            <Route exact path='/profilePage' render={() => 
+                            (<Profile />)}/>
+
+          </Switch>
         </Content>
                       
         </Layout>
