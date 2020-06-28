@@ -14,10 +14,12 @@ class Comment extends React.Component{
         let year = date.getFullYear();
         let hour = date.getHours();
         let mins = date.getMinutes();
+        let zone = (hour>=12 ? 'PM' : 'AM');
+        let prefix = (mins<10 ? '0' : '');
         this.state = {
             user: 'Jerry',
             pic: './images/profilePic.jpg',
-            date: `${hour}:${mins}, ${months[num_m]} ${day}, ${year}`
+            date: `${hour}:${prefix}${mins} ${zone}, ${months[num_m]} ${day}, ${year}`
         }
     }
 

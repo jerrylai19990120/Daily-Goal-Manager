@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import './goal-description.css';
 import 'antd/dist/antd.css';
 import {Progress, Button, Divider, Row, Col, Popover} from 'antd';
