@@ -358,6 +358,7 @@ div.ant-picker-calendar.ant-picker-calendar-mini{
 #starList{
     list-style: none;
     margin-left: -36px;
+    margin-bottom: 20px;
 }
 
 .starItem{
@@ -373,8 +374,5 @@ div.ant-picker-calendar.ant-picker-calendar-mini{
     border: transparent;
 }
 
-#rates{
-    margin-bottom: 30px;
-}
 
 

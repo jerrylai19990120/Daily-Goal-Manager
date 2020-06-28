@@ -151,7 +151,7 @@ class GoalSection extends React.Component{
                     <Divider type="vertical"/>
                     <Col span={5}>
                         <Popover
-                            content={<span id="rates"><Ratings /></span>}
+                            content={<Ratings />}
                             trigger="click"
                             visible={this.state.ratingStars}
                             onVisibleChange={this.handleVisibleChange2}
