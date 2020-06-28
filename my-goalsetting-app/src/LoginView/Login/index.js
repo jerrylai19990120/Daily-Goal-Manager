@@ -1,6 +1,9 @@
 /* Log-in view page */
 import React from 'react';
 import { Form , Input , Button , Typography } from 'antd';
+import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+
+import Home from '../../Home';
 
 import "./../styles.css";
 
@@ -12,6 +15,12 @@ class Login extends React.Component {
 
   }
 
+  onFinish = values => {
+    if (values.username == 'user' && values.password == 'user') {
+      //<Home state={this.state}/>
+    }
+  };
+
   render() {
     return (
       <div className="login">
@@ -21,7 +30,7 @@ class Login extends React.Component {
         name="normal_login"
         className="login_form"
         initialValues={{ remember: true }}
-        //onFinish={onFinish}
+        onFinish={this.onFinish}
         >
           <Form.Item
             name="username"
@@ -37,9 +46,9 @@ class Login extends React.Component {
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" className="login_button">
-            Log in
+              <Link to="/goalsPage">Log in</Link>
             </Button>
-            <p>Or <a href="">Sign Up</a></p>
+            <p>Or <a href="/signup">Sign Up</a></p>
           </Form.Item>
         </Form>
       </div>

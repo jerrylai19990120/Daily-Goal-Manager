@@ -16,8 +16,8 @@ class Admin extends React.Component {
     flaggedGoals: [],
     flaggedComments: [],
     users: [
-      {name:"John", goal:"Cleaning", age:"17"},
-      {name:"Jess", goal:"Exercise", age:"54"}
+      {username:"admin", email:"acsd@admin.ad", password:"admin"},
+      {username:"user", email:"user@user.us", password:"user"}
     ]
   }
 
