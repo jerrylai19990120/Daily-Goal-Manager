@@ -8,6 +8,10 @@ import Profile from './../profile'
 import GoalList from './../GoalListView/GoalList'; 
 import "./styles.css";
 
+import Goal from './../goal-description-component/goal-section'
+
+// import Detail from "./../GoalListView/GoalDetail";
+
 const { Header, Content, Footer } = Layout;
 
 class Home extends React.Component {
@@ -44,7 +48,8 @@ class Home extends React.Component {
                             (<GoalList />)}/>
             <Route exact path='/profilePage' render={() => 
                             (<Profile />)}/>
-
+            <Route exact path='/GoalDetail' render={() =>
+                            (<Goal />)}/>
           </Switch>
         </Content>
                       

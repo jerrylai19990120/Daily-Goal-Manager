@@ -35,13 +35,18 @@ class Listings extends React.Component{
 			        />
 			        <span >Description: {item.goalDescription}</span>
 			        <div className="button"/>
-			        <Button >More Info <ArrowRightOutlined /></Button>
+			        <Link to={"/GoalDetail"}>
+			        	<Button>More Info <ArrowRightOutlined /></Button>
+			        </Link>
+					    
+			       { // <Button>
+			       			        // 	<Link to="/GoalDetail">More Info <ArrowRightOutlined /></Link>
+			       			        // </Button>
+			       			    }
 			      </List.Item>
 			    )}
 			  />
-			<div>
-				<Route path='/GoalDetail' component={Detail}/>
-			</div>
+			
 			</Router>
 
 		 );

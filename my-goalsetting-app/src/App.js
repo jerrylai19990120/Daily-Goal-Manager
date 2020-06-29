@@ -6,6 +6,7 @@ import Home from './Home';
 import Login from './LoginView/Login';
 import Signup from './LoginView/Signup';
 
+import Detail from './GoalListView/GoalDetail'
 // Jerry's App.js
 
 // function App() {
@@ -32,7 +33,7 @@ class App extends React.Component {
             <Route exact path='/login' render={() =>
                             (<Login state={this.state}/>)}/>
             <Route exact path='/signup' render={() =>
-                            (<Signup state={this.state}/>)}/>
+                            (<Signup state={this.state}/>)}/> 
             <Home state={this.state}/>
           </Switch>
         </BrowserRouter>
