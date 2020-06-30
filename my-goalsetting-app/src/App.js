@@ -6,7 +6,8 @@ import Home from './Home';
 import Login from './LoginView/Login';
 import Signup from './LoginView/Signup';
 
-import Detail from './GoalListView/GoalDetail'
+//import Detail from './GoalListView/GoalDetail'
+
 // Jerry's App.js
 
 // function App() {

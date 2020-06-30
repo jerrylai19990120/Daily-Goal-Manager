@@ -12,27 +12,24 @@ import Goal from './../goal-description-component/goal-section'
 
 // import Detail from "./../GoalListView/GoalDetail";
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 
 class Home extends React.Component {
 
   render() {
     return (
-      <Router>
       <Layout className="layout">
-
         <Header>
           <h1 className="website_title">My Goal Setting App</h1>
         </Header>
 
-        <Layout>
         <Header>
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['3']}>
-            <Menu.Item key="1">
+          <Menu theme="dark" mode="horizontal" >
+            <Menu.Item key="1" className="menu_item">
               Goals
               <Link to='/goalsPage'/>
             </Menu.Item>
-            <Menu.Item key="2">
+            <Menu.Item key="2" className="menu_item">
               Profile
               <Link to='/profilePage'/>
             </Menu.Item>
@@ -40,7 +37,8 @@ class Home extends React.Component {
         </Header>
 
           
-        <Content style={{ padding: '0px 50px 30px 50px' }}>
+        <Content>
+        <div >
           <Switch> 
             <Route exact path='/' render={() => 
                             (<GoalList />)}/>
@@ -51,11 +49,12 @@ class Home extends React.Component {
             <Route exact path='/GoalDetail' render={() =>
                             (<Goal />)}/>
           </Switch>
+        </div>
         </Content>
                       
-        </Layout>
+  
       </Layout> 
-      </Router>
+
     );  
   }
 }

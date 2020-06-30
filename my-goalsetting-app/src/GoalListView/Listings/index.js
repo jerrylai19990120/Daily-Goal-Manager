@@ -1,13 +1,10 @@
 import React from 'react';
 
 import { List, Button } from 'antd';
-//import { uid } from "react-uid";
 import { ArrowRightOutlined } from '@ant-design/icons';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Link} from 'react-router-dom';
 import './../../App.css';
-
-//import Goal from "./../Goal";
-import Detail from "./../GoalDetail";
+//import Detail from "./../GoalDetail";
 import "./styles.css";
 
 
@@ -30,19 +27,14 @@ class Listings extends React.Component{
 			        key={item.goalTitle}
 			      >
 			        <List.Item.Meta
-			          title={<a className="title">{item.goalTitle}</a>}
+			          title={<span className="title">{item.goalTitle}</span>}
 			          description={<span>Duration: {item.goalDuration} Days</span>}
 			        />
 			        <span >Description: {item.goalDescription}</span>
 			        <div className="button"/>
 			        <Link to={"/GoalDetail"}>
-			        	<Button>More Info <ArrowRightOutlined /></Button>
+			        	<Button>More Info</Button>
 			        </Link>
-					    
-			       { // <Button>
-			       			        // 	<Link to="/GoalDetail">More Info <ArrowRightOutlined /></Link>
-			       			        // </Button>
-			       			    }
 			      </List.Item>
 			    )}
 			  />

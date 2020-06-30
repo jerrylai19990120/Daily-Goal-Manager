@@ -1,11 +1,8 @@
 import React from "react";
-import Header from './../Header';  
-import Goal from "./../Goal";
 import Listings from './../Listings'; 
 import GoalForm from './../GoalForm'; 
-import { Collapse, Button } from 'antd';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
-
+import { Collapse } from 'antd';
+import "./styles.css";
 
 const { Panel } = Collapse;
 
@@ -59,42 +56,26 @@ class GoalList extends React.Component {
     const value = target.value;
     const name = target.name;
 
-    //console.log('target:', target) 
-    //console.log('name:', name) // studentName
-    //console.log('value:', value) // jake
-
-    // 'this' is bound to the Queue component in this arrow function.
-     //  In arrow functinos, 'this' is bound to the enclosing lexical function/global scope
-     //  where it is *defined*.  This is different than 'this' in normal functions,
-     //  which are bound at the call-site.
     this.setState({
-      [name]: value // [name] sets the object property name to the value of the `name` variable.
+      [name]: value 
     });
   };
+
+ 
 
   render() {
     
     return (
-      <Router>
-      <div>
-
-        <Header
-          title="List of Goals"
-          subtitle="Select the Goals you want to join!"
-        />
+      <div className="content_padding">
+    
+        <h1 className="title">List of Goals</h1>
+        <h3 className="subtitle">Select the Goals you want to join!</h3>
+     
 
         <Collapse className='collapse'>
-          <Panel header="Add New Goal Form">
-          
-          
-{        /*    <GoalForm 
-            goalTitle = {this.state.goalTitle}
-            goalDescription = {this.state.goalDescription}
-            goalDuration = {this.state.goalDuration}
-            handleChange = {this.state.goalTitle}
-            addGoal = {this.state.goalTitle}
-          />
-            */}
+          <Panel header={<span className="panel_header">Add New Goal Form</span>} >
+
+
           <GoalForm 
             goalTitle = {this.state.goalTitle}
             goalDescription = {this.state.goalDescription}
@@ -110,13 +91,8 @@ class GoalList extends React.Component {
           goals={this.state.goals}
           listComponent={this}
         />
-        
-        
-
+  
       </div>
-      
-
-      </Router>
     );  
   }
 }
