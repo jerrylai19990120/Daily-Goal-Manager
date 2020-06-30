@@ -1,9 +1,4 @@
 import React from "react";
-<<<<<<< HEAD
-import Header from './../Header';  
-//import Goal from "./../Goal";
-=======
->>>>>>> styling
 import Listings from './../Listings'; 
 import GoalForm from './../GoalForm'; 
 import { Collapse } from 'antd';
