@@ -1,7 +1,9 @@
 import React from "react";
 import "antd/dist/antd.css";
-import { Form, Input, InputNumber, Button} from "antd";
+import { Form, Input, Button} from "antd";
 import "./styles.css";
+
+const txt = "Create new goal here and share them with other people!";
 
 class GoalForm extends React.Component {
   render() {
@@ -20,23 +22,15 @@ class GoalForm extends React.Component {
     return (
       <div className="form">
 
-        <div className="header"><h1>Add Goals Form</h1></div>
+        <h2 className="header">{txt}</h2>
 
         <Form
           name="GoalForm"
           onFinish={addGoal}
-          //onFinish={(values) => {
-            //console.log('values before:',values);  // works
-            //values.title = {goalTitle};
-            //values.description = {goalDescription};
-            //values.duration = {goalDuration};
-            //console.log('values after:', values);
-          //}}
         >
 
           <Form.Item
             label="Goal Title"
-            
             rules={[{
               required: true,
               message: "Please input the title of your goal!"
@@ -52,11 +46,9 @@ class GoalForm extends React.Component {
 
           <Form.Item
             label="Description"
-            
             rules={[{
               required: true,
-              message: "Please input your password!",
-              type: Number
+              message: "Please input the description of your goal!"
             }]}
           >
             <TextArea 
@@ -72,17 +64,16 @@ class GoalForm extends React.Component {
             label="Duration (Number of Days)"
             rules={[{
               required: true,
-              message: "Please input the duration of your goal only in numbers!"
+              message: "Please input the duration of your goal only in numbers!",
+              type: Number
             }]}
           >
-
             <Input
               name="goalDuration"
-              defaultValue={1}
+              placeholder='Input the duration of your goal only in numbers (ex/ 3 -> 3 Days)'
               value = {goalDuration}
               onChange={handleChange} 
-            />
-            <span>  Days</span>
+            /> Days
           </Form.Item>
 
           <Form.Item>
@@ -93,6 +84,7 @@ class GoalForm extends React.Component {
               Submit
             </Button>
           </Form.Item>
+
         </Form>
       </div>
     );
