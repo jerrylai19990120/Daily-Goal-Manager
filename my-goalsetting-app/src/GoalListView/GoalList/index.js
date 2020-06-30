@@ -1,11 +1,13 @@
 import React from "react";
+<<<<<<< HEAD
 import Header from './../Header';  
 //import Goal from "./../Goal";
+=======
+>>>>>>> styling
 import Listings from './../Listings'; 
 import GoalForm from './../GoalForm'; 
-import { Collapse, Button } from 'antd';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
-
+import { Collapse } from 'antd';
+import "./styles.css";
 
 const { Panel } = Collapse;
 
@@ -64,20 +66,20 @@ class GoalList extends React.Component {
     });
   };
 
+ 
+
   render() {
     
     return (
-      <Router>
-      <div>
-
-        <Header
-          title="List of Goals"
-          subtitle="Select the Goals you want to join!"
-        />
+      <div className="content_padding">
+    
+        <h1 className="title">List of Goals</h1>
+        <h3 className="subtitle">Select the Goals you want to join!</h3>
 
         <Collapse className='collapse'>
-          <Panel header="Add New Goal Form">
-          
+
+          <Panel header={<span className="panel_header">Add New Goal Form</span>} >
+
           <GoalForm 
             goalTitle = {this.state.goalTitle}
             goalDescription = {this.state.goalDescription}
@@ -93,9 +95,9 @@ class GoalList extends React.Component {
           goals={this.state.goals}
           listComponent={this}
         />
-      
+  
       </div>
-      </Router>
+
     );  
   }
 }
