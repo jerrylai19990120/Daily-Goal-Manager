@@ -1,10 +1,8 @@
 import React from 'react';
-
 import { List, Button } from 'antd';
 import { ArrowRightOutlined } from '@ant-design/icons';
 import {BrowserRouter as Router, Link} from 'react-router-dom';
 import './../../App.css';
-//import Detail from "./../GoalDetail";
 import "./styles.css";
 
 
@@ -15,11 +13,9 @@ class Listings extends React.Component{
 
 		return (
 
-			<Router>
-
 		    <List
 			    itemLayout="vertical"
-			 
+			 	className="listItem"
 			    dataSource={goals}
 			    renderItem={item => (
 			      <List.Item
@@ -38,8 +34,6 @@ class Listings extends React.Component{
 			      </List.Item>
 			    )}
 			  />
-			
-			</Router>
 
 		 );
 	}
