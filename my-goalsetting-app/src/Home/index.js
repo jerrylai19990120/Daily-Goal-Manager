@@ -12,7 +12,7 @@ import Goal from './../goal-description-component/goal-section'
 
 // import Detail from "./../GoalListView/GoalDetail";
 
-const { Header, Content, Footer } = Layout;
+const { Header, Content } = Layout;
 
 class Home extends React.Component {
 
