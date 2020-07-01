@@ -1,7 +1,7 @@
 import React from 'react';
 import { Comment , List } from 'antd';
 
-//import Goal from "./../Goal";
+import Listings from "../../GoalListView/Listings";
 
 import "./styles.css";
 
@@ -10,10 +10,11 @@ class FlaggedGoalList extends React.Component {
     const { flaggedGoals , adminComponent } = this.props;
 
     return (
-
-      <p>{'temp'}</p>
+      <Listings
+        goals={flaggedGoals}
+        adminComponent={this}
+      />
     );
-
   }
 }
 

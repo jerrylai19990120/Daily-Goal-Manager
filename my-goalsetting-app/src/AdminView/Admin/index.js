@@ -13,11 +13,27 @@ const { Panel } = Collapse;
 
 class Admin extends React.Component {
   state = {
-    flaggedGoals: [],
+    flaggedGoals: [
+      {
+        goalTitle: 'Reported Goal 1',
+        goalDescription: 'This goal is repoted goal 1.',
+        goalDuration: 10, },
+      {
+        goalTitle: 'Reported Goal 2',
+        goalDescription: 'This goal is reported goal 2.',
+        goalDuration: 7,
+      },
+      {
+        goalTitle: 'Reported Goal 3',
+        goalDescription: 'This goal is reported goal 3.',
+        goalDuration: 30,
+      },
+    ],
     flaggedComments: [],
     users: [
-      {username:"admin", email:"acsd@admin.ad", password:"admin"},
-      {username:"user", email:"user@user.us", password:"user"}
+      {username:"admin", email:"acsd@admin.ad", password:"admin", class:"admin"},
+      {username:"user", email:"user@user.us", password:"user", class:"user"},
+      {username:"user2", email:"user2@user2.us", password:"user2", class:"user"}
     ]
   }
 

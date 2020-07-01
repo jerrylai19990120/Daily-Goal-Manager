@@ -57,7 +57,7 @@ class Signup extends React.Component {
           </Form.Item>
           <Form.Item>
             <Button type="primary" htmlType="submit" className="login_button">
-            Sign Up
+              <Link to="/goalsPage">Sign Up</Link>
             </Button>
             <p>Been here before? <a href="login">Log in</a></p>
           </Form.Item>
