@@ -1,5 +1,5 @@
 import React from 'react';
-import { List } from 'antd';
+import { List , Avatar } from 'antd';
 
 //import { removeUser } from "../../actions/admin";
 
@@ -13,11 +13,14 @@ class User extends React.Component {
     const { user, adminComponent } = this.props;
 
     return (
-      <List.Item>
-        {user.name}
+      <List.Item actions={[<a>delete account</a>]}>
+        <List.Item.Meta
+          avatar={<Avatar src=
+            'https://pbs.twimg.com/profile_images/1262370602716889089/4Fk_pbO3_400x400.jpg' />}
+          title={<a href="/profilePage">{user.username}</a>}
+          description={user.email}
+        />
       </List.Item>
-
-
     );
 
   }

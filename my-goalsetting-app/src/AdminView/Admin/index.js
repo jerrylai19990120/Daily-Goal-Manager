@@ -1,6 +1,6 @@
 /* Admin view page */
 import React from 'react';
-import { Collapse , List , Divider } from 'antd';
+import { Collapse , Divider } from 'antd';
 
 // Import components
 import UserList from "./../UserList";
@@ -11,14 +11,31 @@ import "./styles.css";
 // Import actions/methods
 const { Panel } = Collapse;
 
+const users = [
+  {username:"admin", email:"acsd@admin.ad", password:"admin", class:"admin"},
+  {username:"user", email:"user@user.us", password:"user", class:"user"},
+  {username:"user2", email:"user2@user2.us", password:"user2", class:"user"}
+];
+
 class Admin extends React.Component {
   state = {
-    flaggedGoals: [],
+    flaggedGoals: [
+      {
+        goalTitle: 'Reported Goal 1',
+        goalDescription: 'This goal is repoted goal 1.',
+        goalDuration: 10, },
+      {
+        goalTitle: 'Reported Goal 2',
+        goalDescription: 'This goal is reported goal 2.',
+        goalDuration: 7,
+      },
+      {
+        goalTitle: 'Reported Goal 3',
+        goalDescription: 'This goal is reported goal 3.',
+        goalDuration: 30,
+      },
+    ],
     flaggedComments: [],
-    users: [
-      {username:"admin", email:"acsd@admin.ad", password:"admin"},
-      {username:"user", email:"user@user.us", password:"user"}
-    ]
   }
 
   render() {
@@ -48,7 +65,7 @@ class Admin extends React.Component {
         {/* The User List */}
         <Divider className='divider' orientation="left">Users</Divider>
         <UserList
-          users={this.state.users}
+          users={users}
           adminComponent={this}
         />
 
@@ -59,3 +76,4 @@ class Admin extends React.Component {
 }
 
 export default Admin
+export { users };

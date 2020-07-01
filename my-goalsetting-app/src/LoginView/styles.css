@@ -19,3 +19,8 @@
 p {
   text-align: left;
 }
+
+.login_alert {
+	font-size: 10px;
+  text-align: left;
+}
