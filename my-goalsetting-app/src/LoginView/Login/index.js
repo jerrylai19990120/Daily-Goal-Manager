@@ -1,25 +1,48 @@
 /* Log-in view page */
 import React from 'react';
-import { Form , Input , Button , Typography } from 'antd';
+import { Form , Input , Button , Typography , Alert } from 'antd';
 import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 
 import Home from '../../Home';
+import {users} from '../../AdminView/Admin'
+import { Redirect } from 'react-router-dom';
 
 import "./../styles.css";
 
 const { Title } = Typography;
+//const users = Admin.users;
 
 class Login extends React.Component {
-  state = {
-
+  constructor(props){
+    super(props);
 
   }
 
+
+  state = {
+    correctAuth: false,
+    firstTry: true
+  }
+
   onFinish = values => {
-    if (values.username == 'user' && values.password == 'user') {
-      //<Home state={this.state}/>
+    for (var i = 0; i < users.length; i++) {
+      const user = users[i];
+      if (values.username == user.username) {
+        if (values.password == user.password) {
+          this.setState({correctAuth: true});
+        }
+      }
+    }
+    if (!this.state.correctAuth) {
+      this.setState({firstTry: false});
     }
   };
+
+  renderRedirect = () => {
+    if (this.state.correctAuth) {
+      return <Redirect to='/goalsPage' />
+    }
+  }
 
   render() {
     return (
@@ -44,9 +67,20 @@ class Login extends React.Component {
           >
             <Input type="password" placeholder="Password"/>
           </Form.Item>
+          {!this.state.firstTry &&
+            <Form.Item>
+              <Alert
+                message="Wrong Username or Password. Try again."
+                type="error"
+                showIcon
+                className="login_alert"
+              />
+            </Form.Item>
+          }
           <Form.Item>
+            {this.renderRedirect()}
             <Button type="primary" htmlType="submit" className="login_button">
-              <Link to="/goalsPage">Log in</Link>
+              Log in
             </Button>
             <p>Or <a href="/signup">Sign Up</a></p>
           </Form.Item>

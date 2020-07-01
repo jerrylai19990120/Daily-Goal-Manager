@@ -1,5 +1,4 @@
 import React from 'react';
-import { Comment , List } from 'antd';
 
 import Listings from "../../GoalListView/Listings";
 
