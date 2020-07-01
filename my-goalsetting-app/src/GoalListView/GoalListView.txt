@@ -114,7 +114,7 @@ export default App;
 // code
 
 
-------------- GoalList index.js : collapse element --------------------------
+------------- GoalList index.js : --------------------------
 
 // code
 

@@ -71,9 +71,12 @@ class GoalList extends React.Component {
         <h1 className="title">List of Goals</h1>
         <h3 className="subtitle">Select the Goals you want to join!</h3>
 
-        <Collapse className='collapse' accordion>
+        <Collapse 
+        accordion
+        bordered={false} defaultActiveKey={['2']}
+        >
 
-          <Panel header={<span className="panel_header">Add New Goal Form</span>} >
+          <Panel header={<span className="panel_header">Add New Goal Form</span>} key="1">
 
           <GoalForm 
             goalTitle = {this.state.goalTitle}
@@ -82,15 +85,18 @@ class GoalList extends React.Component {
             handleChange = {this.handleInputChange}
             addGoal={() => addGoal(this)}
           />
-          
+
+          </Panel>
+
+          <Panel showArrow={false} header={<span className="panel2_header">Press here to view Goals</span>}
+           key="2">
+            <Listings 
+            goals={this.state.goals}
+            listComponent={this}
+            />
           </Panel>
         </Collapse>
-
-        <Listings 
-          goals={this.state.goals}
-          listComponent={this}
-        />
-  
+        
       </div>
 
     );  
