@@ -23,8 +23,7 @@ class GoalForm extends React.Component {
 
     function goalAdded(e)
       {
-          console.log("testo testo handler")
-          message.info("Your goal has been added!")
+          message.success("Your goal has been added!")
           addGoal();
       }
 
