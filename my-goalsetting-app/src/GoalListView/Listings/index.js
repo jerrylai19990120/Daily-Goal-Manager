@@ -24,13 +24,14 @@ class Listings extends React.Component{
 			      >
 			        <List.Item.Meta
 			          title={<span className="title">{item.goalTitle}</span>}
-			          description={<span>Duration: {item.goalDuration} Days</span>}
+			          description={<span className="description">Description: {item.goalDescription}</span>}
 			        />
-			        <span >Description: {item.goalDescription}</span>
-			        <div className="button"/>
+			        <div><span className="duration">Duration: {item.goalDuration} Days</span></div>
+			        <div className="button">
 			        <Link to={"/GoalDetail"}>
 			        	<Button>More Info</Button>
 			        </Link>
+			        </div>
 			      </List.Item>
 			    )}
 			  />

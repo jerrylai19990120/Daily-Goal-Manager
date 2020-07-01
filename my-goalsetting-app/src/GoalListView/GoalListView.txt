@@ -35,43 +35,89 @@ class App extends React.Component {
 
 export default App;
 
---------------------------------------------------------------------------------------------
-import React from 'react';
-import './App.css';
-import Goal from './goal-description'
+------------- GoalList index.js : regular --------------------------
 
-function App() {
-  return (
-    <div className="App">
-      <Goal />
-    </div>
-  );
-}
+// code
 
-export default App;
-
-
----------------------- App.js for GoalListView components---------------------------------
-
-import React from 'react';
-import './App.css';
-
-import GoalList from './GoalListView/components/GoalList';
-
-class App extends React.Component {
-
-  state = {
-    abc: "123"
-  }
-
-  render(){
     return (
-      <div className="App">
-            <GoalList state={this.state}/>
-        </div>
-      );
-  }
+      <div className="content_padding">
+    
+        <h1 className="title">List of Goals</h1>
+        <h3 className="subtitle">Select the Goals you want to join!</h3>
 
-}
+        <Collapse className='collapse' accordion>
 
-export default App;
+          <Panel header={<span className="panel_header">Add New Goal Form</span>} >
+
+          <GoalForm 
+            goalTitle = {this.state.goalTitle}
+            goalDescription = {this.state.goalDescription}
+            goalDuration = {this.state.goalDuration}
+            handleChange = {this.handleInputChange}
+            addGoal={() => addGoal(this)}
+          />
+          
+          </Panel>
+        </Collapse>
+
+        <Listings 
+          goals={this.state.goals}
+          listComponent={this}
+        />
+  
+      </div>
+
+    );  
+
+// code
+
+
+------------- GoalList index.js : collapse element --------------------------
+
+// code
+
+    return (
+      <div className="content_padding">
+    
+        <h1 className="title">List of Goals</h1>
+        <h3 className="subtitle">Select the Goals you want to join!</h3>
+
+        <Collapse 
+        className='collapse' accordion
+        bordered={false} defaultActiveKey={['2']}
+        >
+
+          <Panel header={<span className="panel_header">Add New Goal Form</span>} key="1">
+
+          <GoalForm 
+            goalTitle = {this.state.goalTitle}
+            goalDescription = {this.state.goalDescription}
+            goalDuration = {this.state.goalDuration}
+            handleChange = {this.handleInputChange}
+            addGoal={() => addGoal(this)}
+          />
+
+          </Panel>
+
+          <Panel showArrow={false} header="Press here to view Goals" key="2">
+            <Listings 
+            goals={this.state.goals}
+            listComponent={this}
+            />
+          </Panel>
+        </Collapse>
+        
+      </div>
+
+    );  
+
+// code
+
+
+------------- GoalList index.js : collapse element --------------------------
+
+// code
+
+
+
+// code

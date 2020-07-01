@@ -71,7 +71,7 @@ class GoalList extends React.Component {
         <h1 className="title">List of Goals</h1>
         <h3 className="subtitle">Select the Goals you want to join!</h3>
 
-        <Collapse className='collapse'>
+        <Collapse className='collapse' accordion>
 
           <Panel header={<span className="panel_header">Add New Goal Form</span>} >
 
@@ -82,7 +82,7 @@ class GoalList extends React.Component {
             handleChange = {this.handleInputChange}
             addGoal={() => addGoal(this)}
           />
-
+          
           </Panel>
         </Collapse>
 

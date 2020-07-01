@@ -8,8 +8,7 @@
 
 .title {
 	font-weight: bold;
-	font-size: x-large;
-	text-align: left;
+	font-size: 25px;
 }
 
 .subtitle {
@@ -26,4 +25,5 @@
 
 .content_padding {
 	 padding: 10px 50px 30px 50px;
+	 background-color: black;
 }
