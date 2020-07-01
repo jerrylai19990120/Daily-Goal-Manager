@@ -2,6 +2,7 @@ import React from "react";
 import "antd/dist/antd.css";
 import { Form, Input, Button} from "antd";
 import "./styles.css";
+import Detail from './../Detail'; 
 
 const txt = "Create new goal here and share them with other people!";
 
@@ -31,6 +32,7 @@ class GoalForm extends React.Component {
 
           <Form.Item
             label="Goal Title"
+            name="g_title"
             rules={[{
               required: true,
               message: "Please input the title of your goal!"
@@ -46,11 +48,12 @@ class GoalForm extends React.Component {
 
           <Form.Item
             label="Description"
+            name="g_description"
             rules={[{
               required: true,
               message: "Please input the description of your goal!"
             }]}
-          >
+          > 
             <TextArea 
               rows={4} 
               name="goalDescription"
@@ -62,10 +65,11 @@ class GoalForm extends React.Component {
 
           <Form.Item
             label="Duration (Number of Days)"
+            name="g_duration"
             rules={[{
               required: true,
-              message: "Please input the duration of your goal only in numbers!",
-              type: Number
+              message: "Please input the duration of your goal only in NUMBERS!",
+             
             }]}
           >
             <Input
@@ -73,10 +77,11 @@ class GoalForm extends React.Component {
               placeholder='Input the duration of your goal only in numbers (ex/ 3 -> 3 Days)'
               value = {goalDuration}
               onChange={handleChange} 
-            /> Days
+            /> 
           </Form.Item>
+ 
 
-          <Form.Item>
+          <Form.Item className="submit">
             <Button 
               type="primary"
               htmlType="submit"
