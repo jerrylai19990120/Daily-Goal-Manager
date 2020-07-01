@@ -1,24 +1,15 @@
 /* Log-in view page */
 import React from 'react';
 import { Form , Input , Button , Typography , Alert } from 'antd';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
-
-import Home from '../../Home';
-import {users} from '../../AdminView/Admin'
 import { Redirect } from 'react-router-dom';
 
+import {users} from '../../AdminView/Admin'
 import "./../styles.css";
 
 const { Title } = Typography;
-//const users = Admin.users;
+
 
 class Login extends React.Component {
-  constructor(props){
-    super(props);
-
-  }
-
-
   state = {
     correctAuth: false,
     firstTry: true
@@ -27,8 +18,8 @@ class Login extends React.Component {
   onFinish = values => {
     for (var i = 0; i < users.length; i++) {
       const user = users[i];
-      if (values.username == user.username) {
-        if (values.password == user.password) {
+      if (values.username === user.username) {
+        if (values.password === user.password) {
           this.setState({correctAuth: true});
         }
       }

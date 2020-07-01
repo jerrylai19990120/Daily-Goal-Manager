@@ -1,7 +1,8 @@
 /* Sign-Up view page */
 import React from 'react';
-import { Form , Input , Button , Typography } from 'antd';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import { Form , Input , Button , Typography , Alert } from 'antd';
+import { Redirect } from 'react-router-dom';
+import {users} from '../../AdminView/Admin'
 
 import "./../styles.css";
 
@@ -14,17 +15,40 @@ const validateMessages = {
   },
   string: {
     min: 'Minimum ${min} Characters Required',
-  },
-  //min: 'Minimum 3 Characters Required'
+  }
 };
 
 class Signup extends React.Component {
   state = {
+    duplicateUsername: false,
+    validUsername: false
   }
 
   onFinish = values => {
-    console.log(values);
+    this.setState({duplicateUsername: false});
+    for (var i = 0; i < users.length; i++) {
+      const user = users[i];
+      if (values.username === user.username) {
+        this.setState({duplicateUsername: true});
+      }
+    }
+    if (!this.state.duplicateUsername) {
+      this.setState({validUsername: true});
+      users.push({
+        username: values.username,
+        email: values["e-mail"],
+        password: values.password,
+        class:"user"
+         })
+      console.log(users)
+    }
   };
+
+  renderRedirect = () => {
+    if (this.state.validUsername) {
+      return <Redirect to='/goalsPage' />
+    }
+  }
 
   render() {
     return (
@@ -55,9 +79,20 @@ class Signup extends React.Component {
           >
             <Input type="password" placeholder="Password"/>
           </Form.Item>
+          {this.state.duplicateUsername &&
+            <Form.Item>
+              <Alert
+                message="Username is already taken!"
+                type="error"
+                showIcon
+                className="login_alert"
+              />
+            </Form.Item>
+          }
           <Form.Item>
+            {this.renderRedirect()}
             <Button type="primary" htmlType="submit" className="login_button">
-              <Link to="/goalsPage">Sign Up</Link>
+              Sign Up
             </Button>
             <p>Been here before? <a href="login">Log in</a></p>
           </Form.Item>
