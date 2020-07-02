@@ -13,20 +13,10 @@ class GoalForm extends React.Component {
       goalDescription,
       goalDuration,
       handleChange,
-      // handleSubmit,
-      // close,
       addGoal
     } = this.props;
 
     const { TextArea } = Input;
-
-    // const handleSubmitButton = e => {
-    //   e.preventDefault();
-    //   this.setState({ close: []});
-    // };
-
-    //console.log('properties:',this.props)
-      //
 
     function goalAdded(e)
       {

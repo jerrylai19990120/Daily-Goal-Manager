@@ -9,7 +9,7 @@ import "./styles.css";
 class Listings extends React.Component{
 	render() {
 
-		const { goals , listComponent } = this.props;
+		const { goals  } = this.props;
 
 		return (
 
