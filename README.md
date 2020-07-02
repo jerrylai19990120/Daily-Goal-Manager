@@ -2,7 +2,7 @@
 
 ## Application Description :
 <table> <tr> <td>
-In this pandemic situation where contact between friends and families are limited, people are prone to procrastinate and lay things off. This website encourages users to choose or create a task that they want to fulfil every day with other people with the same goal. This way, users feel supported and stimulated to achieve their goals every day. 
+In the current pandemic situation where contact between friends and families are limited, people are prone to procrastinate and lay things off. This website encourages users to choose or create a task that they want to fulfil every day with other people with the same goal. This way, users feel supported and stimulated to achieve their goals every day. 
 </td> </tr> </table>
 
 Contributors:
