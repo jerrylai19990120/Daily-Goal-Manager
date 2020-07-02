@@ -39,7 +39,7 @@ class Login extends React.Component {
     return (
       <div className="login">
         <Title className="login_title">Welcome Back</Title>
-        <Title level={4}>Some inspiring slogan</Title>
+        <Title level={4}>Log in and Join others to accomplish your goals!</Title>
         <Form
         name="normal_login"
         className="login_form"
@@ -73,7 +73,7 @@ class Login extends React.Component {
             <Button type="primary" htmlType="submit" className="login_button">
               Log in
             </Button>
-            <p>Or <a href="/signup">Sign Up</a></p>
+            <p>Or <a href="/signup">Sign Up</a> to join our community.</p>
           </Form.Item>
         </Form>
       </div>

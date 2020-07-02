@@ -54,7 +54,7 @@ class Signup extends React.Component {
     return (
       <div className="signup">
         <Title className="login_title">New Here?</Title>
-        <Title level={4}>Join 100,000 other users</Title>
+        <Title level={4}>Join 100,000 other users to create and achieve goals!</Title>
         <Form
         className="login_form"
         validateMessages={validateMessages}
