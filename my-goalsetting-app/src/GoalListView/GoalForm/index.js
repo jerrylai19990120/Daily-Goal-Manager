@@ -32,6 +32,10 @@ class GoalForm extends React.Component {
       {
           message.success("Your goal has been added! Check your goal at the bottom of the list")
           addGoal();
+          let texts = document.getElementsByClassName("text");
+          for(let i=0;i<texts.length;i++){
+              texts[i].value = '';
+          }
       }
 
     return (
@@ -53,6 +57,7 @@ class GoalForm extends React.Component {
             }]}
           >
             <Input 
+            className='text'
               name="goalTitle"
               placeholder="Input the title of your goal"
               value = {goalTitle}
@@ -69,6 +74,7 @@ class GoalForm extends React.Component {
             }]}
           > 
             <TextArea 
+            className='text'
               rows={4} 
               name="goalDescription"
               placeholder="Input description of your goal"
@@ -83,17 +89,18 @@ class GoalForm extends React.Component {
             rules={[{
               required: true,
               message: "Please input the duration of your goal only in NUMBERS!",
-             
+            
             }]}
           >
             <Input
+            className='text'
               name="goalDuration"
               placeholder='Input the duration of your goal only in numbers (ex/ 3 -> 3 Days)'
               value = {goalDuration}
               onChange={handleChange} 
             /> 
           </Form.Item>
- 
+
 
           <Form.Item className="submit">
             <Button 
