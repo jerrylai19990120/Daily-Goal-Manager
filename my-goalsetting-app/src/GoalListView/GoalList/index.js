@@ -93,8 +93,7 @@ class GoalList extends React.Component {
         </Collapse>
 
         <Listings 
-          goals={this.state.goals}
-         
+          goals={this.state.goals}   
         />
   
       </div>
