@@ -5,7 +5,7 @@ import { Collapse , Divider } from 'antd';
 // Import components
 import UserList from "./../UserList";
 import FlaggedGoalList from "./../FlaggedGoalList";
-//import FlaggedCommentList from "./../FlaggedCommentList";
+import FlaggedCommentList from "./../FlaggedCommentList";
 import "./styles.css";
 
 // Import actions/methods
@@ -23,7 +23,8 @@ class Admin extends React.Component {
       {
         goalTitle: 'Reported Goal 1',
         goalDescription: 'This goal is repoted goal 1.',
-        goalDuration: 10, },
+        goalDuration: 10,
+      },
       {
         goalTitle: 'Reported Goal 2',
         goalDescription: 'This goal is reported goal 2.',
@@ -35,7 +36,23 @@ class Admin extends React.Component {
         goalDuration: 30,
       },
     ],
-    flaggedComments: [],
+    flaggedComments: [
+      {
+        username: 'user',
+        date: '5:50 AM, July 1, 2014',
+        content: 'Reading a book sucks!!'
+      },
+      {
+        username: 'admin',
+        date: '6:47 PM, February 14, 2016',
+        content: 'This goal is terrible!!'
+      },
+      {
+        username: 'user2',
+        date: '10:10 PM, December 25, 2018',
+        content: 'Exercising is bad!!'
+      }
+    ],
     userTemp: users.map((x) => x)
   }
 
@@ -58,7 +75,12 @@ class Admin extends React.Component {
 
           </Panel>
           <Panel header="Flagged Comments" key="2">
-            <p>{'temp sdsd'}</p>
+
+            {/* Flagged Comments List */}
+            <FlaggedCommentList
+              flaggedComments={this.state.flaggedComments}
+              adminComponent={this}
+            />
 
           </Panel>
         </Collapse>
