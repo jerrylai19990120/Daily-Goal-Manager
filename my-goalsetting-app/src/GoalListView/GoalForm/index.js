@@ -30,7 +30,7 @@ class GoalForm extends React.Component {
 
     function goalAdded(e)
       {
-          message.success("Your goal has been added!")
+          message.success("Your goal has been added! Look below to check!")
           addGoal();
       }
 
