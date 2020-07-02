@@ -31,7 +31,7 @@ class Login extends React.Component {
 
   renderRedirect = () => {
     if (this.state.correctAuth) {
-      return <Redirect to='/goalsPage' />
+      return <Redirect to='/home' />
     }
   }
 

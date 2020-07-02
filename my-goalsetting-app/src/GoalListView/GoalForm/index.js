@@ -13,10 +13,17 @@ class GoalForm extends React.Component {
       goalDescription,
       goalDuration,
       handleChange,
+      // handleSubmit,
+      // close,
       addGoal
     } = this.props;
 
     const { TextArea } = Input;
+
+    // const handleSubmitButton = e => {
+    //   e.preventDefault();
+    //   this.setState({ close: []});
+    // };
 
     //console.log('properties:',this.props)
 
@@ -83,7 +90,7 @@ class GoalForm extends React.Component {
 
           <Form.Item className="submit">
             <Button 
-              type="primary"
+              type="submit"
               htmlType="submit"
             >
               Submit

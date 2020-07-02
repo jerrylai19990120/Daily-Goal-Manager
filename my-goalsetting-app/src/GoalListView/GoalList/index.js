@@ -2,6 +2,7 @@ import React from "react";
 import Listings from './../Listings'; 
 import GoalForm from './../GoalForm'; 
 import { Collapse } from 'antd';
+import { useState } from "react";
 import "./styles.css";
 
 const { Panel } = Collapse;
@@ -27,8 +28,9 @@ const addGoal = table => {
   
 };
 
+
 class GoalList extends React.Component {
- 
+
   state = {
     goalTitle: "",
     goalDescription: "",
@@ -49,6 +51,7 @@ class GoalList extends React.Component {
         goalDuration: 30,
       },
     ]
+    //close: []
   };
 
   handleInputChange = event => {
@@ -60,10 +63,14 @@ class GoalList extends React.Component {
       [name]: value 
     });
   };
-
  
-
+  // handleSubmitButton = e => {
+  //   e.preventDefault();
+  //   this.setState({ close: []});
+  // };
+  
   render() {
+    const { close } = this.state;
     
     return (
       <div className="content_padding">
@@ -71,9 +78,10 @@ class GoalList extends React.Component {
         <h1 className="title">List of Goals</h1>
         <h3 className="subtitle">Select the Goals you want to join!</h3>
 
-        <Collapse className='collapse' accordion>
-
-          <Panel header={<span className="panel_header">Add New Goal Form</span>} >
+        <Collapse>
+          <Panel 
+          header={<span className="panel_header">Add New Goal Form</span>} 
+          >
 
           <GoalForm 
             goalTitle = {this.state.goalTitle}

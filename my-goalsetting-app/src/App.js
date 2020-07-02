@@ -35,7 +35,10 @@ class App extends React.Component {
                             (<Login state={this.state}/>)}/>
             <Route exact path='/signup' render={() =>
                             (<Signup state={this.state}/>)}/> 
-            <Home state={this.state}/>
+            <Route exact path='/home' render={() =>
+                            (<Home state={this.state}/>)}/> 
+            <Login state={this.state}/>
+            //<Home state={this.state}/>
           </Switch>
         </BrowserRouter>
 

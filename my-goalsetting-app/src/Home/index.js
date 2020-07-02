@@ -41,7 +41,7 @@ class Home extends React.Component {
         <Content>
         <div className="home">
           <Switch>
-            <Route exact path='/' render={() =>
+            <Route exact path='/home' render={() =>
                             (<GoalList />)}/>
             <Route exact path='/goalsPage' render={() =>
                             (<GoalList />)}/>
