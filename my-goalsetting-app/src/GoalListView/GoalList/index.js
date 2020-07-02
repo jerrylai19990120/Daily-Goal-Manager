@@ -35,6 +35,9 @@ class GoalList extends React.Component {
     goalTitle: "",
     goalDescription: "",
     goalDuration: 1,
+
+    // hardcoded data
+    // would be imported from external API 
     goals: [
       {
         goalTitle: 'Goal 1',
@@ -51,10 +54,9 @@ class GoalList extends React.Component {
         goalDuration: 30,
       },
     ]
-    //close: []
   };
 
-  handleInputChange = event => {
+  inputHandler = event => {
     const target = event.target;
     const value = target.value;
     const name = target.name;
@@ -63,11 +65,7 @@ class GoalList extends React.Component {
       [name]: value 
     });
   };
-
-  // handleSubmitButton = e => {
-  //   e.preventDefault();
-  //   this.setState({ close: []});
-  // };
+ 
   
   render() {
     const { close } = this.state;
@@ -87,7 +85,7 @@ class GoalList extends React.Component {
             goalTitle = {this.state.goalTitle}
             goalDescription = {this.state.goalDescription}
             goalDuration = {this.state.goalDuration}
-            handleChange = {this.handleInputChange}
+            handleChange = {this.inputHandler}
             addGoal={() => addGoal(this)}
           />
           
@@ -96,7 +94,7 @@ class GoalList extends React.Component {
 
         <Listings 
           goals={this.state.goals}
-          listComponent={this}
+         
         />
   
       </div>

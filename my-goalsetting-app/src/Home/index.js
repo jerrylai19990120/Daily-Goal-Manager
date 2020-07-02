@@ -4,12 +4,13 @@ import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
 import {Switch} from 'react-router-dom';
 import 'antd/dist/antd.css';
 import './../App.css';
-import Profile from './../profile';
 import GoalList from './../GoalListView/GoalList';
 import Admin from './../AdminView/Admin';
 import "./styles.css";
 
 import Goal from './../goal-description-component/goal-section'
+import Profile from "../ProfileView/FindUserPage";
+import FollowingPage from "../ProfileView/FollowingPage"
 
 const { Header, Content } = Layout;
 
@@ -30,7 +31,7 @@ class Home extends React.Component {
             </Menu.Item>
             <Menu.Item key="2" className="menu_item">
               Profile
-              <Link to='/profilePage'/>
+              <Link to='/user/samart'/>
             </Menu.Item>
           </Menu>
         </Header>
@@ -43,12 +44,14 @@ class Home extends React.Component {
                             (<GoalList />)}/>
             <Route exact path='/goalsPage' render={() =>
                             (<GoalList />)}/>
-            <Route exact path='/profilePage' render={() =>
-                            (<Profile />)}/>
             <Route exact path='/GoalDetail' render={() =>
                             (<Goal />)}/>
             <Route exact path='/admin' render={() =>
                             (<Admin />)}/>
+              <Route exact path="/user/:name" component={Profile}>
+              </Route>
+              <Route exact path="/user/:name/following" component={FollowingPage}>
+              </Route>
           </Switch>
         </div>
         </Content>
