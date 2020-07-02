@@ -36,6 +36,7 @@ class Admin extends React.Component {
       },
     ],
     flaggedComments: [],
+    userTemp: users.map((x) => x)
   }
 
   render() {
@@ -65,7 +66,7 @@ class Admin extends React.Component {
         {/* The User List */}
         <Divider className='divider' orientation="left">Users</Divider>
         <UserList
-          users={users}
+          users={this.state.userTemp}
           adminComponent={this}
         />
 
