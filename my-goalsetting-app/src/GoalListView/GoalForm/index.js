@@ -1,6 +1,6 @@
 import React from "react";
 import "antd/dist/antd.css";
-import { Form, Input, Button} from "antd";
+import { Form, Input, Button, message} from "antd";
 import "./styles.css";
 import Detail from './../Detail'; 
 
@@ -26,6 +26,13 @@ class GoalForm extends React.Component {
     // };
 
     //console.log('properties:',this.props)
+      //
+
+    function goalAdded(e)
+      {
+          message.success("Your goal has been added!")
+          addGoal();
+      }
 
     return (
       <div className="form">
@@ -34,7 +41,7 @@ class GoalForm extends React.Component {
 
         <Form
           name="GoalForm"
-          onFinish={addGoal}
+          onFinish={goalAdded}
         >
 
           <Form.Item
