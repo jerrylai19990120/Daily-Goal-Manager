@@ -36,11 +36,11 @@
 }
 
 .description{
-    width: 360px;
+    width: 660px;
     white-space: normal;
-    margin-left: 300px;
     text-align: left;
     padding-top: 10px;
+    padding-left: 300px;
 }
 
 .colors{
@@ -267,10 +267,11 @@ div.ant-picker-calendar.ant-picker-calendar-mini{
 
 .comment{
     margin-top: 20px;
+    color: white;
 }
 
 .comment strong{
-    color: #405375;
+    color: #e2e2e2;
 }
 
 .comment-icon{
@@ -324,6 +325,7 @@ div.ant-picker-calendar.ant-picker-calendar-mini{
     padding: 6px;
     border: 1px solid #CCD0D5;
     font-size: 16px;
+    color: rgb(82, 82, 82);
     
 }
 

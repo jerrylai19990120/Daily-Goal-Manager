@@ -9,7 +9,7 @@ const { Panel } = Collapse;
 
 const addGoal = table => {
   const goalList = table.state.goals;
-
+  
   const goal = {
     goalTitle: table.state.goalTitle,
     goalDescription: table.state.goalDescription,
