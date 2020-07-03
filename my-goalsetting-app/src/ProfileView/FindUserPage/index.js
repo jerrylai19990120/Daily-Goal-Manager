@@ -29,7 +29,7 @@ class Goal {
   {
     this.title = title;
     this.description = description;
-    this.progress = 0; //new goal
+    this.progress = Math.floor(Math.random() * 101); //new goal
   }
 }
 

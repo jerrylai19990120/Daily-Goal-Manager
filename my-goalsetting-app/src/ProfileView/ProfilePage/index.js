@@ -2,7 +2,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
-import { Layout, Menu, Breadcrumb, Space, List, Col, Row, Avatar, Button, Card, Pagination } from 'antd';
+import { Layout, Menu, Breadcrumb, Space, List, Col, Row, Avatar, Button, Card, Pagination, Progress } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { EditOutlined} from '@ant-design/icons';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
@@ -36,7 +36,7 @@ class Goal {
   {
     this.title = title;
     this.description = description;
-    this.progress = 0; //new goal
+    this.progress = Math.floor(Math.random() * 101); //new goal
   }
 }
 
@@ -110,13 +110,12 @@ class ProfilePage extends React.Component {
                                             dataSource={profile.goals}
                                             renderItem={item => (
                                                 <List.Item
-                                                    actions={[<a key="log">Log Today's Achievements</a>]}
                                                 >
                                                     <List.Item.Meta
                                                         title={<a>{item.title}</a>}
                                                         description={item.description}
                                                     />
-                                                    {item.progress}
+                                                    <Progress percent={item.progress} type="circle" width={100} />
                                                 </List.Item>
                                             )}
                                         />
