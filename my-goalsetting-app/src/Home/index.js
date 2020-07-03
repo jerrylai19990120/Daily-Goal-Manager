@@ -45,7 +45,7 @@ class Home extends React.Component {
             <Route exact path='/goalsPage' render={() =>
                             (<GoalList />)}/>
             <Route exact path='/GoalDetail' render={() =>
-                            (<Goal />)}/>
+                            (<Goal title='title' targetDays={10} description="sample description"/>)}/>
             <Route exact path='/admin' render={() =>
                             (<Admin />)}/>
               <Route exact path="/user/:name" component={Profile}>

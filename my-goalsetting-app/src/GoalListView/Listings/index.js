@@ -12,7 +12,7 @@ class Listings extends React.Component{
 		const { goals  } = this.props;
 
 		return (
-
+            
 		    <List
 			    itemLayout="vertical"
 			 	className="listItem"
@@ -28,7 +28,7 @@ class Listings extends React.Component{
 			        />
 			        <div><span className="duration">Duration: {item.goalDuration} Days</span></div>
 			        <div className="button">
-			        <Link to={"/GoalDetail"}>
+			        <Link to={"/GoalDetail"} >
 			        	<Button>More Info</Button>
 			        </Link>
 			        </div>

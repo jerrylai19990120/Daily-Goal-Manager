@@ -24,8 +24,7 @@ class GoalSection extends React.Component{
             days: 0,
             comments: [],
             enrolled: false,
-            color: '#F646AC',
-            description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia'
+            color: '#F646AC'
         };
         this.logProgress=this.logProgress.bind(this);
     }
@@ -122,7 +121,7 @@ class GoalSection extends React.Component{
                     strokeColor='#FFCB35'
                     />
                 </div>
-                <h1 className='goal-title'>{this.props.title}</h1>
+                <h1 className='goal-title'></h1>
                 
                 <ul className='buttonGroup'> 
                     <li><Button className='btn' type="primary" onClick={this.logProgress}>Log Your Progress</Button></li>
@@ -130,8 +129,8 @@ class GoalSection extends React.Component{
                     <li><Button className='btn' type="primary">Remove</Button></li>
                 </ul>
                 <div className='description'>
-                    <h2>Goal</h2>
-                    {this.state.description}
+                    <h2>{this.props.title}</h2>
+                    {this.props.description}
                 </div>
                 <div className='colors'>
                     <h2>Select Colors</h2>
