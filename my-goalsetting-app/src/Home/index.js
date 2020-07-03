@@ -14,7 +14,23 @@ import FollowingPage from "../ProfileView/FollowingPage"
 
 const { Header, Content } = Layout;
 
+var userClass = '';
+
+function updateClass(c) {
+  userClass = c;
+  console.log(userClass);
+  this.setState({tempUserClass: c});
+};
+
 class Home extends React.Component {
+  state = {
+    tempUserClass: '',
+    currUserClass: userClass,
+  }
+
+  componentWillMount() {
+      updateClass = updateClass.bind(this);
+ }
 
   render() {
     return (
@@ -33,6 +49,12 @@ class Home extends React.Component {
               Profile
               <Link to='/user/samart'/>
             </Menu.Item>
+            {(this.state.currUserClass === "admin" || this.state.tempUserClass === "admin") &&
+              <Menu.Item key="3" className="menu_item">
+                Admin
+                <Link to='/admin'/>
+              </Menu.Item>
+            }
           </Menu>
         </Header>
 
@@ -64,3 +86,4 @@ class Home extends React.Component {
 }
 
 export default Home;
+export { updateClass };

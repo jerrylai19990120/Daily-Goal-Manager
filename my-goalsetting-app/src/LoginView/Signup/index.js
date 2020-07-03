@@ -57,7 +57,7 @@ class Signup extends React.Component {
         <Title level={4}>Having a hard time keeping up with your tasks?</Title>
         <Title level={4}>Join and get encouragement from 100,000 other users to achieve your goals!</Title>
         <Form
-        className="login_form"
+        className="signup_form"
         validateMessages={validateMessages}
         initialValues={{ remember: true }}
         onFinish={this.onFinish}

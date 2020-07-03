@@ -3,7 +3,8 @@ import React from 'react';
 import { Form , Input , Button , Typography , Alert } from 'antd';
 import { Redirect } from 'react-router-dom';
 
-import {users} from '../../AdminView/Admin'
+import {users} from '../../AdminView/Admin';
+import {updateClass} from '../../Home';
 import "./../styles.css";
 
 const { Title } = Typography;
@@ -21,6 +22,7 @@ class Login extends React.Component {
       if (values.username === user.username) {
         if (values.password === user.password) {
           this.setState({correctAuth: true});
+          updateClass(user.class);
         }
       }
     }
