@@ -24,7 +24,7 @@ class Listings extends React.Component{
 			      >
 			        <List.Item.Meta
 			          title={<span className="title">{item.goalTitle}</span>}
-			          description={<span className="description">Description: {item.goalDescription}</span>}
+			          description={<span className="subtitle">Description: {item.goalDescription}</span>}
 			        />
 			        <div><span className="duration">Duration: {item.goalDuration} Days</span></div>
 			        <div className="button">
