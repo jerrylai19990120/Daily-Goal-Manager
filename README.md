@@ -59,6 +59,9 @@ There are two valid Login Credentials for users:
 
 New users can sign up for a new account at this page using username, password and email of their choice.
 
+- Username must not be taken and be greater than 3 characters.
+- Password must be greater than 5 characters.
+
 ### Goal List (Home Page)
 
 The home page of this website shows the list of goals created by different users in the database (currently hardcoded).
@@ -116,18 +119,16 @@ Admin can view the flagged/reported list of goals and users and have the ability
 
 ### Login
 
-Users can log in with valid username and password. At successful login, Admin will be redirected to the admin page.
+Users can log in with valid username and password.
 
 Valid Login Credentials for Admin: 
 
 * username : admin      
   password : admin
 
-**This feature is not yet implemented. The login page is always redirected to Home page**
-
 ### Admin Page
 
-The Admin page can be viewed by opening [http://localhost:3000/admin](http://localhost:3000/admin) in your browser. 
+The Admin page can be accessed and viewed when logged in successfully with admin credentials. Navigate by clicking on the admin tab in the header.
 
 ![Image of Admin Page](https://github.com/csc309-summer-2020/team29/blob/master/readme_img/admin.png)
 
