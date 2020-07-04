@@ -46,7 +46,7 @@ function ProfilePage({profile, profiles, profileLoggedInAs, updateFriends}) {
                                         <List
                                             itemLayout="horizontal"
                                             pagination={{
-                                                defaultPageSize: 7,
+                                                defaultPageSize: 5,
                                                 showSizeChanger: false,
                                                 showTotal: (total, range) => `${range[0]}-${range[1]} of ${total} items`
                                             }}
