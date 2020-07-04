@@ -1,22 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
-import { Layout, Menu, Breadcrumb, Space, List, Col, Row, Avatar, Button, Card, Pagination, Progress } from 'antd';
+import { Layout, Space, List, Col, Row, Avatar, Button, Card, Progress } from 'antd';
+import { Link } from 'react-router-dom'
 import { UserOutlined } from '@ant-design/icons';
-import { EditOutlined} from '@ant-design/icons';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
-import {useParams} from 'react-router';
 
-const { Meta } = Card;
-const { Header, Content, Footer } = Layout;
-
-
-// function followUser(profileToFollow)
-// {
-//     const profileLoggedIn = profiles.find(profile => profile.username === profileLoggedInAs)
-//     profileLoggedIn.friends.push(profileToFollow.username)
-//     console.log(profiles)
-// }
+const { Content } = Layout;
 
 
 
@@ -67,7 +55,7 @@ function ProfilePage({profile, profiles, profileLoggedInAs, updateFriends}) {
                                                 <List.Item
                                                 >
                                                     <List.Item.Meta
-                                                        title={<a>{item.title}</a>}
+                                                        title={<a href="/#">{item.title}</a>}
                                                         description={item.description}
                                                     />
                                                     <Progress percent={item.progress} type="circle" width={100} />

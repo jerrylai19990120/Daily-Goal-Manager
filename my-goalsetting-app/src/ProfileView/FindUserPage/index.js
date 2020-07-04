@@ -1,9 +1,6 @@
 
-import React, {useState} from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react';
 import 'antd/dist/antd.css';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
-import {Switch} from 'react-router-dom';
 import ProfileView from '../ProfilePage'
 import {useParams} from 'react-router';
 
@@ -36,7 +33,6 @@ class Goal {
 
 const samart = new Profile("samart", "samart@gmail.com", "https://pbs.twimg.com/profile_images/1262370602716889089/4Fk_pbO3_400x400.jpg", 1);
 const dieselnoi = new Profile("dieselnoi", "dieselnoi@gmail.com", "https://sports-images.vice.com/images/2016/12/15/dieselnoi-the-knee-of-legend-body-image-1481834836.jpeg", 2);
-const veeraphol = new Profile("Muhammad", "muhammad@gmail.com", "https://upload.wikimedia.org/wikipedia/commons/8/89/Muhammad_Ali_NYWTS.jpg");
 
 
 
