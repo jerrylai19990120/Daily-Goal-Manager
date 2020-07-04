@@ -80,7 +80,7 @@ const FollowingPage = () => {
         <Card
         style={{width: 300}}
         hoverable
-        cover={<img class="profileGridImages" src={item.profilePictureUrl} height="300"></img>}
+        cover={<img className="profileGridImages" src={item.profilePictureUrl} height="300"></img>}
         
     >
       <Meta title={item.username.charAt(0).toUpperCase() + item.username.slice(1)} />
