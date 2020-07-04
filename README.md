@@ -110,7 +110,6 @@ In the Profile page, user can see their info and goals in progress.
   ![Image of Diff User](https://github.com/csc309-summer-2020/team29/blob/master/readme_img/diff_user.png)
 * **Current Goals** - Next to the user info, there is a list of goals the user is currently working on.
   - For each goal, users can see the title, description, duration of the goal.
-  - Users can log their daily progress by pressing the "Log Today's Acheievement" link.
 
 ## Admin Features
 
