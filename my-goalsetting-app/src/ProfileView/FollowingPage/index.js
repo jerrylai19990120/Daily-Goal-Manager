@@ -3,6 +3,7 @@ import 'antd/dist/antd.css';
 import {  List,  Card } from 'antd';
 import {  Link } from 'react-router-dom';
 import {useParams} from 'react-router';
+import './styles.css';
 
 const { Meta } = Card;
 
@@ -56,7 +57,7 @@ const FollowingPage = () => {
 
   console.log(profile)
   return(
-    <div>
+    <div className="ProfileGrid">
       <List
     grid={{ gutter: 16, column: {xs: 1, sm: 2, md: 4, lg: 6} }}
     // dataSource={profiles}
