@@ -39,13 +39,16 @@ const UserSchema = new mongoose.Schema({
 		required: true,
 		minlegth: 1
 	},
+	password: {
+		type: String,
+		required: true,
+		minlength: 8
+	},
 	goals: {
-		type: [GoalSchema],
-		required: true
+		type: [GoalSchema]
 	},
 	friends: {
-		type: [FriendSchema],
-		required: true
+		type: [FriendSchema]
 	}
 })
 

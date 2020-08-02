@@ -14,6 +14,10 @@ app.use(bodyParser.json());
 
 const session = require('express-session')
 
+function isMongoError(error){
+	return error === 'object' && error !== null && error.name === "MongoNetworkError";
+}
+
 app.use(
     session({
         secret: "oursecret",
@@ -26,6 +30,30 @@ app.use(
     })
 )
 
+app.post('/signup', (req, res)=>{
+
+    if(mongoose.connection.readyState != 1){
+		console.log("mongoose connection error");
+		res.status(500).send("Internal server error");
+		return;
+	}
+
+    const user = new User({
+        username: req.body.username,
+        password: req.body.password,
+        email: req.body.email
+    })
+    user.save().then((result)=>{
+        res.send(result)
+    }).catch((error)=>{
+        if(isMongoError(error)){
+            res.status(500).send("Internal server error")
+        }else{
+            res.status(404).send("404 not found")
+        }
+    })
+})
+
 const port = process.env.PORT || 5000
 app.listen(port, ()=>{
     console.log(`Listening on port ${port}`)
@@ -34,12 +62,10 @@ app.listen(port, ()=>{
 app.use(express.static(__dirname+'/client/build'))
 
 app.get("*", (req, res)=>{
-    const goodPageRoutes = ["/", "signup"];
-    if(!goodPageRoutes.includes(req.url)){
-            res.status(404).send("<h1>404 Not Found</h1>")
-    }
     res.sendFile(__dirname + '/client/build/index.html')
 })
+
+
 
 
 
