@@ -31,9 +31,13 @@ app.listen(port, ()=>{
     console.log(`Listening on port ${port}`)
 })
 
-app.use(express.static(__dirname+'client/build'))
+app.use(express.static(__dirname+'/client/build'))
 
 app.get("*", (req, res)=>{
+    const goodPageRoutes = ["/", "signup"];
+    if(!goodPageRoutes.includes(req.url)){
+            res.status(404).send("<h1>404 Not Found</h1>")
+    }
     res.sendFile(__dirname + '/client/build/index.html')
 })
 
