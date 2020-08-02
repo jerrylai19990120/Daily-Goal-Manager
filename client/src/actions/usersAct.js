@@ -1,5 +1,5 @@
 
-export const signUp = (info, app) => {
+export const signUp = (info) => {
 
     const request = new Request('/signup', {
         method: 'post',
@@ -20,4 +20,11 @@ export const signUp = (info, app) => {
             console.log(error)
         })
     
+}
+
+export const updateForm = (info, field) => {
+    const name = field.name;
+    const val = field.value;
+    info.setState({[name]: val})
+    console.log(name+ ' ' + val)
 }

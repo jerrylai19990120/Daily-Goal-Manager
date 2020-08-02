@@ -29,15 +29,21 @@ const FriendSchema = new mongoose.Schema({
 })
 
 const UserSchema = new mongoose.Schema({
+	duplicateUsername: {
+		type: Boolean
+	},
+    validUsername: {
+		type: Boolean
+	},
 	username: {
 		type: String,
 		required: true,
-		minlegth: 1
+		minlegth: 3
 	},
 	email: {
 		type: String,
 		required: true,
-		minlegth: 1
+		minlegth: 3
 	},
 	password: {
 		type: String,

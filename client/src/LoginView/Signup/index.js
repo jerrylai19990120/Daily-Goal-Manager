@@ -5,6 +5,8 @@ import { Redirect } from 'react-router-dom';
 import {users} from '../../AdminView/Admin'
 
 import "./../styles.css";
+import "../../actions/usersAct";
+import { signUp, updateForm } from '../../actions/usersAct';
 
 const { Title } = Typography;
 
@@ -21,7 +23,10 @@ const validateMessages = {
 class Signup extends React.Component {
   state = {
     duplicateUsername: false,
-    validUsername: false
+    validUsername: false,
+    email: "",
+    username: "",
+    password: ""
   }
 
   onFinish = values => {
@@ -39,7 +44,7 @@ class Signup extends React.Component {
         email: values["e-mail"],
         password: values.password,
         class:"user"
-         })
+        })
       console.log(users)
     }
   };
@@ -66,19 +71,19 @@ class Signup extends React.Component {
             name="username"
             rules={[{ required: true, min: 3}]}
           >
-            <Input placeholder="Username" />
+            <Input placeholder="Username" name="username" onChange={()=>{updateForm(this, e.target)}}/>
           </Form.Item>
           <Form.Item
             name="e-mail"
             rules={[{ required: true, type: 'email'}]}
           >
-            <Input placeholder="E-Mail" />
+            <Input placeholder="E-Mail" name="email" onChange={()=>{updateForm(this, e.target)}}/>
           </Form.Item>
           <Form.Item
             name="password"
             rules={[{ required: true, min: 5}]}
           >
-            <Input type="password" placeholder="Password"/>
+            <Input type="password" placeholder="Password" name="password" onChange={()=>{updateForm(this, e.target)}}/>
           </Form.Item>
           {this.state.duplicateUsername &&
             <Form.Item>
@@ -92,7 +97,7 @@ class Signup extends React.Component {
           }
           <Form.Item>
             {this.renderRedirect()}
-            <Button type="primary" htmlType="submit" className="login_button">
+            <Button type="primary" htmlType="submit" className="login_button" onClick={()=>{signUp(this)}}>
               Sign Up
             </Button>
             <p>Been here before? <a href="login">Log in</a></p>
