@@ -6,7 +6,7 @@ import { Redirect } from 'react-router-dom';
 import {users} from '../../AdminView/Admin';
 import {updateClass} from '../../Home';
 import "./../styles.css";
-import "../../actions/usersAct";
+
 
 const { Title } = Typography;
 

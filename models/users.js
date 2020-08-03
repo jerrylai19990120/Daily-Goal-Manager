@@ -29,12 +29,7 @@ const FriendSchema = new mongoose.Schema({
 })
 
 const UserSchema = new mongoose.Schema({
-	duplicateUsername: {
-		type: Boolean
-	},
-    validUsername: {
-		type: Boolean
-	},
+	
 	username: {
 		type: String,
 		required: true,

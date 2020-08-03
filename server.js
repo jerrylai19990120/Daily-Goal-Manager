@@ -1,16 +1,16 @@
 
 const express = require('express')
 const app = express()
+const bodyParser = require('body-parser')
+app.use(bodyParser.json());
 
 const {mongoose} = require('./db/mongoose')
 mongoose.set('useFindAndModify', false)
 
-const User = require('./models/users')
+const {User} = require('./models/users')
 
-const ObjectID = require('mongodb')
-const bodyParser = require('body-parser')
+const {ObjectID}= require('mongodb')
 
-app.use(bodyParser.json());
 
 const session = require('express-session')
 
@@ -32,17 +32,18 @@ app.use(
 
 app.post('/signup', (req, res)=>{
 
-    if(mongoose.connection.readyState != 1){
+    /*if(mongoose.connection.readyState != 1){
 		console.log("mongoose connection error");
 		res.status(500).send("Internal server error");
 		return;
-	}
+	}*/
 
     const user = new User({
         username: req.body.username,
-        password: req.body.password,
-        email: req.body.email
+        email: req.body.email,
+        password: req.body.password
     })
+    
     user.save().then((result)=>{
         res.send(result)
     }).catch((error)=>{

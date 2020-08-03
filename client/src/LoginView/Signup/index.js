@@ -5,8 +5,8 @@ import { Redirect } from 'react-router-dom';
 import {users} from '../../AdminView/Admin'
 
 import "./../styles.css";
-import "../../actions/usersAct";
-import { signUp, updateForm } from '../../actions/usersAct';
+import "../../actions/usersActions";
+import { signUp, updateForm } from '../../actions/usersActions';
 
 const { Title } = Typography;
 
@@ -24,8 +24,8 @@ class Signup extends React.Component {
   state = {
     duplicateUsername: false,
     validUsername: false,
-    email: "",
     username: "",
+    email: "",
     password: ""
   }
 
@@ -71,19 +71,19 @@ class Signup extends React.Component {
             name="username"
             rules={[{ required: true, min: 3}]}
           >
-            <Input placeholder="Username" name="username" onChange={()=>{updateForm(this, e.target)}}/>
+            <Input id="usernameSignUp" placeholder="Username" name="username"/>
           </Form.Item>
           <Form.Item
             name="e-mail"
             rules={[{ required: true, type: 'email'}]}
           >
-            <Input placeholder="E-Mail" name="email" onChange={()=>{updateForm(this, e.target)}}/>
+            <Input id="emailSignUp" placeholder="E-Mail" name="email"/>
           </Form.Item>
           <Form.Item
             name="password"
             rules={[{ required: true, min: 5}]}
           >
-            <Input type="password" placeholder="Password" name="password" onChange={()=>{updateForm(this, e.target)}}/>
+            <Input id="passwordSignUp" type="password" placeholder="Password" name="password"/>
           </Form.Item>
           {this.state.duplicateUsername &&
             <Form.Item>
