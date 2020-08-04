@@ -30,6 +30,21 @@ app.use(
     })
 )
 
+app.get('/loginAuth', (req, res) => {
+
+    User.find().then((users)=>{
+        if(!users){
+            res.status(404)
+        }else{
+            res.send(users)
+        }
+        
+    }).catch((error)=>{
+        console.log(error)
+        res.status(500).send("Internal server error.")
+    })
+})
+
 app.post('/signup', (req, res)=>{
 
     /*if(mongoose.connection.readyState != 1){

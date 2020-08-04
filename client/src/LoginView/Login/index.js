@@ -6,16 +6,16 @@ import { Redirect } from 'react-router-dom';
 import {users} from '../../AdminView/Admin';
 import {updateClass} from '../../Home';
 import "./../styles.css";
-
+import {login} from '../../actions/usersActions';
 
 const { Title } = Typography;
-
-
+const users1 = login();
 class Login extends React.Component {
   state = {
     correctAuth: false,
     firstTry: true
   }
+  
 
   onFinish = values => {
     for (var i = 0; i < users.length; i++) {
@@ -53,13 +53,13 @@ class Login extends React.Component {
             name="username"
             rules={[{ required: true, message: 'Please input your Username!' }]}
           >
-            <Input placeholder="Username" />
+            <Input placeholder="Username" id="usernameLogin"/>
           </Form.Item>
           <Form.Item
             name="password"
             rules={[{ required: true, message: 'Please input your Password!' }]}
           >
-            <Input type="password" placeholder="Password"/>
+            <Input type="password" placeholder="Password" id="passwordLogin"/>
           </Form.Item>
           {!this.state.firstTry &&
             <Form.Item>
@@ -73,7 +73,7 @@ class Login extends React.Component {
           }
           <Form.Item>
             {this.renderRedirect()}
-            <Button type="primary" htmlType="submit" className="login_button">
+            <Button type="primary" htmlType="submit" className="login_button" onClick={()=>{login(this)}}>
               Log in
             </Button>
             <p>Or <a href="/signup">Sign Up</a> to join our community.</p>

@@ -6,7 +6,7 @@ import {users} from '../../AdminView/Admin'
 
 import "./../styles.css";
 import "../../actions/usersActions";
-import { signUp, updateForm } from '../../actions/usersActions';
+import { signUp } from '../../actions/usersActions';
 
 const { Title } = Typography;
 
@@ -97,7 +97,7 @@ class Signup extends React.Component {
           }
           <Form.Item>
             {this.renderRedirect()}
-            <Button type="primary" htmlType="submit" className="login_button" onClick={()=>{signUp(this)}}>
+            <Button type="primary" htmlType="submit" className="login_button" onClick={()=>{signUp()}}>
               Sign Up
             </Button>
             <p>Been here before? <a href="login">Log in</a></p>
