@@ -7,6 +7,8 @@ app.use(bodyParser.json());
 const {mongoose} = require('./db/mongoose')
 mongoose.set('useFindAndModify', false)
 
+const bcrypt = require('bcryptjs')
+
 const {User} = require('./models/users')
 
 const {ObjectID}= require('mongodb')
@@ -47,27 +49,32 @@ app.get('/loginAuth', (req, res) => {
 
 app.post('/signup', (req, res)=>{
 
-    /*if(mongoose.connection.readyState != 1){
+    if(mongoose.connection.readyState != 1){
 		console.log("mongoose connection error");
 		res.status(500).send("Internal server error");
 		return;
-	}*/
+	}
 
-    const user = new User({
-        username: req.body.username,
-        email: req.body.email,
-        password: req.body.password
+    bcrypt.genSalt(10, function (err, salt) {
+        bcrypt.hash(req.body.password, salt, function(err, hash){
+            const user = new User({
+                username: req.body.username,
+                email: req.body.email,
+                password: hash
+            })
+            
+            user.save().then((result)=>{
+                res.send(result)
+            }).catch((error)=>{
+                if(isMongoError(error)){
+                    res.status(500).send("Internal server error")
+                }else{
+                    res.status(404).send("404 not found")
+                }
+            })
+        })
     })
     
-    user.save().then((result)=>{
-        res.send(result)
-    }).catch((error)=>{
-        if(isMongoError(error)){
-            res.status(500).send("Internal server error")
-        }else{
-            res.status(404).send("404 not found")
-        }
-    })
 })
 
 const port = process.env.PORT || 5000

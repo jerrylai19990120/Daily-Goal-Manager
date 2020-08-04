@@ -1,11 +1,11 @@
-import { Redirect } from "react-router";
+const bcrypt = require('bcryptjs')
 
 export const signUp = () => {
 
     const username = document.getElementById('usernameSignUp').value;
     const email = document.getElementById('emailSignUp').value;
     const password = document.getElementById('passwordSignUp').value;
-
+    
     const request = new Request('/signup', {
         method: 'post',
         body: JSON.stringify({
@@ -40,7 +40,7 @@ export const login = (info) => {
             "Content-type": "application/json"
         }
     })
-    var data;
+    
     fetch('/loginAuth')
         .then((result)=>{
             return result.json();
@@ -49,10 +49,11 @@ export const login = (info) => {
             const username = document.getElementById('usernameLogin').value;
             const password = document.getElementById('passwordLogin').value;
             for(let i=0;i<json.length;i++){
-                if(json[i].username === username && json[i].password === password){
-                    info.setState({correctAuth: true, firstTry: false});
-                }
-                
+                bcrypt.compare(password, json[i].password, (err, res)=>{
+                    if(json[i].username === username && res === true){
+                        info.setState({correctAuth: true, firstTry: false});
+                    }
+                })
             }
             return json;
         })
