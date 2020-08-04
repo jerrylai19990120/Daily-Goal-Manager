@@ -50,11 +50,13 @@ export const login = (info) => {
             const password = document.getElementById('passwordLogin').value;
             for(let i=0;i<json.length;i++){
                 bcrypt.compare(password, json[i].password, (err, res)=>{
+                    info.setState({firstTry: false});
                     if(json[i].username === username && res === true){
-                        info.setState({correctAuth: true, firstTry: false});
+                        info.setState({correctAuth: true, firstTry: true});
                     }
                 })
             }
+            
             return json;
         })
         .catch((error)=>{

@@ -25,6 +25,8 @@
     "express-session": "^1.17.1",
     "mongodb": "^3.6.0",
     "mongoose": "^5.9.27",
+    "react-favicon": "0.0.18",
+    "serve-favicon": "^2.5.0",
     "validator": "^13.1.1"
   }
 }

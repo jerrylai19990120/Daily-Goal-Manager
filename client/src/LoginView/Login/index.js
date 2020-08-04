@@ -7,6 +7,7 @@ import {users} from '../../AdminView/Admin';
 import {updateClass} from '../../Home';
 import "./../styles.css";
 import {login} from '../../actions/usersActions';
+import { withSuccess } from 'antd/lib/modal/confirm';
 
 const { Title } = Typography;
 const users1 = login();
@@ -17,7 +18,7 @@ class Login extends React.Component {
   }
   
 
-  onFinish = values => {
+  /*onFinish = values => {
     for (var i = 0; i < users.length; i++) {
       const user = users[i];
       if (values.username === user.username) {
@@ -30,7 +31,7 @@ class Login extends React.Component {
     if (!this.state.correctAuth) {
       this.setState({firstTry: false});
     }
-  };
+  };*/
 
   renderRedirect = () => {
     if (this.state.correctAuth) {
@@ -61,7 +62,7 @@ class Login extends React.Component {
           >
             <Input type="password" placeholder="Password" id="passwordLogin"/>
           </Form.Item>
-          {!this.state.firstTry &&
+          {(!this.state.firstTry && !this.state.correctAuth)?
             <Form.Item>
               <Alert
                 message="Wrong Username or Password. Try again."
@@ -70,6 +71,7 @@ class Login extends React.Component {
                 className="login_alert"
               />
             </Form.Item>
+            : null
           }
           <Form.Item>
             {this.renderRedirect()}
