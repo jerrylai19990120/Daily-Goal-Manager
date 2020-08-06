@@ -20,13 +20,13 @@ class Listings extends React.Component{
 			    renderItem={item => (
 			      <List.Item
 			        className="listItem"
-			        key={item.goalTitle}
+			        key={item.title}
 			      >
 			        <List.Item.Meta
-			          title={<span className="title">{item.goalTitle}</span>}
-			          description={<span className="subtitle">Description: {item.goalDescription}</span>}
+			          title={<span className="title">{item.title}</span>}
+			          description={<span className="subtitle">Description: {item.description}</span>}
 			        />
-			        <div><span className="duration">Duration: {item.goalDuration} Days</span></div>
+			        <div><span className="duration">Duration: {item.duration} Days</span></div>
 			        <div className="button">
 			        <Link to={"/GoalDetail"} >
 			        	<Button>More Info</Button>
