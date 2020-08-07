@@ -79,6 +79,14 @@ app.post('/signup', (req, res)=>{
     
 })
 
+app.get('/check-session', (req, res)=>{
+    if(req.body.user){
+        res.send({ currentUser: req.session.email})
+    }else{
+        res.status(401).send()
+    }
+})
+
 const port = process.env.PORT || 5000
 app.listen(port, ()=>{
     console.log(`Listening on port ${port}`)

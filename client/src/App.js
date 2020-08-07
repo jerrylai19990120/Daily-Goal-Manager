@@ -5,8 +5,14 @@ import Goal from './goal-description-component/goal-section'
 import Home from './Home';
 import Login from './LoginView/Login';
 import Signup from './LoginView/Signup';
+import { readCookie } from './actions/usersActions';
 
 class App extends React.Component {
+
+  constructor(props){
+    super(props);
+    readCookie(this);
+  }
 
   state = {
     abc: "123"

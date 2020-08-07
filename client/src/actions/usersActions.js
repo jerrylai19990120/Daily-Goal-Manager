@@ -63,3 +63,23 @@ export const login = (info) => {
             console.log(error)
         })
 }
+
+export const readCookie = (app) => {
+
+    const url = "/check-session";
+
+    fetch(url)
+        .then((res)=>{
+            if(res.status===200){
+                return res.json();
+            }
+        })
+        .then((json)=>{
+            if(json && json.currentUser){
+                app.setState({ currentUser: json.currentUser });
+            }
+        })
+        .catch((error)=>{
+            console.log(error);
+        })
+}
