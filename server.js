@@ -125,7 +125,6 @@ app.get("/goals", (req, res) => {
 });
 
 /*** API Routes ************************************/
->>>>>>> 5ae40a4c701245ab4fb1024699a0a0fa62d7538e
 
 const port = process.env.PORT || 5000
 app.listen(port, ()=>{
