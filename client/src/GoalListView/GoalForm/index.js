@@ -2,7 +2,9 @@ import React from "react";
 import "antd/dist/antd.css";
 import { Form, Input, Button, message} from "antd";
 import "./styles.css";
-import Detail from './../Detail'; 
+
+import "../../actions/goalActions";
+import { addGoalJSON } from '../../actions/goalActions';
 
 const txt = "Create new goal here and share them with other people!";
 
@@ -12,16 +14,14 @@ class GoalForm extends React.Component {
       goalTitle,
       goalDescription,
       goalDuration,
-      handleChange,
-      addGoal
+      handleChange
     } = this.props;
 
     const { TextArea } = Input;
 
     function goalAdded(e)
       {
-          message.success("Your goal has been added! Check your goal at the bottom of the list")
-          addGoal();
+          message.success("Your goal has been added! Check your goal in List of Goals.")
           let texts = document.getElementsByClassName("text");
           for(let i=0;i<texts.length;i++){
               texts[i].value = '';
@@ -49,6 +49,7 @@ class GoalForm extends React.Component {
             <Input 
             className='text'
               name="goalTitle"
+              id="goalTitle"
               placeholder="Input the title of your goal"
               value = {goalTitle}
               onChange={handleChange}
@@ -67,6 +68,7 @@ class GoalForm extends React.Component {
             className='text'
               rows={4} 
               name="goalDescription"
+              id="goalDescription"
               placeholder="Input description of your goal"
               value = {goalDescription}
               onChange={handleChange}
@@ -85,6 +87,7 @@ class GoalForm extends React.Component {
             <Input
             className='text'
               name="goalDuration"
+              id="goalDuration"
               placeholder='Input the duration of your goal only in numbers (ex/ 3 -> 3 Days)'
               value = {goalDuration}
               onChange={handleChange} 
@@ -96,6 +99,7 @@ class GoalForm extends React.Component {
             <Button 
               type="submit"
               htmlType="submit"
+              onClick={()=>{addGoalJSON()}}
             >
               Submit
             </Button>
