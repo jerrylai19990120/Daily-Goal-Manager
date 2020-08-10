@@ -65,6 +65,8 @@ app.post('/signup', (req, res)=>{
                 email: req.body.email,
                 password: hash
             })
+            req.session.username = req.body.username;
+            req.session.email = req.body.email;
             
             user.save().then((result)=>{
                 res.send(result)
@@ -80,12 +82,24 @@ app.post('/signup', (req, res)=>{
     
 })
 
+
 app.get('/check-session', (req, res)=>{
-    if(req.body.user){
-        res.send({ currentUser: req.session.email})
+    if(req.session.username){
+        res.send({currentUser: req.session.email})
     }else{
         res.status(401).send()
     }
+})
+
+//Route to log out and destroy the cookie
+app.get('/logout', (req, res)=>{
+    req.session.destroy(error => {
+        if(error){
+            res.status(500).send(error)
+        }else{
+            res.send()
+        }
+    })
 })
 
 /*** API Routes below ************************************/

@@ -1,6 +1,6 @@
 const bcrypt = require('bcryptjs')
 
-export const signUp = () => {
+export const signUp = (app) => {
 
     const username = document.getElementById('usernameSignUp').value;
     const email = document.getElementById('emailSignUp').value;
@@ -29,9 +29,14 @@ export const signUp = () => {
         .catch(error => {
             console.log(error)
         })
+    app.setState({currentUser: {
+        username: username,
+        email: email,
+        password: password
+    }})
 }
 
-export const login = (info) => {
+export const login = (info, app) => {
 
     const request = new Request('/login', {
         method: 'get',
@@ -53,6 +58,12 @@ export const login = (info) => {
                     info.setState({firstTry: false});
                     if(json[i].username === username && res === true){
                         info.setState({correctAuth: true, firstTry: true});
+                        console.log(app);
+                        app.setState({currentUser: {
+                            username: json[i].username,
+                            email: json[i].email,
+                            password: json[i].password
+                        }});
                     }
                 })
             }

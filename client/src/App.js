@@ -15,25 +15,27 @@ class App extends React.Component {
   }
 
   state = {
+    currentUser: null,
     abc: "123"
   }
 
   render(){
+
+    const currentUser = this.state.currentUser;
+
     return (
 
       <div className="App">
 
         <BrowserRouter>
           <Switch>
-            <Route exact path='/login' render={() =>
-                            (<Login state={this.state}/>)}/>
+            
             <Route exact path='/signup' render={() =>
                             (<Signup state={this.state}/>)}/> 
-            <Route exact path='/home' render={() =>
-                            (<Home state={this.state}/>)}/> 
-            <Route exact path='/' render={() =>
-                            (<Login state={this.state}/>)}/>
-            <Home state={this.state}/>
+            
+            <Route exact path={['/', '/login', '/home']} render={({history}) =>
+                            (!currentUser? <Login state={this.state} history={history} app={this}/> : <Home state={this.state} history={history} app={this}/>)}/>
+            
           </Switch>
         </BrowserRouter>
 
