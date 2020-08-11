@@ -1,6 +1,5 @@
 export const addGoalJSON = (formValues) => {
 
-    
     const newGoal = formValues.props;
 
     const title = newGoal.goalTitle;
@@ -59,3 +58,8 @@ export const getGoals = (goalList) => {
             console.log(error);
         });
 };
+
+export const updateGoals = (goalList, goalForm) => {
+    addGoalJSON(goalForm);
+    getGoals(goalList);
+}
