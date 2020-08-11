@@ -56,9 +56,16 @@ class GoalList extends React.Component {
             handleChange = {this.inputHandler}
           />
           </Panel>
+
+          <Panel header={<span className="panel_header">List of Goals</span>} key="2">
+            <Listings 
+              goals={this.state.goals}   
+            />
+          </Panel>
+
         </Collapse>
 
-        <Listings goals={this.state.goals} />
+
 
       </div>
 
