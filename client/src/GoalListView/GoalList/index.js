@@ -20,11 +20,11 @@ class GoalList extends React.Component {
     goals: []
   };
 
-  callback = key => {
-    if (key === "2"){ // list
-      getGoals(this);
-    }
-  }
+  // callback = key => {
+  //   if (key === "2"){ // list
+  //     getGoals(this);
+  //   }
+  // }
 
   inputHandler = event => {
     const target = event.target;
@@ -35,8 +35,11 @@ class GoalList extends React.Component {
       [name]: value 
     });
   };
+
+  componentDidMount() {
+    getGoals(this);
+  }
  
-  
   render() {
     
     return (
@@ -45,26 +48,24 @@ class GoalList extends React.Component {
         <h1 className="title">List of Goals</h1>
         <h3 className="subtitle">Select the Goals you want to join!</h3>
 
-        <Collapse accordion onChange={this.callback}>
+        <Collapse>
           <Panel 
           header={<span className="panel_header">Add New Goal Form</span>} 
           key="1"
           >
-
           <GoalForm 
             goalTitle = {this.state.goalTitle}
             goalDescription = {this.state.goalDescription}
             goalDuration = {this.state.goalDuration}
             handleChange = {this.inputHandler}
+            goalList = {this}
           />
           </Panel>
-          
-          <Panel header={<span className="panel_header">List of Goals</span>} key="2">
-            <Listings 
-              goals={this.state.goals}   
-            />
-          </Panel>
+
         </Collapse>
+
+        <Listings goals={this.state.goals} />
+
       </div>
 
     );  

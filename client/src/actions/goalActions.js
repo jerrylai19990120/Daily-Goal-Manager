@@ -1,10 +1,12 @@
-export const addGoalJSON = () => {
+export const addGoalJSON = (formValues) => {
 
-    const title = document.getElementById('goalTitle').value;
-    const description = document.getElementById('goalDescription').value;
-    const duration = document.getElementById('goalDuration').value; 
+    const newGoal = formValues.props;
 
-    console.log('title: '+title+', description: '+description+', duration'+duration)
+    const title = newGoal.goalTitle;
+    const description = newGoal.goalDescription;
+    const duration = newGoal.goalDuration; 
+
+    //console.log('title: '+title+', description: '+description+', duration'+duration)
 
     const url = '/goals'
 
@@ -56,3 +58,8 @@ export const getGoals = (goalList) => {
             console.log(error);
         });
 };
+
+export const updateGoals = (goalList, goalForm) => {
+    addGoalJSON(goalForm);
+    getGoals(goalList);
+}
