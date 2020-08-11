@@ -99,7 +99,7 @@ class GoalForm extends React.Component {
             <Button 
               type="submit"
               htmlType="submit"
-              onClick={()=>{addGoalJSON()}}
+              onClick={()=>{addGoalJSON(this)}}
             >
               Submit
             </Button>
