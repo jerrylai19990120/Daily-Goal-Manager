@@ -50,6 +50,21 @@ app.get('/loginAuth', (req, res) => {
     })
 })
 
+app.post('/loginSession', (req, res) => {
+
+    const username = req.body.username;
+    
+    User.findByUsername(username).then((user)=>{
+        req.session.username = user.username;
+        req.session.email = user.email;
+        res.send({currentUser: req.session.username});
+    })
+    .catch((error)=>{
+        res.status(400).send();
+    })
+
+})
+
 app.post('/signup', (req, res)=>{
 
     if(mongoose.connection.readyState != 1){

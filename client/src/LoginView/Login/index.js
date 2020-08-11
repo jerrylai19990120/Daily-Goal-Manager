@@ -14,7 +14,8 @@ const users1 = login();
 class Login extends React.Component {
   state = {
     correctAuth: false,
-    firstTry: true
+    firstTry: true,
+    username: ""
   }
   
 
@@ -56,7 +57,7 @@ class Login extends React.Component {
             name="username"
             rules={[{ required: true, message: 'Please input your Username!' }]}
           >
-            <Input placeholder="Username" id="usernameLogin"/>
+            <Input placeholder="Username" id="usernameLogin" onChange={()=>{this.setState({username: document.getElementById('usernameLogin').value})}}/>
           </Form.Item>
           <Form.Item
             name="password"
@@ -77,7 +78,7 @@ class Login extends React.Component {
           }
           <Form.Item>
             {this.renderRedirect()}
-            <Button type="primary" htmlType="submit" className="login_button" onClick={()=>{login(this, app)}}>
+            <Button type="primary" htmlType="submit" className="login_button" onClick={()=>{login(this, app, document.getElementById('usernameLogin').value)}}>
               Log in
             </Button>
             <p>Or <a href="/signup">Sign Up</a> to join our community.</p>
