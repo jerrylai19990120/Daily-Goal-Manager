@@ -40,6 +40,8 @@ class Login extends React.Component {
   }
 
   render() {
+
+    const { app } = this.props;
     return (
       <div className="login">
         <Title className="login_title">Welcome Back</Title>
@@ -75,7 +77,7 @@ class Login extends React.Component {
           }
           <Form.Item>
             {this.renderRedirect()}
-            <Button type="primary" htmlType="submit" className="login_button" onClick={()=>{login(this)}}>
+            <Button type="primary" htmlType="submit" className="login_button" onClick={()=>{login(this, app)}}>
               Log in
             </Button>
             <p>Or <a href="/signup">Sign Up</a> to join our community.</p>

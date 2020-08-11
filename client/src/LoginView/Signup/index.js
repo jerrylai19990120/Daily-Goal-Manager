@@ -97,7 +97,7 @@ class Signup extends React.Component {
           }
           <Form.Item>
             {this.renderRedirect()}
-            <Button type="primary" htmlType="submit" className="login_button" onClick={()=>{signUp()}}>
+            <Button type="primary" htmlType="submit" className="login_button" onClick={()=>{signUp(this)}}>
               Sign Up
             </Button>
             <p>Been here before? <a href="login">Log in</a></p>
