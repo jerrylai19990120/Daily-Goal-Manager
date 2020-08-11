@@ -43,7 +43,7 @@ class Home extends React.Component {
           <Menu theme="dark" mode="horizontal" >
             <Menu.Item key="1" className="menu_item">
               Goals
-              <Link to='/goalsPage'/>
+              <Link to='/home'/>
             </Menu.Item>
             <Menu.Item key="2" className="menu_item">
               Profile
@@ -63,8 +63,6 @@ class Home extends React.Component {
         <div className="home">
           <Switch>
             <Route exact path='/home' render={() =>
-                            (<GoalList />)}/>
-            <Route exact path='/goalsPage' render={() =>
                             (<GoalList />)}/>
             <Route exact path='/GoalDetail' render={() =>
                             (<Goal title='title' targetDays={10} description="sample description"/>)}/>
