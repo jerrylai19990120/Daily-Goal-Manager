@@ -120,14 +120,45 @@ app.get('/logout', (req, res)=>{
 /*** API Routes below ************************************/
 /** User resource routes **/
 
-// a PATCH route for changing properties of a resource.
-app.patch("/users/:id", (req, res) => {
-    const id = req.params.id;
+// // a PATCH route for changing properties of a resource.
+// app.patch("/users/:id", (req, res) => {
+//     const id = req.params.id;
 
-    if (!ObjectID.isValid(id)) {
-        res.status(404).send();
-        return;
-    }
+//     if (!ObjectID.isValid(id)) {
+//         res.status(404).send();
+//         return;
+//     }
+
+//     const newGoal = {
+//         "title": req.body.title,
+//         "description": req.body.description,
+//         "duration": req.body.duration
+//     }
+
+//     User.findById(id).then((user) => {
+//         if (!user) {
+//             res.status(404).send('Resource not found')
+//         } else{
+//             user.goals.push(newGoal);
+//             user.save();
+//             res.send({ user })
+//         }
+//     }).catch((error) => {
+//         res.status(500).send(error) // server error
+//     })
+
+// });
+
+// a PATCH route for changing properties of a resource.
+app.patch("/users/:username", (req, res) => {
+    const currUsername = req.params.username;
+    //console.log(currUsername);
+    //const id = req.params.id;
+
+    // if (!ObjectID.isValid(id)) {
+    //     res.status(404).send();
+    //     return;
+    // }
 
     const newGoal = {
         "title": req.body.title,
@@ -135,13 +166,15 @@ app.patch("/users/:id", (req, res) => {
         "duration": req.body.duration
     }
 
-    User.findById(id).then((user) => {
+    User.find({ username: currUsername }).then((user) => {
         if (!user) {
             res.status(404).send('Resource not found')
         } else{
-            user.goals.push(newGoal);
-            user.save();
-            res.send({ user })
+            //console.log(user[0]);
+            user[0].goals.push(newGoal);
+            //console.log(user[0].goals);
+            user[0].save();
+            res.send({ user }) // this returns a list with one user -> if need to access take the first index
         }
     }).catch((error) => {
         res.status(500).send(error) // server error
@@ -169,7 +202,10 @@ app.post("/goals", (req, res) => {
     const goal = new Goal({
         title: req.body.title,
         description: req.body.description,
-        duration: req.body.duration
+        duration: req.body.duration,
+        comments: req.body.comments,
+        kudos: req.body.kudos
+        // ** ADD ATTRIBUTE HERE **
     });
 
     // Save goal to the database
