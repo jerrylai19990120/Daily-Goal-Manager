@@ -16,7 +16,8 @@ class GoalForm extends React.Component {
       goalDescription,
       goalDuration,
       handleChange,
-      goalList
+      goalList,
+      app
     } = this.props;
 
     const { TextArea } = Input;
@@ -101,7 +102,7 @@ class GoalForm extends React.Component {
             <Button 
               type="submit"
               htmlType="submit"
-              onClick={()=>{updateGoals(goalList, this)}}
+              onClick={()=>{updateGoals(goalList, this, app)}}
             >
               Submit
             </Button>

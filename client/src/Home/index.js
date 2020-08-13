@@ -33,6 +33,9 @@ class Home extends React.Component {
  }
 
   render() {
+    
+    const { app } = this.props
+
     return (
       <Layout className="layout">
         <Header>
@@ -63,7 +66,7 @@ class Home extends React.Component {
         <div className="home">
           <Switch>
             <Route exact path='/home' render={() =>
-                            (<GoalList />)}/>
+                            (<GoalList app={app}/>)}/>
             <Route exact path='/GoalDetail' render={() =>
                             (<Goal title='title' targetDays={10} description="sample description"/>)}/>
             <Route exact path='/admin' render={() =>

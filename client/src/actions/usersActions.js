@@ -36,35 +36,15 @@ export const signUp = (app) => {
     }})
 }
 
-export const login = (info, app, username) => {
+export const login = (info, app) => {
 
-
-    const request = new Request('/loginSession', {
-        method: 'post',
-        body: JSON.stringify({
-            username: username
-        }),
+    const request = new Request('/login', {
+        method: 'get',
         headers: {
             Accept: "application/json, text/plain, */*",
             "Content-type": "application/json"
         }
     })
-
-    fetch(request)
-        .then((res)=>{
-            if(res===200){
-                return res.json()
-            }
-        })
-        .then((json)=>{
-            if(json.currentUser !== undefined){
-                app.setState({currentUser: json.currentUser});
-                console.log(app)
-            }
-        })
-        .catch(error => {
-            console.log(error)
-        })
     
     fetch('/loginAuth')
         .then((result)=>{

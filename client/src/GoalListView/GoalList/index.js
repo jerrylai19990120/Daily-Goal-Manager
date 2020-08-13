@@ -41,6 +41,8 @@ class GoalList extends React.Component {
   }
  
   render() {
+
+    const { app } = this.props
     
     return (
       <div className="content_padding">
@@ -59,6 +61,7 @@ class GoalList extends React.Component {
             goalDuration = {this.state.goalDuration}
             handleChange = {this.inputHandler}
             goalList = {this}
+            app={app}
           />
           </Panel>
 
