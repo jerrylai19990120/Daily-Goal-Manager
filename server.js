@@ -50,6 +50,21 @@ app.get('/loginAuth', (req, res) => {
     })
 })
 
+app.post('/loginSession', (req, res) => {
+
+    const username = req.body.username;
+    
+    User.findByUsername(username).then((user)=>{
+        req.session.username = user.username;
+        req.session.email = user.email;
+        res.send({currentUser: req.session.username});
+    })
+    .catch((error)=>{
+        res.status(400).send();
+    })
+
+})
+
 app.post('/signup', (req, res)=>{
 
     if(mongoose.connection.readyState != 1){
@@ -65,6 +80,8 @@ app.post('/signup', (req, res)=>{
                 email: req.body.email,
                 password: hash
             })
+            req.session.username = req.body.username;
+            req.session.email = req.body.email;
             
             user.save().then((result)=>{
                 res.send(result)
@@ -80,7 +97,69 @@ app.post('/signup', (req, res)=>{
     
 })
 
+
+app.get('/check-session', (req, res)=>{
+    if(req.session.username){
+        res.send({currentUser: req.session.email})
+    }else{
+        res.status(401).send()
+    }
+})
+
+//Route to log out and destroy the cookie
+app.get('/logout', (req, res)=>{
+    req.session.destroy(error => {
+        if(error){
+            res.status(500).send(error)
+        }else{
+            res.send()
+        }
+    })
+})
+
 /*** API Routes below ************************************/
+/** User resource routes **/
+
+// a PATCH route for changing properties of a resource.
+app.patch("/users/:id", (req, res) => {
+    const id = req.params.id;
+
+    if (!ObjectID.isValid(id)) {
+        res.status(404).send();
+        return;
+    }
+
+    const newGoal = {
+        "title": req.body.title,
+        "description": req.body.description,
+        "duration": req.body.duration
+    }
+
+    User.findById(id).then((user) => {
+        if (!user) {
+            res.status(404).send('Resource not found')
+        } else{
+            user.goals.push(newGoal);
+            user.save();
+            res.send({ user })
+        }
+    }).catch((error) => {
+        res.status(500).send(error) // server error
+    })
+
+});
+
+// a GET route to get all users
+app.get("/users", (req, res) => {
+    User.find().then(
+        users => {
+            res.send({ users }); 
+        },
+        error => {
+            res.status(500).send(error); // server error
+        }
+    );
+});
 
 /** Goal resource routes **/
 // a POST route to *create* a goal

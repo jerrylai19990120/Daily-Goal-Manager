@@ -4,24 +4,27 @@ import { Form, Input, Button, message} from "antd";
 import "./styles.css";
 
 import "../../actions/goalActions";
-import { addGoalJSON } from '../../actions/goalActions';
+import { updateGoals, addGoalJSON } from '../../actions/goalActions';
 
 const txt = "Create new goal here and share them with other people!";
 
 class GoalForm extends React.Component {
+
   render() {
     const {
       goalTitle,
       goalDescription,
       goalDuration,
-      handleChange
+      handleChange,
+      goalList,
+      app
     } = this.props;
 
     const { TextArea } = Input;
 
     function goalAdded(e)
       {
-          message.success("Your goal has been added! Check your goal in List of Goals.")
+          message.success("Your goal has been added! Check your goal on the bottom of the list.")
           let texts = document.getElementsByClassName("text");
           for(let i=0;i<texts.length;i++){
               texts[i].value = '';
@@ -99,7 +102,7 @@ class GoalForm extends React.Component {
             <Button 
               type="submit"
               htmlType="submit"
-              onClick={()=>{addGoalJSON()}}
+              onClick={()=>{updateGoals(goalList, this, app)}}
             >
               Submit
             </Button>
