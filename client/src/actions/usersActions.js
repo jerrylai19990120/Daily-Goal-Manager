@@ -97,7 +97,6 @@ export const readCookie = (app) => {
 export const getUsers = (userList) => {
 
     const url = "/admin";
-L
     fetch(url)
         .then(res => {
             if (res.status === 200) {
