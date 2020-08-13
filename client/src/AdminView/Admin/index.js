@@ -8,7 +8,8 @@ import FlaggedGoalList from "./../FlaggedGoalList";
 import FlaggedCommentList from "./../FlaggedCommentList";
 import "./styles.css";
 
-// Import actions/methods
+// Import actions/methods\
+import { getUsers } from '../../actions/usersActions'
 const { Panel } = Collapse;
 
 const users = [
@@ -53,8 +54,22 @@ class Admin extends React.Component {
         content: 'Exercising is bad!!'
       }
     ],
-    userTemp: users.map((x) => x)
+    //userTemp: users.map((x) => x),
+
+    usersList: []
   }
+
+  inputHandler = event => {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
+  };
+
+
 
   render() {
     return (
@@ -88,7 +103,8 @@ class Admin extends React.Component {
         {/* The User List */}
         <Divider className='divider' orientation="left">Users</Divider>
         <UserList
-          users={this.state.userTemp}
+          //users={this.state.userTemp}
+          users={this.state.userList}
           adminComponent={this}
         />
 

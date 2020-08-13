@@ -5,7 +5,7 @@ export const signUp = () => {
     const username = document.getElementById('usernameSignUp').value;
     const email = document.getElementById('emailSignUp').value;
     const password = document.getElementById('passwordSignUp').value;
-    
+
     const request = new Request('/signup', {
         method: 'post',
         body: JSON.stringify({
@@ -40,7 +40,7 @@ export const login = (info) => {
             "Content-type": "application/json"
         }
     })
-    
+
     fetch('/loginAuth')
         .then((result)=>{
             return result.json();
@@ -56,10 +56,30 @@ export const login = (info) => {
                     }
                 })
             }
-            
+
             return json;
         })
         .catch((error)=>{
             console.log(error)
         })
 }
+
+export const getUsers = (userList) => {
+
+    const url = "/admin";
+L
+    fetch(url)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            } else {
+                alert("Could not get users");
+            }
+        })
+        .then(json => {
+            userList.setState({ users: json.users });
+        })
+        .catch(error => {
+            console.log(error);
+        });
+};
