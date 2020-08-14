@@ -21,7 +21,15 @@ const GoalSchema = new mongoose.Schema({
 		type: Array
 	},
 	kudos: {
+		type: Number,
+		default: 0
+	},
+	rating: {
 		type: Number
+	},
+	progress: {
+		type: Number,
+		default: 0
 	}
 	// ** ADD ATTRIBUTE HERE **
 	// if attribute is updated, you must also update attributes in: 

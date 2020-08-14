@@ -3,30 +3,14 @@
 #container{
     width: 100vw;
     height: 100vh;
-    background-color: #242F43;
+    background-color: black;
 }
 
-
-#sider{
-    overflow: auto;
-    left: 0;
-    height: 100vh;
-    position: fixed;
-}
 
 .ant-menu{
     height: 100vh;
 }
 
-.ant-menu-dark .ant-menu-item, .ant-menu-dark .ant-menu-item-group-title, .ant-menu-dark .ant-menu-item > a, .ant-menu-dark .ant-menu-item > span > a {
-    color: #FFCB35;
-}
-
-
-
-.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected{
-    background-color: #FFCB35;
-}
 
 .description{
     width: 660px;
@@ -170,12 +154,6 @@
     margin-left: 60px;
 }
 
-.ant-timeline{
-    margin-top: 120px;
-    width: 200px;
-    color: white;
-    margin-left: 70px;
-}
 
 div.ant-picker-calendar.ant-picker-calendar-mini{
     margin-top: 160px;
@@ -183,25 +161,10 @@ div.ant-picker-calendar.ant-picker-calendar-mini{
 }
 
 .ant-layout-header{
-    background-color: #001529;
-    border-bottom: 1px solid #55637E;
-}
-
-.ant-timeline-item{
-    color: white;
-}
-
-.header-icon{
-    width: 40px;
-    float: left;
-    margin-left: 36vw;
-    margin-top: 1.6vh;
+    background-color: #000000;
 }
 
 
-.ant-timeline-item-tail{
-    border-left: 2px solid rgb(56, 148, 235);
-}
 
 .buttonGroup{
     list-style: none;

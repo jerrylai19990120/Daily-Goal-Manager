@@ -117,6 +117,16 @@ app.get('/logout', (req, res)=>{
     })
 })
 
+app.patch('/add-comment', (req, res) => {
+    
+
+    
+})
+
+app.patch('/add-kudos', (req, res) => {
+
+})
+
 /*** API Routes below ************************************/
 /** User resource routes **/
 
