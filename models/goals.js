@@ -24,8 +24,9 @@ const GoalSchema = new mongoose.Schema({
 		type: Number,
 		default: 0
 	},
-	rating: {
-		type: Number
+	ratings: {
+		type: Number,
+		default: 0
 	},
 	progress: {
 		type: Number,
