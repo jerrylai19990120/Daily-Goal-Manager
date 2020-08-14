@@ -16,7 +16,6 @@ class App extends React.Component {
 
   state = {
     currentUser: null,
-    currentUserID: null,
     abc: "123"
   }
 

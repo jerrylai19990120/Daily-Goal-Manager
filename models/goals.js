@@ -16,7 +16,17 @@ const GoalSchema = new mongoose.Schema({
 	duration: {
 		type: Number,
 		required: true
+	},
+	comments: {
+		type: Array
+	},
+	kudos: {
+		type: Number
 	}
+	// ** ADD ATTRIBUTE HERE **
+	// if attribute is updated, you must also update attributes in: 
+	// // goalActions.js: addGoalJSON() -> new Request in line 22
+	// // server.js: post "/goals" call -> new Goal in line 175
 })
 
 const Goal = mongoose.model('Goal', GoalSchema)

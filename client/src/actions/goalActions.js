@@ -15,7 +15,11 @@ export const addGoalJSON = (formValues) => {
         body: JSON.stringify({
             title: title,
             description: description,
-            duration: duration
+            duration: duration,
+            comments: [],
+            kudos: 0
+            // if you need to add attributes to Goal Schema
+            // ** ADD ATTRIBUTE HERE **
         }),
         headers: {
             Accept: "application/json, text/plain, */*",
@@ -59,59 +63,11 @@ export const getGoals = (goalList) => {
         });
 };
 
-//export const setOwner = (app, formValues) => {
-export const findID = (app) => {
-    const currUser = app.state.currentUser;
-    const currUsername = currUser.username;
-    //console.log(currUser);
- 
-    // find user
-    let userID = '';
-
-    return fetch("/users")
-        .then(res => {
-            if (res.status === 200) {
-                return res.json();
-            } else {
-                alert("Could not get users");
-            }
-        })
-        .then(json => { //json===users
-                // find correct user
-                const userList = json.users;
-                userList.filter((user) => {
-                    if (user.username === currUsername){
-                        // get goals
-                        userID = user._id.toString();
-                    }
-                });
-            //console.log("userID: "+ userID); //works
-            return userID; // if I log this its correct but cannot retreive it as string
-        })
-        .then(id => {
-            const last = id.toString();
-            //console.log(last);
-            return last;
-        })
-        .catch(error => {
-            console.log(error);
-        });
-}
-
-
-export const returnURL = (app) => {
-    const url = '';
-    findID(app).then((id) => {
-        console.log("return URL"+id);
-        console.log(id);
-        url.concat(id.toString());
-        console.log("returnURL url: "+url);
-    })
-    return url;
-}
-
 export const setOwner = (app, goalForm) => {
 // 5f2b2e87e920607eb31129c4 -> user1
+    // get currentUsername
+    const currUser = app.state.currentUser;
+    const currUsername = currUser.username;
 
     // info of new goal
     const newGoal = goalForm.props;
@@ -122,10 +78,7 @@ export const setOwner = (app, goalForm) => {
 
     //create link to user w/ id
     const link = '/users/';
-    const url2 = link.concat('5f2b2e87e920607eb31129c4');
-    //console.log("url: "+url2); //works
-
-    const url = "/users/5f2b2e87e920607eb31129c4"
+    const url = link.concat(currUsername);
 
     // make new patch request
     const request = new Request(url, {
@@ -153,15 +106,8 @@ export const setOwner = (app, goalForm) => {
         });
 }
 
-export const updateGoals = (goalList, goalForm, app) => {
+export async function updateGoals(goalList, goalForm, app) {
     addGoalJSON(goalForm);
     getGoals(goalList);
-
-    const id = findID(app);
-    console.log("updateGoals id: ");
-    console.log(id.PromiseValue);
-    const url = id.PromiseValue;
-    console.log("updateGoals url: "+url);
-
     setOwner(app, goalForm);
 }
