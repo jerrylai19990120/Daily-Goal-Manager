@@ -119,90 +119,7 @@ app.get('/logout', (req, res)=>{
     })
 })
 
-app.post('/add-comment/:goalTitle', (req, res) => {
 
-    const goal = req.params.goalTitle;
-    Goal.findOneAndUpdate({"title": goal}, {"$push": {"comments": req.body.comment}}, {new: true, useFindAndModify: false}).then((result)=>{
-        if(!result){
-            res.status(404).send("404 not found")
-        }else{
-            res.send(result)
-        }
-    })
-    .catch(error => {
-        console.log(error)
-        res.status(500).send("Internal server error")
-    })
-
-
-})
-
-app.post('/add-kudos/:goalTitle', (req, res) => {
-
-    const goal = req.params.goalTitle;
-    Goal.findOneAndUpdate({"title": goal}, {$inc :{"kudos": 1}}, {new: true, useFindAndModify: false}).then((result)=>{
-        if(!result){
-            res.status(404).send("404 not found")
-        }else{
-            res.send(result)
-        }
-    })
-    .catch(error => {
-        console.log(error)
-        res.status(500).send("Internal server error")
-    })
-
-})
-
-app.post('/add-ratings/:goalTitle', (req, res) => {
-
-    const goal = req.params.goalTitle;
-    Goal.findOneAndUpdate({"title": goal}, {"ratings": req.body.ratings}, {new: true, useFindAndModify: false}).then((result)=>{
-        if(!result){
-            res.status(404).send("404 not found")
-        }else{
-            res.send(result)
-        }
-    })
-    .catch(error => {
-        console.log(error)
-        res.status(500).send("Internal server error")
-    })
-
-})
-
-app.post('/add-progress/:goalTitle', (req, res) => {
-
-    const goal = req.params.goalTitle;
-    Goal.findOneAndUpdate({"title": goal}, {$inc : {"progress": 1}}, {new: true, useFindAndModify: false}).then((result)=>{
-        if(!result){
-            res.status(404).send("404 not found")
-        }else{
-            res.send(result)
-        }
-    })
-    .catch(error => {
-        console.log(error)
-        res.status(500).send("Internal server error")
-    })
-
-})
-
-
-app.get('/get-goal-detail/:goalTitle', (req, res) => {
-    const goal = req.params.goalTitle;
-    Goal.findOne({"title": goal}).then(result => {
-        if(!result){
-            res.status(404).send("404 not found")
-        }else{
-            res.send(result)
-        }
-    })
-    .catch(error => {
-        console.log(error)
-        res.status(500).send("Internal server error")
-    })
-})
 
 /*** API Routes below ************************************/
 /** User resource routes **/
@@ -331,6 +248,90 @@ app.delete('/goals/:id', (req, res) => {
 		})
 });
 
+app.post('/add-comment/:goalTitle', (req, res) => {
+
+    const goal = req.params.goalTitle;
+    Goal.findOneAndUpdate({"title": goal}, {"$push": {"comments": req.body.comment}}, {new: true, useFindAndModify: false}).then((result)=>{
+        if(!result){
+            res.status(404).send("404 not found")
+        }else{
+            res.send(result)
+        }
+    })
+    .catch(error => {
+        console.log(error)
+        res.status(500).send("Internal server error")
+    })
+
+
+})
+
+app.post('/add-kudos/:goalTitle', (req, res) => {
+
+    const goal = req.params.goalTitle;
+    Goal.findOneAndUpdate({"title": goal}, {$inc :{"kudos": 1}}, {new: true, useFindAndModify: false}).then((result)=>{
+        if(!result){
+            res.status(404).send("404 not found")
+        }else{
+            res.send(result)
+        }
+    })
+    .catch(error => {
+        console.log(error)
+        res.status(500).send("Internal server error")
+    })
+
+})
+
+app.post('/add-ratings/:goalTitle', (req, res) => {
+
+    const goal = req.params.goalTitle;
+    Goal.findOneAndUpdate({"title": goal}, {"ratings": req.body.ratings}, {new: true, useFindAndModify: false}).then((result)=>{
+        if(!result){
+            res.status(404).send("404 not found")
+        }else{
+            res.send(result)
+        }
+    })
+    .catch(error => {
+        console.log(error)
+        res.status(500).send("Internal server error")
+    })
+
+})
+
+app.post('/add-progress/:goalTitle', (req, res) => {
+
+    const goal = req.params.goalTitle;
+    Goal.findOneAndUpdate({"title": goal}, {$inc : {"progress": 1}}, {new: true, useFindAndModify: false}).then((result)=>{
+        if(!result){
+            res.status(404).send("404 not found")
+        }else{
+            res.send(result)
+        }
+    })
+    .catch(error => {
+        console.log(error)
+        res.status(500).send("Internal server error")
+    })
+
+})
+
+
+app.get('/get-goal-detail/:goalTitle', (req, res) => {
+    const goal = req.params.goalTitle;
+    Goal.findOne({"title": goal}).then(result => {
+        if(!result){
+            res.status(404).send("404 not found")
+        }else{
+            res.send(result)
+        }
+    })
+    .catch(error => {
+        console.log(error)
+        res.status(500).send("Internal server error")
+    })
+})
 
 /*** API Routes ************************************/
 

@@ -86,7 +86,6 @@ export const deleteGoal = (goal) => {
 }
 
 export const setOwner = (app, goalForm) => {
-// 5f2b2e87e920607eb31129c4 -> user1
     // get currentUsername
     const currUser = app.state.currentUser;
     const currUsername = currUser.username;
@@ -128,9 +127,8 @@ export const setOwner = (app, goalForm) => {
         });
 }
 
-export async function updateGoals(goalList, goalForm, app) {
+export const updateGoals = (goalList, goalForm, app) => {
     const currUser = app.state.currentUser;
-    //console.log('updateGoals currUser: '+currUser.username)
     addGoalJSON(goalForm, currUser.username);
     getGoals(goalList);
     setOwner(app, goalForm);
