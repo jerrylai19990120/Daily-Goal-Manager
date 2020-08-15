@@ -2,7 +2,6 @@
 import React from 'react';
 import { Form , Input , Button , Typography , Alert } from 'antd';
 import { Redirect } from 'react-router-dom';
-import {users} from '../../AdminView/Admin'
 
 import "./../styles.css";
 import "../../actions/usersActions";
@@ -29,7 +28,7 @@ class Signup extends React.Component {
     password: ""
   }
 
-  onFinish = values => {
+  /*onFinish = values => {
     this.setState({duplicateUsername: false});
     for (var i = 0; i < users.length; i++) {
       const user = users[i];
@@ -47,7 +46,7 @@ class Signup extends React.Component {
         })
       console.log(users)
     }
-  };
+  };*/
 
   renderRedirect = () => {
     if (this.state.validUsername) {
@@ -81,7 +80,7 @@ class Signup extends React.Component {
           </Form.Item>
           <Form.Item
             name="password"
-            rules={[{ required: true, min: 5}]}
+            rules={[{ required: true, min: 4}]}
           >
             <Input id="passwordSignUp" type="password" placeholder="Password" name="password"/>
           </Form.Item>
