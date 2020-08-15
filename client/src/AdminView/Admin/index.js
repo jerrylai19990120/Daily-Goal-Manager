@@ -17,23 +17,7 @@ const { Panel } = Collapse;
 class Admin extends React.Component {
   state = {
     goals: [],
-    flaggedComments: [
-      {
-        username: 'user',
-        date: '5:50 AM, July 1, 2014',
-        content: 'Reading a book sucks!!'
-      },
-      {
-        username: 'admin',
-        date: '6:47 PM, February 14, 2016',
-        content: 'This goal is terrible!!'
-      },
-      {
-        username: 'user2',
-        date: '10:10 PM, December 25, 2018',
-        content: 'Exercising is bad!!'
-      }
-    ],
+    flaggedComments: [],
     usersList: []
   }
 
@@ -64,7 +48,7 @@ class Admin extends React.Component {
 
             {/* Flagged Comments List */}
             <FlaggedCommentList
-              flaggedComments={this.state.flaggedComments}
+              flaggedComments={(this.state.goals.map((goal) => goal.comments)).flat()}
               adminComponent={this}
             />
 

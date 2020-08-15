@@ -278,7 +278,7 @@ app.post("/goals", (req, res) => {
         comments: req.body.comments,
         kudos: req.body.kudos,
         // ** ADD ATTRIBUTE HERE **
-		flagged: req.body.flagged,
+				flagged: req.body.flagged,
         creator: req.body.creator
     });
 
