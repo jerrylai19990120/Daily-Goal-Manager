@@ -205,8 +205,6 @@ class GoalSection extends React.Component{
                 
                 <ul className='buttonGroup'> 
                     <li><Button className='btn' type="primary" onClick={this.logProgress}>Log Your Progress</Button></li>
-                    <li><Button className='btn' type="primary">Start Now</Button></li>
-                    <li><Button className='btn' type="primary">Remove</Button></li>
                 </ul>
                 <div className='description'>
                     <h2>{this.props.title}</h2>
