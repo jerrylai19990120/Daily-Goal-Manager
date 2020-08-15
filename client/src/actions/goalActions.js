@@ -85,6 +85,26 @@ export const deleteGoal = (goal) => {
       });
 }
 
+export const flagGoal = (goal) => {
+
+  const link = '/goals/';
+  const url = link.concat(goal._id);
+
+  const request = new Request(url, {
+      method: 'PATCH',
+  })
+
+  fetch(request)
+      .then(res => {
+          if (res.status === 200) {
+              return res.json();
+          }
+      })
+      .catch(error => {
+          console.log(error);
+      });
+};
+
 export const setOwner = (app, goalForm) => {
     // get currentUsername
     const currUser = app.state.currentUser;
