@@ -67,7 +67,7 @@ class Home extends React.Component {
           <Switch>
             <Route exact path='/home' render={() =>
                             (<GoalList app={app}/>)}/>
-            <Route exact path='/GoalDetail' render={() =>
+            <Route exact path ='/GoalDetail' render={() =>
                             (<Goal title='title' targetDays={10} description="sample description"/>)}/>
             <Route exact path='/admin' render={() =>
                             (<Admin />)}/>

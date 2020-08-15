@@ -119,7 +119,7 @@ app.get('/logout', (req, res)=>{
     })
 })
 
-app.patch('/add-comment/:goalTitle', (req, res) => {
+app.post('/add-comment/:goalTitle', (req, res) => {
     
     const goal = req.params.goalTitle;
     Goal.findOneAndUpdate({"title": goal}, {"$push": {"comments": req.body.comment}}, {new: true, useFindAndModify: false}).then((result)=>{
@@ -137,10 +137,10 @@ app.patch('/add-comment/:goalTitle', (req, res) => {
     
 })
 
-app.patch('/add-kudos/:goalTitle', (req, res) => {
+app.post('/add-kudos/:goalTitle', (req, res) => {
 
     const goal = req.params.goalTitle;
-    Goal.findOneAndUpdate({"title": goal}, {"kudos": req.body.kudos}, {new: true, useFindAndModify: false}).then((result)=>{
+    Goal.findOneAndUpdate({"title": goal}, {$inc :{"kudos": 1}}, {new: true, useFindAndModify: false}).then((result)=>{
         if(!result){
             res.status(404).send("404 not found")
         }else{
@@ -171,10 +171,10 @@ app.patch('/add-ratings/:goalTitle', (req, res) => {
 
 })
 
-app.patch('/add-progress/:goalTitle', (req, res) => {
+app.post('/add-progress/:goalTitle', (req, res) => {
 
     const goal = req.params.goalTitle;
-    Goal.findOneAndUpdate({"title": goal}, {"progress": req.body.progress}, {new: true, useFindAndModify: false}).then((result)=>{
+    Goal.findOneAndUpdate({"title": goal}, {$inc : {"progress": 1}}, {new: true, useFindAndModify: false}).then((result)=>{
         if(!result){
             res.status(404).send("404 not found")
         }else{

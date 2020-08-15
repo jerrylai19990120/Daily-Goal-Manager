@@ -7,7 +7,7 @@ import Comment from './comment';
 import TextareaAutosize from 'react-textarea-autosize';
 import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
-import Ratings from './rateit'
+import Ratings from './rateit';
 
 
 
@@ -28,8 +28,25 @@ class GoalSection extends React.Component{
         };
         this.logProgress=this.logProgress.bind(this);
     }
-    
+
     logProgress(){
+
+        const request = new Request('/add-progress/testGoal', {
+            method: 'post',
+            headers: {
+                Accept: "application/json, text/plain, ",
+                "Content-type": "application/json"
+            }
+        })
+        fetch(request)
+            .then(result => {
+                if(result.status===200){
+                    return result.json()
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
         let days = this.state.days;
         days++;
         this.setState({days: days});
@@ -65,10 +82,32 @@ class GoalSection extends React.Component{
             if(content === ''){
                 return;
             }
+            let newContent = content;
             let comments = this.state.comments;
             comments.push(<Comment key={comments.length} content={content}/>);
             this.setState({comments: comments});
             document.getElementById('enterComment').value = '';
+
+            const request = new Request('/add-comment/testGoal', {
+                method: 'post',
+                body: JSON.stringify({
+                    comment: newContent
+                }),
+                headers: {
+                    Accept: "application/json, text/plain, ",
+                    "Content-type": "application/json"
+                }
+            })
+
+            fetch(request)
+                .then(result => {
+                    if(result.status===200){
+                        return result.json()
+                    }
+                })
+                .catch(error => {
+                    console.log(error)
+                })
     }
 
     addLikes = () => {
@@ -76,12 +115,29 @@ class GoalSection extends React.Component{
         kudos++;
         this.setState({kudos: kudos});
         document.getElementsByClassName('likeBtn')[0].style.color = '#E2264D';
+        
+        const request = new Request('/add-kudos/testGoal', {
+            method: 'post',
+            headers: {
+                Accept: "application/json, text/plain, ",
+                "Content-type": "application/json"
+            }
+        })
+        fetch(request)
+            .then(result => {
+                if(result.status===200){
+                    return result.json()
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
     }
 
 
     render(){
 
-
+        
         const check = (index)=>{
                 let checks = document.getElementsByClassName('checked');
                 for(let i=0;i<checks.length;i++){

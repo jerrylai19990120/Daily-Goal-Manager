@@ -112,3 +112,16 @@ export const getUsers = (userList) => {
             console.log(error);
         });
 };
+
+export const sendComment = () => {
+
+}
+
+export const giveKudo = () => {
+
+}
+
+export const giveRating = () => {
+
+}
+
