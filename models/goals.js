@@ -31,11 +31,15 @@ const GoalSchema = new mongoose.Schema({
 	progress: {
 		type: Number,
 		default: 0
+	},
+	flagged: {
+		type: Boolean,
+		default: false
 	}
 	// ** ADD ATTRIBUTE HERE **
-	// if attribute is updated, you must also update attributes in: 
+	// if attribute is updated, you must also update attributes in:
 	// // goalActions.js: addGoalJSON() -> new Request in line 22
-	// // server.js: post "/goals" call -> new Goal in line 175
+	// // server.js: post "/goals" call -> new Goal in line 286
 })
 
 const Goal = mongoose.model('Goal', GoalSchema)

@@ -55,7 +55,7 @@ class Admin extends React.Component {
 
             {/* Flagged Goal List */}
             <FlaggedGoalList
-              flaggedGoals={this.state.goals}
+              flaggedGoals={this.state.goals.filter((goal) => goal.flagged)}
               adminComponent={this}
             />
 

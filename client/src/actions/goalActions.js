@@ -4,7 +4,7 @@ export const addGoalJSON = (formValues) => {
 
     const title = newGoal.goalTitle;
     const description = newGoal.goalDescription;
-    const duration = newGoal.goalDuration; 
+    const duration = newGoal.goalDuration;
 
     //console.log('title: '+title+', description: '+description+', duration'+duration)
 
@@ -17,7 +17,8 @@ export const addGoalJSON = (formValues) => {
             description: description,
             duration: duration,
             comments: [],
-            kudos: 0
+            kudos: 0,
+            flagged: false
             // if you need to add attributes to Goal Schema
             // ** ADD ATTRIBUTE HERE **
         }),
@@ -32,7 +33,7 @@ export const addGoalJSON = (formValues) => {
         .then(function (res) {
             if (res.status === 200) {
                 return res.json()
-            } 
+            }
         })
         .catch(error => {
             console.log(error)
