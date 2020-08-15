@@ -1,16 +1,18 @@
 import React from 'react';
 import { List , Avatar , Button} from 'antd';
 
-//import { removeUser } from "../../actions/admin";
+import { deleteUser } from '../../actions/usersActions';
 
 import "./styles.css";
 
 const removeUser = (admin, user) => {
-  const temp = admin.state.userTemp.map((x) => x)
-  for (var i = 0; i <admin.state.userTemp.length; i++) {
-    if (user === admin.state.userTemp[i]){
+  deleteUser(user)
+
+  const temp = admin.state.usersList.map((x) => x)
+  for (var i = 0; i <admin.state.usersList.length; i++) {
+    if (user === admin.state.usersList[i]){
       temp.splice(i, 1);
-      admin.setState({userTemp: temp});
+      admin.setState({usersList: temp});
     }
   }
 }

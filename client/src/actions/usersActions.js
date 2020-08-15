@@ -114,10 +114,22 @@ export const getUsers = (userList) => {
         });
 };
 
-// export const deleteUser = (user) => {
-//
-//     const link = '/users/';
-//     const url = link.concat(id);
-//
-// 
-// }
+export const deleteUser = (user) => {
+
+    const link = '/users/';
+    const url = link.concat(user.username);
+
+    const request = new Request(url, {
+        method: 'DELETE',
+    })
+
+    fetch(request)
+        .then(res => {
+            if (res.status === 200) {
+                return res.json();
+            }
+        })
+        .catch(error => {
+            console.log(error);
+        });
+}

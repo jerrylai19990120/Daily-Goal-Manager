@@ -290,18 +290,17 @@ app.delete('/users/:username', (req, res) => {
 				return;
 		}
 
-		User.remove({ username: targetUser }).then(user => {
-				if (!student) {
+		User.deleteOne({ username: targetUser }).then(user => {
+				if (!user) {
 					res.status(404).send()
 				} else {
 					res.send(user)
 				}
 		})
 		.catch((error) => {
-				log(error)
 				res.status(500).send()
 		})
-}
+});
 
 /** Goal resource routes **/
 // a POST route to *create* a goal
