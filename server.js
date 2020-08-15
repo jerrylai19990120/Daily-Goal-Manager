@@ -154,7 +154,7 @@ app.post('/add-kudos/:goalTitle', (req, res) => {
 
 })
 
-app.patch('/add-ratings/:goalTitle', (req, res) => {
+app.post('/add-ratings/:goalTitle', (req, res) => {
 
     const goal = req.params.goalTitle;
     Goal.findOneAndUpdate({"title": goal}, {"ratings": req.body.ratings}, {new: true, useFindAndModify: false}).then((result)=>{
