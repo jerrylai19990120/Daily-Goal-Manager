@@ -13,11 +13,6 @@ import { getUsers } from '../../actions/usersActions'
 import { getGoals } from '../../actions/goalActions';
 const { Panel } = Collapse;
 
-const users = [
-  {username:"admin", email:"acsd@admin.ad", password:"admin", class:"admin"},
-  {username:"user", email:"user@user.us", password:"user", class:"user"},
-  {username:"user2", email:"user2@user2.us", password:"user2", class:"user"}
-];
 
 class Admin extends React.Component {
   state = {
@@ -39,8 +34,6 @@ class Admin extends React.Component {
         content: 'Exercising is bad!!'
       }
     ],
-    //userTemp: users.map((x) => x),
-
     usersList: []
   }
 
