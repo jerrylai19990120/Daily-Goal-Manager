@@ -14,26 +14,26 @@ import FollowingPage from "../ProfileView/FollowingPage"
 
 const { Header, Content } = Layout;
 
-var userClass = '';
+/*var userClass = '';
 
 function updateClass(c) {
   userClass = c;
   console.log(userClass);
   this.setState({tempUserClass: c});
-};
+};*/
 
 class Home extends React.Component {
-  state = {
+  /*state = {
     tempUserClass: '',
     currUserClass: userClass,
   }
 
   componentWillMount() {
       updateClass = updateClass.bind(this);
- }
+ }*/
 
   render() {
-    
+
     const { app } = this.props
 
     return (
@@ -52,7 +52,7 @@ class Home extends React.Component {
               Profile
               <Link to='/user/samart'/>
             </Menu.Item>
-            {(this.state.currUserClass === "admin" || this.state.tempUserClass === "admin") &&
+            {app.state.currentUser.username == "admin" &&
               <Menu.Item key="3" className="menu_item">
                 Admin
                 <Link to='/admin'/>
@@ -88,4 +88,4 @@ class Home extends React.Component {
 }
 
 export default Home;
-export { updateClass };
+//export { updateClass };
