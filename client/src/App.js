@@ -7,10 +7,15 @@ import Login from './LoginView/Login';
 import Signup from './LoginView/Signup';
 import { readCookie } from './actions/usersActions';
 import Admin from './AdminView/Admin';
-import Profile from './ProfileView/FindUserPage';
-import FollowingPage from './ProfileView/FollowingPage';
 import { json } from 'body-parser';
 
+// import Profile from './ProfileView/FindUserPage';
+// import FollowingPage from './ProfileView/FollowingPage';
+
+import ProfileComponent from "./ProfileView/ProfilePage"
+import FollowingPage from "./ProfileView/FollowingPage"
+import UserDirectory from "./ProfileView/UserDirectory"
+import SettingsPage from "./ProfileView/SettingsPage"
 class App extends React.Component {
 
   constructor(props){
@@ -39,6 +44,7 @@ class App extends React.Component {
   render(){
 
     const currentUser = this.state.currentUser;
+      const testo = "here  is a descriptionn"
 
     let goalRoutes = [];
 
@@ -63,10 +69,16 @@ class App extends React.Component {
             {goalRoutes}
             <Route exact path='/admin' render={() =>
                             (<Admin />)}/>
-            <Route exact path="/user/:name" component={Profile}>
-            </Route>
-            <Route exact path="/user/:name/following" component={FollowingPage}>
-            </Route>
+              <Route exact path='/user/:name' render={() =>
+                            (<ProfileComponent profileLoggedInAs={currentUser} description={testo} />)}/>
+              {/* <Route exact path="/user/:name" component={ProfileComponent} profileLoggedInAs={currentUser} description={testo}> */}
+              {/* </Route> */}
+              <Route exact path="/user/:name/following" component={FollowingPage} profileLoggedInAs={currentUser}>
+              </Route>
+              <Route exact path="/profiles" component={UserDirectory}>
+              </Route>
+              <Route exact path="/user/:name/settings" component={SettingsPage}>
+              </Route>
           </Switch>
         </BrowserRouter>
 

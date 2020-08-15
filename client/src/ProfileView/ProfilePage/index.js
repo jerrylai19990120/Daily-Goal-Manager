@@ -1,20 +1,148 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import 'antd/dist/antd.css';
 import { Layout, Space, List, Col, Row, Avatar, Button, Card, Progress } from 'antd';
 import { Link } from 'react-router-dom'
 import { UserOutlined } from '@ant-design/icons';
+import {useParams} from 'react-router';
+import axios from 'axios';
 
 const { Content } = Layout;
 
+const log = console.log
 
 
 
-function ProfilePage({profile, profiles, profileLoggedInAs, updateFriends}) {
+function ProfilePage(props) {
+    const profileToFind = useParams();
+    const [profile, setProfile] = useState({
+        friends: [],
+        username: "",
+        email: "",
+        password: "",
+        profilePictureUrl: "",
+        goals: [],
+        __v: 0
+    });
+    const [myProfile, setMyProfile] = useState({})
+    log("testing a change here")
+    log(profileToFind)
 
-    const addFriend = () => {
-        updateFriends(profileLoggedInAs, profile.username)
 
+    log("props here")
+    log("props here")
+    log("props here")
+    log("props here")
+    log(props)
+    log(props)
+    log(props)
+    log(props)
+    log(props)
+
+    const [followButtonText, setFollowButtonText] = useState("Follow")
+    const [loggedInAs, setLoggedInAs] = useState(props.profileLoggedInAs.username)
+
+    useEffect(() => {
+        const fetchProfile = async () => {
+            axios.get(
+                'http://localhost:5000/profile/' + profileToFind.name
+            ).then((result) =>  {
+                setProfile(result.data)
+            })
+            .catch((error) => {
+                log(error)
+            } )
+        }
+        fetchProfile();
+    }, [])
+
+    useEffect(() => {
+        const fetchMyProfile = async () => {
+            axios.get(
+                'http://localhost:5000/profile/' + loggedInAs
+            ).then((result) =>  {
+                setMyProfile(result.data)
+                log("here is where we find the profile of the logged  in user")
+                log(result.data)
+                const isFollowing = result.data.friends.includes(profileToFind.name)
+                if(isFollowing)
+                {
+                    setFollowButtonText("Unfollow")
+                }
+            })
+            .catch((error) => {
+                log(error)
+            } )
+        }
+        fetchMyProfile();
+    }, [])
+    // useEffect(() => {
+    //     const fetchProfile = async () => {
+    //         const result = await axios(
+    //             'http://localhost:5000/profile/' + profileToFind.name
+    //         )
+    //         setProfile(result.data)
+    //     }
+    //     fetchProfile();
+    // }, [])
+
+    // useEffect(() => {
+    //     const fetchCurrentUser = async () => {
+    //         axios.get(
+    //             'http://localhost:5000/check-session'
+    //         ).then((result) => {
+    //             setLoggedInAs(result.data.currentUser)
+    //         })
+    //             .catch((error) => {
+    //                 log(error)
+    //             })
+    //     }
+    //     fetchCurrentUser();
+    // }, [])
+
+
+    const followButtonHandler = () =>
+    {
+        //replace profileToFind.n
+        const newFriends = [profileToFind.name].concat(profile.friends)
+        setProfile({
+            ...profile,
+            friends: newFriends
+        })
+        log(profile)
+
+
+
+        if(followButtonText === "Follow")
+        {
+            setFollowButtonText("Unfollow")
+            axios.post('http://localhost:5000/profile/addFriend/' + loggedInAs + "/" + profileToFind.name)
+                .then((result) => {
+                    log(result)
+                })
+        }
+        else
+        {
+            setFollowButtonText("Follow")
+            axios.delete('http://localhost:5000/profile/removeFriend/' + loggedInAs + "/" + profileToFind.name)
+                .then((result) => {
+                    log(result)
+                })
+
+        }
     }
+
+    let settingsButton
+
+    // if the currently logged in user is visiting their own page then show the button to edit their profile info
+        if(loggedInAs === profileToFind.name){
+            settingsButton = <Button>Change User Info</Button>
+        }
+
+    log(loggedInAs)
+    log(loggedInAs)
+    log(loggedInAs)
+    log(loggedInAs)
+    log(loggedInAs)
 
         console.log(profile)
         return(
@@ -28,15 +156,23 @@ function ProfilePage({profile, profiles, profileLoggedInAs, updateFriends}) {
                                 <Col className="profile-area" span={4}>
                                     <Space direction="vertical">
                                         <Avatar src={profile.profilePictureUrl} shape="square" size={128} icon={<UserOutlined />} />
-                                        <Button>
-                                            Change User Info
-                                        </Button>
-                                        <Button onClick={addFriend}>
-                                            Follow
+                                        <Link to={"/user/" + profile.username + "/settings"}>
+                                            {/* <Button> */}
+                                            {/*     Change User Info */}
+                                            {/* </Button> */}
+                                            {settingsButton}
+                                        </Link>
+                                        <Button onClick={followButtonHandler}>
+                                            {followButtonText}
                                         </Button>
                                         <Link to={"/user/" + profile.username + "/following"}>
                                             <Button>
                                                 Following
+                                            </Button>
+                                        </Link>
+                                        <Link to={"/profiles"}>
+                                            <Button>
+                                                User Directory
                                             </Button>
                                         </Link>
                                     </Space>

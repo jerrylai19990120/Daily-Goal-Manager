@@ -19,12 +19,12 @@ const GoalSchema = new mongoose.Schema({
 	}
 })
 
-const FriendSchema = new mongoose.Schema({
-	username: {
-		type: String,
-		required: true
-	}
-})
+// const FriendSchema = new mongoose.Schema({
+// 	username: {
+// 		type: String,
+// 		required: true
+// 	}
+// })
 
 const UserSchema = new mongoose.Schema({
 	
@@ -43,11 +43,15 @@ const UserSchema = new mongoose.Schema({
 		required: true,
 		minlength: 8
 	},
+    profilePictureUrl: {
+        type: String,
+        required: false
+    },
 	goals: {
 		type: [GoalSchema]
 	},
 	friends: {
-		type: [FriendSchema]
+		type: []
 	}
 })
 
