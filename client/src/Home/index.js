@@ -77,6 +77,7 @@ class Home extends React.Component {
               </Route>
           </Switch>
         </div>
+        <h1>Welcome to our Goal Setting App</h1>
         </Content>
 
 
