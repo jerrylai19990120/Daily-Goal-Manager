@@ -6,6 +6,9 @@ import Home from './Home';
 import Login from './LoginView/Login';
 import Signup from './LoginView/Signup';
 import { readCookie } from './actions/usersActions';
+import Admin from './AdminView/Admin';
+import Profile from './ProfileView/FindUserPage';
+import FollowingPage from './ProfileView/FollowingPage';
 
 class App extends React.Component {
 
@@ -36,7 +39,14 @@ class App extends React.Component {
             
             <Route exact path={['/', '/login', '/home']} render={({history}) =>
                             (!currentUser? <Login state={this.state} history={history} app={this}/> : <Home state={this.state} history={history} app={this}/>)}/>
-            
+            <Route exact path ='/GoalDetail' render={() =>
+                            (<Goal title='title' targetDays={10} description="sample description"/>)}/>
+            <Route exact path='/admin' render={() =>
+                            (<Admin />)}/>
+            <Route exact path="/user/:name" component={Profile}>
+            </Route>
+            <Route exact path="/user/:name/following" component={FollowingPage}>
+            </Route>
           </Switch>
         </BrowserRouter>
 

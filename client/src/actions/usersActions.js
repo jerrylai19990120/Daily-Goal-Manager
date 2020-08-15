@@ -133,3 +133,15 @@ export const deleteUser = (user) => {
             console.log(error);
         });
 }
+
+export const sendComment = () => {
+
+}
+
+export const giveKudo = () => {
+
+}
+
+export const giveRating = () => {
+
+}

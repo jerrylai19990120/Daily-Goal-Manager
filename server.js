@@ -44,7 +44,7 @@ app.get('/loginAuth', (req, res) => {
         }else{
             res.send(users)
         }
-
+        
     }).catch((error)=>{
         console.log(error)
         res.status(500).send("Internal server error.")
@@ -54,7 +54,7 @@ app.get('/loginAuth', (req, res) => {
 app.post('/loginSession', (req, res) => {
 
     const username = req.body.username;
-
+    
     User.findByUsername(username).then((user)=>{
         req.session.username = user.username;
         req.session.email = user.email;
@@ -83,7 +83,7 @@ app.post('/signup', (req, res)=>{
             })
             req.session.username = req.body.username;
             req.session.email = req.body.email;
-
+            
             user.save().then((result)=>{
                 res.send(result)
             }).catch((error)=>{
@@ -95,7 +95,7 @@ app.post('/signup', (req, res)=>{
             })
         })
     })
-
+    
 })
 
 
@@ -119,8 +119,8 @@ app.get('/logout', (req, res)=>{
     })
 })
 
-app.patch('/add-comment/:goalTitle', (req, res) => {
-
+app.post('/add-comment/:goalTitle', (req, res) => {
+    
     const goal = req.params.goalTitle;
     Goal.findOneAndUpdate({"title": goal}, {"$push": {"comments": req.body.comment}}, {new: true, useFindAndModify: false}).then((result)=>{
         if(!result){
@@ -134,13 +134,13 @@ app.patch('/add-comment/:goalTitle', (req, res) => {
         res.status(500).send("Internal server error")
     })
 
-
+    
 })
 
-app.patch('/add-kudos/:goalTitle', (req, res) => {
+app.post('/add-kudos/:goalTitle', (req, res) => {
 
     const goal = req.params.goalTitle;
-    Goal.findOneAndUpdate({"title": goal}, {"kudos": req.body.kudos}, {new: true, useFindAndModify: false}).then((result)=>{
+    Goal.findOneAndUpdate({"title": goal}, {$inc :{"kudos": 1}}, {new: true, useFindAndModify: false}).then((result)=>{
         if(!result){
             res.status(404).send("404 not found")
         }else{
@@ -154,7 +154,7 @@ app.patch('/add-kudos/:goalTitle', (req, res) => {
 
 })
 
-app.patch('/add-ratings/:goalTitle', (req, res) => {
+app.post('/add-ratings/:goalTitle', (req, res) => {
 
     const goal = req.params.goalTitle;
     Goal.findOneAndUpdate({"title": goal}, {"ratings": req.body.ratings}, {new: true, useFindAndModify: false}).then((result)=>{
@@ -171,10 +171,10 @@ app.patch('/add-ratings/:goalTitle', (req, res) => {
 
 })
 
-app.patch('/add-progress/:goalTitle', (req, res) => {
+app.post('/add-progress/:goalTitle', (req, res) => {
 
     const goal = req.params.goalTitle;
-    Goal.findOneAndUpdate({"title": goal}, {"progress": req.body.progress}, {new: true, useFindAndModify: false}).then((result)=>{
+    Goal.findOneAndUpdate({"title": goal}, {$inc : {"progress": 1}}, {new: true, useFindAndModify: false}).then((result)=>{
         if(!result){
             res.status(404).send("404 not found")
         }else{
@@ -273,33 +273,12 @@ app.patch("/users/:username", (req, res) => {
 app.get("/users", (req, res) => {
     User.find().then(
         users => {
-            res.send({ users });
+            res.send({ users }); 
         },
         error => {
             res.status(500).send(error); // server error
         }
     );
-});
-
-app.delete('/users/:username', (req, res) => {
-		const targetUser = req.params.username;
-
-		if (mongoose.connection.readyState != 1) {
-				log('Issue with mongoose connection')
-				res.status(500).send('Internal server error')
-				return;
-		}
-
-		User.deleteOne({ username: targetUser }).then(user => {
-				if (!user) {
-					res.status(404).send()
-				} else {
-					res.send(user)
-				}
-		})
-		.catch((error) => {
-				res.status(500).send()
-		})
 });
 
 /** Goal resource routes **/
@@ -331,7 +310,7 @@ app.post("/goals", (req, res) => {
 app.get("/goals", (req, res) => {
     Goal.find().then(
         goals => {
-            res.send({ goals });
+            res.send({ goals }); 
         },
         error => {
             res.status(500).send(error); // server error
@@ -351,3 +330,8 @@ app.use(express.static(__dirname+'/client/build'))
 app.get("*", (req, res)=>{
     res.sendFile(__dirname + '/client/build/index.html')
 })
+
+
+
+
+
