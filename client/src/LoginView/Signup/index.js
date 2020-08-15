@@ -50,7 +50,7 @@ class Signup extends React.Component {
 
   renderRedirect = () => {
     if (this.state.validUsername) {
-      return <Redirect to='/goalsPage' />
+      return <Redirect to='/home' />
     }
   }
 
@@ -97,7 +97,7 @@ class Signup extends React.Component {
           }
           <Form.Item>
             {this.renderRedirect()}
-            <Button type="primary" htmlType="submit" className="login_button" onClick={()=>{signUp(this.props.app)}}>
+            <Button type="primary" htmlType="submit" className="login_button" onClick={()=>{signUp(this.props.app);this.setState({validUsername: true})}}>
               Sign Up
             </Button>
             <p>Been here before? <a href="login">Log in</a></p>
