@@ -33,7 +33,7 @@ class Comment extends React.Component{
                         <img className='comment-icon' src={require(`${this.state.pic}`)} alt=''/>
                     </Col>
                     <Col span={20}>
-                        <div className='content'><strong>{this.state.user}</strong>{" "}{this.props.content}</div>
+                        <div className='content'><strong>Anon User</strong>{" "}{this.props.content}</div>
                         <span className='date'>{this.state.date}</span>
                     </Col>
                 </Row>

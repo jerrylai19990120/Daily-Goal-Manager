@@ -30,7 +30,7 @@ class GoalSection extends React.Component{
     }
 
 
-    componentDidMount(){
+    componentWillMount(){
         fetch(`/get-goal-detail/${this.props.title}`)
         .then(result => {
             return result.json()
