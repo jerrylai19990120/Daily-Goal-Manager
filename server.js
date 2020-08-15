@@ -293,7 +293,7 @@ app.post("/goals", (req, res) => {
     );
 });
 
-// a GET route to get all students
+// a GET route to get all goals
 app.get("/goals", (req, res) => {
     Goal.find().then(
         goals => {
@@ -305,6 +305,7 @@ app.get("/goals", (req, res) => {
     );
 });
 
+// Delete a specific goal
 app.delete('/goals/:id', (req, res) => {
 		const id = req.params.id;
 
@@ -331,6 +332,36 @@ app.delete('/goals/:id', (req, res) => {
 		})
 });
 
+// Replace a goal info
+app.patch('/goals/:id', (req, res) => {
+		const id = req.params.id
+
+		if (!ObjectID.isValid(id)) {
+			res.status(404).send('Resource not found')
+			return;
+		}
+
+		if (mongoose.connection.readyState != 1) {
+				log('Issue with mongoose connection')
+				res.status(500).send('Internal server error')
+				return;
+		}
+
+		Goal.findByIdAndUpdate(id, { flagged: true }).then((goal) => {
+			if (!goal) {
+				res.status(404).send('Resource not found')
+			} else {
+				res.send(goal)
+			}
+		}).catch((error) => {
+			if (isMongoError(error)) { // check for if mongo server suddenly dissconnected before this request.
+				res.status(500).send('Internal server error')
+			} else {
+				log(error)
+				res.status(400).send('Bad Request') // bad request for changing the student.
+			}
+		})
+});
 
 /*** API Routes ************************************/
 
