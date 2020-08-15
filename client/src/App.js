@@ -55,7 +55,7 @@ class App extends React.Component {
           <Switch>
             
             <Route exact path='/signup' render={() =>
-                            (<Signup state={this.state}/>)}/> 
+                            (<Signup state={this.state} app={this}/>)}/> 
             
             <Route exact path={['/', '/login', '/home']} render={({history}) =>
                             (!currentUser? <Login state={this.state} history={history} app={this}/> : <Home state={this.state} history={history} app={this}/>)}/>

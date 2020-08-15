@@ -29,6 +29,7 @@ export const signUp = (app) => {
         .catch(error => {
             console.log(error)
         })
+
     app.setState({currentUser: {
         username: username,
         email: email,
@@ -38,13 +39,6 @@ export const signUp = (app) => {
 
 export const login = (info, app) => {
 
-    const request = new Request('/login', {
-        method: 'get',
-        headers: {
-            Accept: "application/json, text/plain, */*",
-            "Content-type": "application/json"
-        }
-    })
 
     fetch('/loginAuth')
         .then((result)=>{
@@ -53,17 +47,38 @@ export const login = (info, app) => {
         .then((json)=>{
             const username = document.getElementById('usernameLogin').value;
             const password = document.getElementById('passwordLogin').value;
+
+            const request = new Request('/loginSession', {
+                method: 'post',
+                body: JSON.stringify({
+                    username: username
+                }),
+                headers: {
+                    Accept: "application/json, text/plain, */*",
+                    "Content-type": "application/json"
+                }
+            })
+
             for(let i=0;i<json.length;i++){
                 bcrypt.compare(password, json[i].password, (err, res)=>{
                     info.setState({firstTry: false});
                     if(json[i].username === username && res === true){
                         info.setState({correctAuth: true, firstTry: true});
-                        console.log(app);
                         app.setState({currentUser: {
                             username: json[i].username,
                             email: json[i].email,
                             password: json[i].password
                         }});
+
+                        fetch(request)
+                            .then(result => {
+                                if(result.status===200){
+                                    return result;
+                                }
+                            })
+                            .catch(error => {
+                                console.log(error)
+                            })
                     }
                 })
             }
@@ -77,9 +92,8 @@ export const login = (info, app) => {
 
 export const readCookie = (app) => {
 
-    const url = "/check-session";
 
-    fetch(url)
+    fetch('/check-session')
         .then((res)=>{
             if(res.status===200){
                 return res.json();

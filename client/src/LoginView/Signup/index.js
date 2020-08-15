@@ -55,6 +55,7 @@ class Signup extends React.Component {
   }
 
   render() {
+
     return (
       <div className="signup">
         <Title className="login_title">New Here?</Title>
@@ -96,7 +97,7 @@ class Signup extends React.Component {
           }
           <Form.Item>
             {this.renderRedirect()}
-            <Button type="primary" htmlType="submit" className="login_button" onClick={()=>{signUp(this)}}>
+            <Button type="primary" htmlType="submit" className="login_button" onClick={()=>{signUp(this.props.app)}}>
               Sign Up
             </Button>
             <p>Been here before? <a href="login">Log in</a></p>
