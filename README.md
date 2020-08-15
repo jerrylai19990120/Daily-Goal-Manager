@@ -12,30 +12,11 @@ Contributors:
 - tamrazpe - Peter Tamraz  
 - laiyihui - Yihui Lai  
 
-## Installation Instructions
 
-User must have Node and npm installed before following these instructions.
-Node and npm for any operating systems can be downloaded [here](https://nodejs.org/en/download/).
 
-After installing Node and npm, follow these steps to run the application.
+## How to Use the Application
 
-> clone our repo at https://github.com/csc309-summer-2020/team29.git
-```
-$ git clone https://github.com/csc309-summer-2020/team29.git
-```
-
-> cd into the application
-```
-$ cd ./team29/my-goalsetting-app
-```
-
-> install npm and run program
-```
-$ npm install
-$ npm start
-```
-
-Upon completing these steps you would be directed to the login page of our web application.
+... ?
 
 ## User Features
 
@@ -62,9 +43,11 @@ New users can sign up for a new account at this page using username, password an
 - Username must not be taken and be greater than 3 characters.
 - Password must be greater than 5 characters.
 
+When users sign up, their information will be stored in the `users` database with bcrypted passwords. 
+
 ### Goal List (Home Page)
 
-The home page of this website shows the list of goals created by different users in the database (currently hardcoded).
+The home page of this website shows the list of goals created by different users in the database.
 
 ![Image of Goal List Page](https://github.com/csc309-summer-2020/team29/blob/master/readme_img/goalList.png)
 
@@ -75,9 +58,11 @@ The home page of this website shows the list of goals created by different users
   Once user fills in the form and submits, a message pops on success.
   Also, users can see the added goal at the end of the list.
   ![Image of goalForm2](https://github.com/csc309-summer-2020/team29/blob/master/readme_img/goalForm2.png)
+  The goal form creates a new Goal object and creates a `POST` request to add the goals to the `goals` database.
 
-* **Goal List** - Below the "Add New Goal Form" tab, there is a list of goals that are currently in the database (Currently hardcoded data).
-  For each goal, users can view the title, description, and duration of the goal. Also, there is a "More Info" button which will direct the user to Goal Details.
+* **Goal List** - Below the "Add New Goal Form" tab, there is a list of goals that are currently in the `goals` database.
+  For each goal, users can view the title, description, and duration of the goal. 
+  - Also, there is a "More Info" button and "Report" button for each goal. The "More Info" button will redirect the user to Goal Details page for each goal. The "Report" button will report the goal to the Admin, where Admin can review and delete the reported goals.
 
 ### Goal Details
 
@@ -90,12 +75,10 @@ In the goal details page, user can see the details of specific goals.
   ![Image of progress status](https://github.com/csc309-summer-2020/team29/blob/master/readme_img/progress.png)
 
 * **Select Color** - Users customize their goal details tab by selecting colors.
-* **Kudos, Comment, Share, Rating**  - Users can give Kudos, leave comments, share goal, or give rating to the goal.
+* **Kudos, Comment, Share, Rating **  - Users can give Kudos, leave comments, share goal, or give rating to the goal.
   - User can leave comments by using the comment text box section. They can view their comments after submitting.
-  
     ![Image of comment](https://github.com/csc309-summer-2020/team29/blob/master/readme_img/comment.png)
-    
-  - share functionality is not yet implemented
+  - Users can also 
 
 ### Profile Page
 
@@ -137,7 +120,52 @@ The Admin page can be accessed and viewed when logged in successfully with admin
   
 ![Image of flagged lists](https://github.com/csc309-summer-2020/team29/blob/master/readme_img/flagged.png)
 
-* **List of Users** - Admin also have access to the list of users currently registered in the system (currently hardcoded data). They can also delete users on this page.
+* **List of Users** - Admin also have access to the list of users currently registered in the database. They can also delete users on this page.
+
+## Overview of Routes in Express Server
+
+There are two main routes in the Express server: `users` and `goals`.
+The database can be connected through MongoDB using the connection string: "mongodb+srv://jerrylai:tg12345678@team29.gh6gt.mongodb.net/UserInfo?retryWrites=true&w=majority"
+
+### Users
+The `users` route holds the list of users registered in the database. The users are added to the database when a user signs up on the SignUp page. Here, a new User object is created using the UserSchema Model. 
+
+
+
+The following are the API routes for `users` database:
+
+** Note: `usersAction.js` and `goalActions.js` can be found in `client/src/actions` folder. **
+
+- `app.get("/users", ...)`: This `GET` request returns the list of users currently logged in the database. This request is made in the function `getUsers()` in `usersActions.js` and is used in various functions where the list of users are needed.
+- `app.patch("/users/:username", ...)`: This `PATCH` request requires a username of the user and the new attributes to be changed inside of that user. It returns a user with the updated attributes. This request is made in the function `setOwner()` in `goalActions.js` to add the newly created goal into the `goals` attribute of the current User. 
+- `app.delete("/users/:username", ...)`: This `DELETE` request requires the username of the user to be deleted. This request is made in the funtion `deleteUser` in `usersAction.js` and lets admins to delete users from the admin page.
+
+### Goals
+The `goals` route holds the list of goals registered in the database. T
+
+
+## Development Instructions - Making Changes
+
+After making changes to the code, user must follow these instructions to reflect the changes in the application.
+
+
+> Make changes in the React App placed in `/client/src` folder
+```
+$ cd client
+$ npm run build
+```
+
+> go back to the root directory
+```
+$ cd ..
+```
+
+> run server
+```
+$ npm start
+```
+
+Upon completing these steps you would be directed to the login page of our web application.
 
 
 ## Built With
