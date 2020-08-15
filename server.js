@@ -249,7 +249,6 @@ app.delete('/goals/:id', (req, res) => {
 		})
 });
 
-<<<<<<< HEAD
 app.post('/add-comment/:goalTitle', (req, res) => {
 
     const goal = req.params.goalTitle;
