@@ -64,6 +64,26 @@ export const getGoals = (goalList) => {
         });
 };
 
+export const deleteGoal = (goal) => {
+
+  const link = '/goals/';
+  const url = link.concat(goal._id);
+
+  const request = new Request(url, {
+      method: 'DELETE',
+  })
+
+  fetch(request)
+      .then(res => {
+          if (res.status === 200) {
+              return res.json();
+          }
+      })
+      .catch(error => {
+          console.log(error);
+      });
+}
+
 export const setOwner = (app, goalForm) => {
 // 5f2b2e87e920607eb31129c4 -> user1
     // get currentUsername

@@ -281,6 +281,27 @@ app.get("/users", (req, res) => {
     );
 });
 
+app.delete('/users/:username', (req, res) => {
+		const targetUser = req.params.username;
+
+		if (mongoose.connection.readyState != 1) {
+				log('Issue with mongoose connection')
+				res.status(500).send('Internal server error')
+				return;
+		}
+
+		User.deleteOne({ username: targetUser }).then(user => {
+				if (!user) {
+					res.status(404).send()
+				} else {
+					res.send(user)
+				}
+		})
+		.catch((error) => {
+				res.status(500).send()
+		})
+});
+
 /** Goal resource routes **/
 // a POST route to *create* a goal
 app.post("/goals", (req, res) => {
@@ -318,6 +339,33 @@ app.get("/goals", (req, res) => {
         }
     );
 });
+
+app.delete('/goals/:id', (req, res) => {
+		const id = req.params.id;
+
+		if (!ObjectID.isValid(id)) {
+			res.status(404).send('Resource not found')
+			return;
+		}
+
+		if (mongoose.connection.readyState != 1) {
+				log('Issue with mongoose connection')
+				res.status(500).send('Internal server error')
+				return;
+		}
+
+		Goal.findByIdAndRemove(id).then(goal => {
+				if (!goal) {
+					res.status(404).send()
+				} else {
+					res.send(goal)
+				}
+		})
+		.catch((error) => {
+				res.status(500).send()
+		})
+});
+
 
 /*** API Routes ************************************/
 
