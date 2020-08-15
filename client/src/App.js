@@ -9,23 +9,43 @@ import { readCookie } from './actions/usersActions';
 import Admin from './AdminView/Admin';
 import Profile from './ProfileView/FindUserPage';
 import FollowingPage from './ProfileView/FollowingPage';
+import { json } from 'body-parser';
 
 class App extends React.Component {
 
   constructor(props){
     super(props);
     readCookie(this);
+    this.state = {
+        currentUser: null,
+        abc: "123",
+        goals: []
+    }
   }
 
-  state = {
-    currentUser: null,
-    abc: "123"
+  componentDidMount(){
+    fetch('/goals')
+      .then(result => {
+        return result.json()
+      })
+      .then(json => {
+        this.setState({goals: json.goals})
+      })
+      .catch(error => {
+        console.log(error)
+      })
   }
-
 
   render(){
 
     const currentUser = this.state.currentUser;
+
+    let goalRoutes = [];
+
+    for(let i=0;i<this.state.goals.length;i++){
+      goalRoutes.push(<Route exact path={`/GoalDetail/${this.state.goals[i].title}`} render={() =>
+        (<Goal title={`${this.state.goals[i].title}`} targetDays={`${this.state.goals[i].duration}`} description={`${this.state.goals[i].description}`}/>)}/>);
+    }
 
     return (
 
@@ -39,8 +59,7 @@ class App extends React.Component {
             
             <Route exact path={['/', '/login', '/home']} render={({history}) =>
                             (!currentUser? <Login state={this.state} history={history} app={this}/> : <Home state={this.state} history={history} app={this}/>)}/>
-            <Route exact path ='/GoalDetail' render={() =>
-                            (<Goal title='title' targetDays={10} description="sample description"/>)}/>
+            {goalRoutes}
             <Route exact path='/admin' render={() =>
                             (<Admin />)}/>
             <Route exact path="/user/:name" component={Profile}>

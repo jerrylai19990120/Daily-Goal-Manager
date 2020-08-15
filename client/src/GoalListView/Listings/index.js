@@ -1,8 +1,9 @@
 import React from 'react';
 import { List, Button } from 'antd';
-import {BrowserRouter as Router, Route, Link} from 'react-router-dom';
+import {BrowserRouter as Router, Route, Link, BrowserRouter} from 'react-router-dom';
 import './../../App.css';
 import "./styles.css";
+import Goal from '../../goal-description-component/goal-section';
 
 
 class Listings extends React.Component{
@@ -27,7 +28,8 @@ class Listings extends React.Component{
 			        />
 			        <div><span className="duration">Duration: {item.duration} Days</span></div>
 			        <div className="button">
-			        <Link to={"/GoalDetail"} >
+					
+			        <Link to={`/GoalDetail/${item.title}`} >
 			        	<Button>More Info</Button>
 			        </Link>
 			        </div>

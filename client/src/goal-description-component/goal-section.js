@@ -29,9 +29,34 @@ class GoalSection extends React.Component{
         this.logProgress=this.logProgress.bind(this);
     }
 
+
+    componentDidMount(){
+        fetch(`/get-goal-detail/${this.props.title}`)
+        .then(result => {
+            return result.json()
+        })
+        .then(json => {
+            this.setState({
+                kudos: json.kudos,
+                days: json.progress,
+                rating: json.ratings,
+                visible: true,
+                ratingStars: true
+            })
+            
+            for(let i=0;i<json.comments.length;i++){
+                this.state.comments.push(<Comment key={i} content={json.comments[i]}/>)
+            }
+        })
+        .catch(error => {
+            console.log(error)
+        })
+        
+    }
+
     logProgress(){
 
-        const request = new Request('/add-progress/testGoal', {
+        const request = new Request(`/add-progress/${this.props.title}`, {
             method: 'post',
             headers: {
                 Accept: "application/json, text/plain, ",
@@ -88,7 +113,7 @@ class GoalSection extends React.Component{
             this.setState({comments: comments});
             document.getElementById('enterComment').value = '';
 
-            const request = new Request('/add-comment/testGoal', {
+            const request = new Request(`/add-comment/${this.props.title}`, {
                 method: 'post',
                 body: JSON.stringify({
                     comment: newContent
@@ -116,7 +141,7 @@ class GoalSection extends React.Component{
         this.setState({kudos: kudos});
         document.getElementsByClassName('likeBtn')[0].style.color = '#E2264D';
         
-        const request = new Request('/add-kudos/testGoal', {
+        const request = new Request(`/add-kudos/${this.props.title}`, {
             method: 'post',
             headers: {
                 Accept: "application/json, text/plain, ",

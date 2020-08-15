@@ -113,15 +113,5 @@ export const getUsers = (userList) => {
         });
 };
 
-export const sendComment = () => {
 
-}
-
-export const giveKudo = () => {
-
-}
-
-export const giveRating = () => {
-
-}
 
