@@ -25,10 +25,10 @@ class GoalForm extends React.Component {
     function goalAdded(e)
       {
           message.success("Your goal has been added! Check your goal on the bottom of the list.")
-          let texts = document.getElementsByClassName("text");
-          for(let i=0;i<texts.length;i++){
-              texts[i].value = '';
-          }
+          // let texts = document.getElementsByClassName("text");
+          // for(let i=0;i<texts.length;i++){
+          //     texts[i].value = '';
+          // }
       }
 
     return (
