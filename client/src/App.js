@@ -29,6 +29,7 @@ class App extends React.Component {
         return result.json()
       })
       .then(json => {
+        console.log(json.goals[2].duration)
         this.setState({goals: json.goals})
       })
       .catch(error => {

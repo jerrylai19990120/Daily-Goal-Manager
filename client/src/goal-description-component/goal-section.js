@@ -197,9 +197,8 @@ class GoalSection extends React.Component{
         return(
             <div className="goal" style={{background:this.state.color}}>
                 <div className="progress">
-                    <Progress type="circle" percent={this.state.days} 
-                    format={percent => `${percent} Days`} 
-                    strokeColor='#FFCB35'
+                    <Progress type="circle" percent={Math.round(this.state.days/this.props.targetDays*100)} 
+                    format={percent => percent!==100?`${percent} %`: 'Done'} 
                     />
                 </div>
                 <h1 className='goal-title'></h1>
