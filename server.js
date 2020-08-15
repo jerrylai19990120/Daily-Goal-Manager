@@ -124,6 +124,18 @@ app.get('/logout', (req, res)=>{
 /*** API Routes below ************************************/
 /** User resource routes **/
 
+// a GET route to get all users
+app.get("/users", (req, res) => {
+    User.find().then(
+        users => {
+            res.send({ users });
+        },
+        error => {
+            res.status(500).send(error); // server error
+        }
+    );
+});
+
 // a PATCH route for changing properties of a resource.
 app.patch("/users/:username", (req, res) => {
     const currUsername = req.params.username;
@@ -148,18 +160,6 @@ app.patch("/users/:username", (req, res) => {
         res.status(500).send(error) // server error
     })
 
-});
-
-// a GET route to get all users
-app.get("/users", (req, res) => {
-    User.find().then(
-        users => {
-            res.send({ users });
-        },
-        error => {
-            res.status(500).send(error); // server error
-        }
-    );
 });
 
 app.delete('/users/:username', (req, res) => {
