@@ -10,6 +10,7 @@ import "./styles.css";
 
 // Import actions/methods\
 import { getUsers } from '../../actions/usersActions'
+import { getGoals } from '../../actions/goalActions';
 const { Panel } = Collapse;
 
 const users = [
@@ -20,23 +21,7 @@ const users = [
 
 class Admin extends React.Component {
   state = {
-    flaggedGoals: [
-      {
-        goalTitle: 'Reported Goal 1',
-        goalDescription: 'This goal is repoted goal 1.',
-        goalDuration: 10,
-      },
-      {
-        goalTitle: 'Reported Goal 2',
-        goalDescription: 'This goal is reported goal 2.',
-        goalDuration: 7,
-      },
-      {
-        goalTitle: 'Reported Goal 3',
-        goalDescription: 'This goal is reported goal 3.',
-        goalDuration: 30,
-      },
-    ],
+    goals: [],
     flaggedComments: [
       {
         username: 'user',
@@ -59,17 +44,10 @@ class Admin extends React.Component {
     usersList: []
   }
 
-  inputHandler = event => {
-    const target = event.target;
-    const value = target.value;
-    const name = target.name;
-
-    this.setState({
-      [name]: value
-    });
-  };
-
-
+  componentDidMount() {
+    getUsers(this);
+    getGoals(this);
+  }
 
   render() {
     return (
@@ -84,7 +62,7 @@ class Admin extends React.Component {
 
             {/* Flagged Goal List */}
             <FlaggedGoalList
-              flaggedGoals={this.state.flaggedGoals}
+              flaggedGoals={this.state.goals}
               adminComponent={this}
             />
 
@@ -104,7 +82,7 @@ class Admin extends React.Component {
         <Divider className='divider' orientation="left">Users</Divider>
         <UserList
           //users={this.state.userTemp}
-          users={this.state.userList}
+          users={this.state.usersList}
           adminComponent={this}
         />
 

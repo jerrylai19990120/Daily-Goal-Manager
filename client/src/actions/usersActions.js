@@ -94,9 +94,10 @@ export const readCookie = (app) => {
             console.log(error);
         })
 }
+
 export const getUsers = (userList) => {
 
-    const url = "/admin";
+    const url = "/users";
     fetch(url)
         .then(res => {
             if (res.status === 200) {
@@ -106,9 +107,17 @@ export const getUsers = (userList) => {
             }
         })
         .then(json => {
-            userList.setState({ users: json.users });
+            userList.setState({ usersList: json.users });
         })
         .catch(error => {
             console.log(error);
         });
 };
+
+// export const deleteUser = (user) => {
+//
+//     const link = '/users/';
+//     const url = link.concat(id);
+//
+// 
+// }
