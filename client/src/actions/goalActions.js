@@ -1,4 +1,4 @@
-export const addGoalJSON = (formValues) => {
+export const addGoalJSON = (formValues, currUser) => {
 
     const newGoal = formValues.props;
 
@@ -18,7 +18,8 @@ export const addGoalJSON = (formValues) => {
             duration: duration,
             comments: [],
             kudos: 0,
-            flagged: false
+            flagged: false,
+            creator: currUser
             // if you need to add attributes to Goal Schema
             // ** ADD ATTRIBUTE HERE **
         }),
@@ -128,7 +129,9 @@ export const setOwner = (app, goalForm) => {
 }
 
 export async function updateGoals(goalList, goalForm, app) {
-    addGoalJSON(goalForm);
+    const currUser = app.state.currentUser;
+    //console.log('updateGoals currUser: '+currUser.username)
+    addGoalJSON(goalForm, currUser.username);
     getGoals(goalList);
     setOwner(app, goalForm);
 }

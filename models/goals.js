@@ -35,10 +35,14 @@ const GoalSchema = new mongoose.Schema({
 	flagged: {
 		type: Boolean,
 		default: false
+	},
+	creator: {
+		type: String
 	}
+
 	// ** ADD ATTRIBUTE HERE **
 	// if attribute is updated, you must also update attributes in:
-	// // goalActions.js: addGoalJSON() -> new Request in line 22
+	// // client/src/actions/goalActions.js: addGoalJSON() -> new Request in line 22
 	// // server.js: post "/goals" call -> new Goal in line 286
 })
 

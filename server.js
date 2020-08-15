@@ -207,45 +207,9 @@ app.get('/get-goal-detail/:goalTitle', (req, res) => {
 /*** API Routes below ************************************/
 /** User resource routes **/
 
-// // a PATCH route for changing properties of a resource.
-// app.patch("/users/:id", (req, res) => {
-//     const id = req.params.id;
-
-//     if (!ObjectID.isValid(id)) {
-//         res.status(404).send();
-//         return;
-//     }
-
-//     const newGoal = {
-//         "title": req.body.title,
-//         "description": req.body.description,
-//         "duration": req.body.duration
-//     }
-
-//     User.findById(id).then((user) => {
-//         if (!user) {
-//             res.status(404).send('Resource not found')
-//         } else{
-//             user.goals.push(newGoal);
-//             user.save();
-//             res.send({ user })
-//         }
-//     }).catch((error) => {
-//         res.status(500).send(error) // server error
-//     })
-
-// });
-
 // a PATCH route for changing properties of a resource.
 app.patch("/users/:username", (req, res) => {
     const currUsername = req.params.username;
-    //console.log(currUsername);
-    //const id = req.params.id;
-
-    // if (!ObjectID.isValid(id)) {
-    //     res.status(404).send();
-    //     return;
-    // }
 
     const newGoal = {
         "title": req.body.title,
@@ -314,7 +278,8 @@ app.post("/goals", (req, res) => {
         comments: req.body.comments,
         kudos: req.body.kudos,
         // ** ADD ATTRIBUTE HERE **
-				flagged: req.body.flagged
+		flagged: req.body.flagged,
+        creator: req.body.creator
     });
 
     // Save goal to the database
