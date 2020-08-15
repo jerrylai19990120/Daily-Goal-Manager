@@ -3,7 +3,6 @@ import React from 'react';
 import { Form , Input , Button , Typography , Alert } from 'antd';
 import { Redirect } from 'react-router-dom';
 
-import {users} from '../../AdminView/Admin';
 import {updateClass} from '../../Home';
 import "./../styles.css";
 import {login} from '../../actions/usersActions';
@@ -17,7 +16,7 @@ class Login extends React.Component {
     firstTry: true,
     username: ""
   }
-  
+
 
   /*onFinish = values => {
     for (var i = 0; i < users.length; i++) {
