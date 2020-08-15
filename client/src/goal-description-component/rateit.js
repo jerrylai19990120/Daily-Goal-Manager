@@ -4,9 +4,16 @@ import {StarFilled} from '@ant-design/icons';
 
 class Ratings extends React.Component{
 
+    constructor(props){
+        super(props)
+        this.state = {
+            stars: 0
+        }
+    }
+
     sendRatingaToDB(stars){
 
-        const request = new Request('/add-ratings/testGoal', {
+        const request = new Request(`/add-ratings/${this.props.title}`, {
             method: 'post',
             body: JSON.stringify({
                 ratings: stars
@@ -80,6 +87,31 @@ class Ratings extends React.Component{
             star4.style.color = '#fdcc29';
             this.sendRatingaToDB(5);
         }
+
+        fetch(`/get-goal-detail/${this.props.title}`)
+            .then(result => {
+                return result.json()
+            })
+            .then(json => {
+                if(json.ratings===1){
+                    ch()
+                }
+                if(json.ratings===2){
+                    ch2()
+                }
+                if(json.ratings===3){
+                    ch3()
+                }
+                if(json.ratings===4){
+                    ch4()
+                }
+                if(json.ratings===5){
+                    ch5()
+                }
+            })
+            .catch(error => {
+                console.log(error)
+            })
 
         return(
             <ul id='starList'>
