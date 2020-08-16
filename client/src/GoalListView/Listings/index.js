@@ -6,6 +6,7 @@ import "./styles.css";
 import Goal from '../../goal-description-component/goal-section';
 
 
+
 class Listings extends React.Component{
 	render() {
 
