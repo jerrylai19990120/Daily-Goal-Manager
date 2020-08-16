@@ -11,20 +11,20 @@ const { Meta } = Card;
 
 const log = console.log
 
-const FollowingPage = () => {
-    const prof = useParams();
+const UserDirectory = () => {
+    // const prof = useParams();
   // const profile = profiles.find(profile => profile.username === prof.name)
     //
-    const [friends, setFriends] = useState([])
+    const [profiles, setProfiles] = useState([])
 
     useEffect(() => {
-        const  fetchProfile = async () => {
+        const  fetchProfiles = async () => {
             const result = await axios(
-                'http://localhost:5000/profile/friends/' + prof.name
+                'http://localhost:5000/profiles'
             )
-            setFriends(result.data)
+            setProfiles(result.data)
         }
-        fetchProfile();
+        fetchProfiles();
     }, [])
 
 
@@ -33,7 +33,7 @@ const FollowingPage = () => {
       <List
     grid={{ gutter: 16, column: {xs: 1, sm: 2, md: 4, lg: 6} }}
     // dataSource={profiles}
-    dataSource={friends}
+    dataSource={profiles}
     renderItem={item => (
       <List.Item>
         <Link to={"/user/" + item.username}>
@@ -53,4 +53,4 @@ const FollowingPage = () => {
   );
 };
 
-export default FollowingPage
+export default UserDirectory

@@ -2,11 +2,14 @@
 import React from 'react';
 import 'antd/dist/antd.css';
 import ProfileView from '../ProfilePage'
+import axios from 'axios'
+import requests from 'request'
 import {useParams} from 'react-router';
 
 let profiles = [];
 
 const profileLoggedInAs = "samart"
+const log = console.log
 
 
 class Profile {
@@ -27,7 +30,7 @@ class Goal {
   {
     this.title = title;
     this.description = description;
-    this.progress = Math.floor(Math.random() * 101); //new goal
+    this.duration = Math.floor(Math.random() * 101); //new goal
   }
 }
 
@@ -59,10 +62,23 @@ const updateFriends = (profileName, friendToAdd) => {
 }
 
 
+
+
+
+
 const UsersPage = () => {
   const profileToFind = useParams();
   const profileToRender = profiles.find(profile => profile.username === profileToFind.name)
-  console.log(profileToRender)
+
+
+    // axios.get('http://localhost:5000/profile/' + profileName)
+    //  .then(res => {
+    //      const profileToRender = res.data
+    // })
+    // .catch(err => {
+    //     log(err)
+    // })
+
   if(profileToRender === undefined)
   {
     return (
@@ -82,5 +98,41 @@ const UsersPage = () => {
   );
     }
 };
+
+
+
+
+// const UsersPage = () => {
+//   const profileToFind = useParams();
+//   const profileToRender = profiles.find(profile => profile.username === profileToFind.name)
+
+
+//     // axios.get('http://localhost:5000/profile/' + profileName)
+//     //  .then(res => {
+//     //      const profileToRender = res.data
+//     // })
+//     // .catch(err => {
+//     //     log(err)
+//     // })
+
+//   if(profileToRender === undefined)
+//   {
+//     return (
+//       <div>
+//         <h3>
+//           This user doesn't exist!
+//         </h3>
+//       </div>
+//     );
+//   }
+//   else {
+//     return (
+//     <div>
+//       <ProfileView profiles={profiles} profileLoggedInAs={profileLoggedInAs} profile={profileToRender} updateFriends={updateFriends}
+//       />
+//     </div>
+//   );
+//     }
+// };
 
 export default UsersPage
