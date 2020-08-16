@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 import { UserOutlined } from '@ant-design/icons';
 import {useParams} from 'react-router';
 import axios from 'axios';
+import './index.css'
 
 const { Content } = Layout;
 
@@ -24,19 +25,8 @@ function ProfilePage(props) {
         __v: 0
     });
     const [myProfile, setMyProfile] = useState({})
-    log("testing a change here")
-    log(profileToFind)
 
 
-    log("props here")
-    log("props here")
-    log("props here")
-    log("props here")
-    log(props)
-    log(props)
-    log(props)
-    log(props)
-    log(props)
 
     const [followButtonText, setFollowButtonText] = useState("Follow")
     const [loggedInAs, setLoggedInAs] = useState(props.profileLoggedInAs.username)
@@ -61,8 +51,6 @@ function ProfilePage(props) {
                 'http://localhost:5000/profile/' + loggedInAs
             ).then((result) =>  {
                 setMyProfile(result.data)
-                log("here is where we find the profile of the logged  in user")
-                log(result.data)
                 const isFollowing = result.data.friends.includes(profileToFind.name)
                 if(isFollowing)
                 {
@@ -108,7 +96,6 @@ function ProfilePage(props) {
             ...profile,
             friends: newFriends
         })
-        log(profile)
 
 
 
@@ -138,13 +125,7 @@ function ProfilePage(props) {
             settingsButton = <Button>Change User Info</Button>
         }
 
-    log(loggedInAs)
-    log(loggedInAs)
-    log(loggedInAs)
-    log(loggedInAs)
-    log(loggedInAs)
 
-        console.log(profile)
         return(
             <div>
                 <Layout className="layout">
@@ -194,7 +175,7 @@ function ProfilePage(props) {
                                                         title={<a href="/#">{item.title}</a>}
                                                         description={item.description}
                                                     />
-                                                    <Progress percent={item.progress} type="circle" width={100} />
+                                                    <Progress percent={Math.ceil(100 / item.duration)} type="circle" width={100} className="white-text"/>
                                                 </List.Item>
                                             )}
                                         />

@@ -25,8 +25,6 @@ function SettingsPage() {
         goals: [],
         __v: 0
     });
-    log("testing a change here")
-    log(profileToFind)
 
     useEffect(() => {
         const fetchProfile = async () => {
@@ -71,7 +69,6 @@ function SettingsPage() {
   };
 
   const onFinish = async (values) => {
-    console.log(values);
 
       if(values.profile_picture)
       {
@@ -113,7 +110,6 @@ function SettingsPage() {
     });
   };
 
-        console.log(profile)
     return(
         <div>
             <Form {...layout} form={form} name="control-hooks" onFinish={onFinish}>

@@ -39,11 +39,6 @@ class Home extends React.Component {
   render() {
     
     const { app } = this.props
-      log(app)
-      log(app)
-      log(app)
-      log(app)
-      log(app)
 
     return (
       <Layout className="layout">
