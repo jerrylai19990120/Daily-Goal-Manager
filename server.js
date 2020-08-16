@@ -247,6 +247,36 @@ app.delete('/goals/:id', (req, res) => {
 		})
 });
 
+app.patch('/goals/:id', (req, res) => {
+		const id = req.params.id
+
+		if (!ObjectID.isValid(id)) {
+			res.status(404).send('Resource not found')
+			return;
+		}
+
+		if (mongoose.connection.readyState != 1) {
+				log('Issue with mongoose connection')
+				res.status(500).send('Internal server error')
+				return;
+		}
+
+		Goal.findByIdAndUpdate(id, { flagged: true }).then((goal) => {
+			if (!goal) {
+				res.status(404).send('Resource not found')
+			} else {
+				res.send(goal)
+			}
+		}).catch((error) => {
+			if (isMongoError(error)) { // check for if mongo server suddenly dissconnected before this request.
+				res.status(500).send('Internal server error')
+			} else {
+				log(error)
+				res.status(400).send('Bad Request') // bad request for changing the student.
+			}
+		})
+});
+
 app.post('/add-comment/:goalTitle', (req, res) => {
 
     const goal = req.params.goalTitle;
@@ -334,7 +364,7 @@ app.get('/get-goal-detail/:goalTitle', (req, res) => {
 /** Profile resource routes **/
 
 app.get("/profile/:username", (req, res) => {
-    
+
     const usernameToFind = req.params.username
     log("grabbing a profile")
 
@@ -349,7 +379,7 @@ app.get("/profile/:username", (req, res) => {
 })
 
 app.get("/profile/friends/:username", (req, res) => {
-    
+
     const usernameToFind = req.params.username
 
     User.findOne({username: usernameToFind}).then((user) => {
@@ -375,7 +405,7 @@ app.get("/profile/friends/:username", (req, res) => {
 })
 
 app.get("/profiles", (req, res) => {
-    
+
 
     User.find({}).then((users) => {
         log(users)
@@ -389,7 +419,7 @@ app.get("/profiles", (req, res) => {
 })
 
 app.get("/profile/goals/:username", (req, res) => {
-    
+
     const usernameToFind = req.params.username
 
     User.findOne({username: usernameToFind}).then((user) => {
@@ -403,7 +433,7 @@ app.get("/profile/goals/:username", (req, res) => {
 })
 
 app.post("/profile/addGoal/:username", (req, res) => {
-    
+
     const usernameToFind = req.params.username
 
     const goal = new Goal({
@@ -431,7 +461,7 @@ app.post("/profile/addGoal/:username", (req, res) => {
 })
 
 app.post("/profile/addFriend/:username/:userToAdd", (req, res) => {
-    
+
     const usernameToFind = req.params.username
     const userToAdd = req.params.userToAdd
 
@@ -465,7 +495,7 @@ app.post("/profile/addFriend/:username/:userToAdd", (req, res) => {
 
 
 app.delete("/profile/removeFriend/:username/:userToRemove", (req, res) => {
-    
+
     const usernameToFind = req.params.username
     const userToRemove = req.params.userToRemove
 
@@ -496,7 +526,7 @@ app.delete("/profile/removeFriend/:username/:userToRemove", (req, res) => {
 })
 
 app.post("/profile/updateEmail/:username", (req, res) => {
-    
+
     const usernameToFind = req.params.username
     const newEmail = req.body.newEmail
 
@@ -524,7 +554,7 @@ app.post("/profile/updateEmail/:username", (req, res) => {
 })
 
 app.post("/profile/updateProfilePicture/:username", (req, res) => {
-    
+
     const usernameToFind = req.params.username
     const newProfilePictureUrl = req.body.newProfilePictureUrl
 
