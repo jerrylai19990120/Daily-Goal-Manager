@@ -17,7 +17,6 @@ const { Panel } = Collapse;
 class Admin extends React.Component {
   state = {
     goals: [],
-    flaggedComments: [],
     usersList: []
   }
 

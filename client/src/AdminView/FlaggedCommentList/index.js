@@ -3,7 +3,7 @@ import { List , Button , Col , Row , Avatar } from 'antd';
 
 import "./styles.css";
 
-const removeCom = (admin, comment) => {
+/*const removeCom = (admin, comment) => {
   const temp = admin.state.flaggedComments.map((x) => x)
   for (var i = 0; i <admin.state.flaggedComments.length; i++) {
     if (comment === admin.state.flaggedComments[i]){
@@ -12,6 +12,8 @@ const removeCom = (admin, comment) => {
     }
   }
 }
+actions={[<Button onClick={removeCom.bind(this, adminComponent, item)}>delete comment</Button>]}
+*/
 
 
 class FlaggedCommentList extends React.Component {
@@ -24,13 +26,13 @@ class FlaggedCommentList extends React.Component {
         bordered
         dataSource={flaggedComments}
         renderItem={item => (
-          <List.Item actions={[<Button onClick={removeCom.bind(this, adminComponent, item)}>delete comment</Button>]}>
+          <List.Item>
             <Col span={2}>
                 <Avatar src={require(`${'../../goal-description-component/images/profilePic.jpg'}`)} />
             </Col>
             <Col span={12}>
-                <div className='content'><strong>{"User"}</strong>{": "}{item}</div>
-                <p className='date'>{"temp date"}</p>
+                <div className='content'><strong>{"Anon User"}</strong>{": "}{item}</div>
+                //<p className='date'>{"temp date"}</p>
             </Col>
           </List.Item>
         )}
