@@ -37,7 +37,7 @@ class Home extends React.Component {
  }
 
   render() {
-    
+
     const { app } = this.props
 
     return (
@@ -56,7 +56,7 @@ class Home extends React.Component {
               Profile
               <Link to={'/user/' +  app.state.currentUser.username}/>
             </Menu.Item>
-            {(this.state.currUserClass === "admin" || this.state.tempUserClass === "admin") &&
+            {app.state.currentUser.username == "admin" &&
               <Menu.Item key="3" className="menu_item">
                 Admin
                 <Link to='/admin'/>
