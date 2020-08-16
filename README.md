@@ -114,9 +114,9 @@ The Admin page can be accessed and viewed when logged in successfully with admin
 
 ![Image of Admin Page](https://github.com/csc309-summer-2020/team29/blob/master/readme_img/admin.png)
 
-* **Reported Goals and Comments** - Admin can view and delete the list of goals and comments that have been flagged by users. 
+* **Reported Goals and Comments** - Admin can view and delete the list of goals that have been flagged by users and view comments. 
   - By pressing on the "Flagged Goals" tab, the list of reported goals are shown.
-  - By pressing on the "Flagged Comments" tab, the list of reported comments are shown. Admin can delete the comments directly from this page.
+  - By pressing on the "Comments" tab, the list of all comments are shown.
   
 ![Image of flagged lists](https://github.com/csc309-summer-2020/team29/blob/master/readme_img/flagged.png)
 
