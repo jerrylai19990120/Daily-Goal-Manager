@@ -9,10 +9,14 @@ import Admin from './../AdminView/Admin';
 import "./styles.css";
 
 import Goal from './../goal-description-component/goal-section'
-import Profile from "../ProfileView/FindUserPage";
+
+import ProfileComponent from "../ProfileView/ProfilePage"
 import FollowingPage from "../ProfileView/FollowingPage"
+import UserDirectory from "../ProfileView/UserDirectory"
+import SettingsPage from "../ProfileView/SettingsPage"
 
 const { Header, Content } = Layout;
+const log = console.log
 
 var userClass = '';
 
@@ -33,7 +37,7 @@ class Home extends React.Component {
  }
 
   render() {
-    
+
     const { app } = this.props
 
     return (
@@ -50,9 +54,9 @@ class Home extends React.Component {
             </Menu.Item>
             <Menu.Item key="2" className="menu_item">
               Profile
-              <Link to='/user/samart'/>
+              <Link to={'/user/' +  app.state.currentUser.username}/>
             </Menu.Item>
-            {(this.state.currUserClass === "admin" || this.state.tempUserClass === "admin") &&
+            {app.state.currentUser.username == "admin" &&
               <Menu.Item key="3" className="menu_item">
                 Admin
                 <Link to='/admin'/>
@@ -71,10 +75,14 @@ class Home extends React.Component {
                             (<Goal title='title' targetDays={10} description="sample description"/>)}/>
             <Route exact path='/admin' render={() =>
                             (<Admin />)}/>
-              <Route exact path="/user/:name" component={Profile}>
-              </Route>
-              <Route exact path="/user/:name/following" component={FollowingPage}>
-              </Route>
+              {/* <Route exact path="/user/:name" component={ProfileComponent}> */}
+              {/* </Route> */}
+              {/* <Route exact path="/user/:name/following" component={FollowingPage}> */}
+              {/* </Route> */}
+              {/* <Route exact path="/users" component={UserDirectory}> */}
+              {/* </Route> */}
+              {/* <Route exact path="/user/:name/settings" component={SettingsPage}> */}
+              {/* </Route> */}
           </Switch>
         </div>
         <h1>Welcome to our Goal Setting App</h1>

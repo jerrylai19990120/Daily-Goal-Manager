@@ -29,8 +29,8 @@ class FlaggedCommentList extends React.Component {
                 <Avatar src={require(`${'../../goal-description-component/images/profilePic.jpg'}`)} />
             </Col>
             <Col span={12}>
-                <div className='content'><strong>{item.username}</strong>{": "}{item.content}</div>
-                <p className='date'>{item.date}</p>
+                <div className='content'><strong>{"User"}</strong>{": "}{item}</div>
+                <p className='date'>{"temp date"}</p>
             </Col>
           </List.Item>
         )}
