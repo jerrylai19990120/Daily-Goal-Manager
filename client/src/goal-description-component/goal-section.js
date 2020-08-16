@@ -219,7 +219,7 @@ class GoalSection extends React.Component{
                 <Divider />
 
                 <Row>
-                    <Col span={5}><button className='btn2' onClick={this.addLikes}><HeartFilled className='likeBtn'/> Kudo</button></Col>
+        <Col span={5}><button className='btn2' onClick={this.addLikes}><HeartFilled className='likeBtn'/> {this.state.kudos} Kudos</button></Col>
                     <Divider type="vertical"/>
                     <Col span={6}><button className='btn2' onClick={this.commentFocus}><CommentOutlined /> Comment</button></Col>
                     <Divider type="vertical"/>
