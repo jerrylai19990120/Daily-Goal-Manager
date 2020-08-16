@@ -127,8 +127,6 @@ The Admin page can be accessed and viewed when logged in successfully with admin
 There are two main routes in the Express server: `goals` and `users`.
 The database can be connected through MongoDB using the connection string: "mongodb+srv://jerrylai:tg12345678@team29.gh6gt.mongodb.net/UserInfo?retryWrites=true&w=majority"
 
-
-
 ### Goals
 The `/goals` route holds the list of goals registered in the database. The goals are added to the database when a user creates a goal using the Goal Form from the home page. Here, a new Goal object is created using the GoalSchema Model. Each goal has title, description, duration, creator, comments, progress, kudos, ratings, flagged attributes. 
 
@@ -157,9 +155,8 @@ These API routes are used to communicate with the database in the SignUp/Login s
 - `app.post('/signup',...)`: This `POST` request takes in the username, email, password of the user from the sign up page. The newly created user is returned as it is registered into the database.
 - `app.get('/check-session',...)`: This `GET` request checks if a user is logged in in the current session.
 
-
-### Profile Routes
-
+### Profile 
+These API routes are used to communicate with the database while creating the profiles of users.
 - `app.get("/profile/:username", ...)`: This `GET` request returns an object containing the data for the given user. The properties for a user is given in the User schemea. 
 - `app.get("/profile/friends/:username")`: This  `GET` request returns a list of objects, where each object is the entire profile of a person that is being followed by the given user. This is used in the FollowingPage folder in order to see the users that are currently being followed.
 - `app.get("/profiles")`: This `GET` request returns all the profiles in the database. This is used in the UserDirectory folder in order to get all profiles so users can find people that they wish to follow.
