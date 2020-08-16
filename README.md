@@ -174,7 +174,12 @@ After making changes to the code, user must follow these instructions to reflect
 
 > Make changes in the React App placed in `/client/src` folder
 ```
+# npm install in root director
+$ npm install
+
+# cd into client folder
 $ cd client
+$ npm install
 $ npm run build
 ```
 
