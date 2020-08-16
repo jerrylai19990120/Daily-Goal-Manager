@@ -25,8 +25,8 @@ class User extends React.Component {
     return (
       <List.Item actions={[<Button onClick={removeUser.bind(this, adminComponent, user)}>delete account</Button>]}>
         <List.Item.Meta
-          avatar={<Avatar src={require(`${'../../goal-description-component/images/profilePic.jpg'}`)} />}
-          title={<a href="/user/samart">{user.username}</a>}
+          avatar={<Avatar src={user.profilePictureUrl} />}
+          title={user.username}
           description={user.email}
         />
       </List.Item>

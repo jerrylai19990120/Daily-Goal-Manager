@@ -8,6 +8,7 @@ import Goal from '../../goal-description-component/goal-section';
 import { flagGoal } from '../../actions/goalActions';
 
 
+
 class Listings extends React.Component{
 
 	report = (goal) => {
