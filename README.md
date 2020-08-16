@@ -144,6 +144,18 @@ The following are the API routes for `users` database:
 The `goals` route holds the list of goals registered in the database. T
 
 
+### Profile Routes
+
+- `app.get("/profile/:username", ...)`: This `GET` request returns an object containing the data for the given user. The properties for a user is given in the User schemea. 
+- `app.get("/profile/friends/:username")`: This  `GET` request returns a list of objects, where each object is the entire profile of a person that is being followed by the given user. This is used in the FollowingPage folder in order to see the users that are currently being followed.
+- `app.get("/profiles")`: This `GET` request returns all the profiles in the database. This is used in the UserDirectory folder in order to get all profiles so users can find people that they wish to follow.
+- `app.get("/profile/goals/:username")`: This `GET` request returns all the goals from a given user. This is used in the ProfilePage folder in order to get a simple view of a given users goals.
+- `app.post("/profile/addGoal/:username")`: This `POST` request adds a goal to a given users' list of goals. This was used primarily for testing.
+- `app.post("/profile/addFriend/:username/:userToAdd")`: This `POST` request adds :userToAdd to the friends list of :username. This is used when visiting someone else's profile, it allows the logged in user to add someone to their friends list.
+- `app.delete("/profile/removeFriend/:username/:userToRemove")`: This `POST`  request removes :userToRemove from the friends list of :username. This is also used when visiting someone else's profile, but instead it removes them from the logged in user's friends list.
+- `app.post("/profile/updateEmail/:username")`: This `POST` request allows a given user to update their email address. The body should have a property "newEmail" which contains the new email the user wishes to switch to. This route is used in the  SettingsPage folder, in order to allow users to update their email as needed.
+- `app.post("/profile/updateProfilePicture/:username")`: This `POST` request allows a given user to update their profile picture. The body should have a property "newProfilePictureUrl" which contains the URL to a profile picture that the users wishes to have as their avatar. This is used in the SettingsPage in order to let a user add a profile picture from a url.
+
 ## Development Instructions - Making Changes
 
 After making changes to the code, user must follow these instructions to reflect the changes in the application.
