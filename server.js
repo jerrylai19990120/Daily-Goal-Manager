@@ -122,6 +122,131 @@ app.get('/logout', (req, res)=>{
     })
 })
 
+/*** API Routes below ************************************/
+/** User resource routes **/
+
+// a PATCH route for changing properties of a resource.
+app.patch("/users/:username", (req, res) => {
+    const currUsername = req.params.username;
+
+    const newGoal = {
+        "title": req.body.title,
+        "description": req.body.description,
+        "duration": req.body.duration
+    }
+
+    User.find({ username: currUsername }).then((user) => {
+        if (!user) {
+            res.status(404).send('Resource not found')
+        } else{
+            user[0].goals.push(newGoal);
+            user[0].save();
+            res.send({ user }) // this returns a list with one user -> if need to access take the first index
+        }
+    }).catch((error) => {
+        res.status(500).send(error) // server error
+    })
+
+});
+
+// a GET route to get all users
+app.get("/users", (req, res) => {
+    User.find().then(
+        users => {
+            res.send({ users });
+        },
+        error => {
+            res.status(500).send(error); // server error
+        }
+    );
+});
+
+app.delete('/users/:username', (req, res) => {
+		const targetUser = req.params.username;
+
+		if (mongoose.connection.readyState != 1) {
+				log('Issue with mongoose connection')
+				res.status(500).send('Internal server error')
+				return;
+		}
+
+		User.deleteOne({ username: targetUser }).then(user => {
+				if (!user) {
+					res.status(404).send()
+				} else {
+					res.send(user)
+				}
+		})
+		.catch((error) => {
+				res.status(500).send()
+		})
+});
+
+/** Goal resource routes **/
+// a POST route to *create* a goal
+app.post("/goals", (req, res) => {
+
+    // Create a new student using the Goal mongoose model
+    const goal = new Goal({
+        title: req.body.title,
+        description: req.body.description,
+        duration: req.body.duration,
+        comments: req.body.comments,
+        kudos: req.body.kudos,
+        // ** ADD ATTRIBUTE HERE **
+		flagged: req.body.flagged,
+        creator: req.body.creator
+    });
+
+    // Save goal to the database
+    goal.save().then(
+        result => {
+            res.send(result);
+        },
+        error => {
+            res.status(400).send(error); // 400 for bad request
+        }
+    );
+});
+
+// a GET route to get all students
+app.get("/goals", (req, res) => {
+    Goal.find().then(
+        goals => {
+            res.send({ goals });
+        },
+        error => {
+            res.status(500).send(error); // server error
+        }
+    );
+});
+
+app.delete('/goals/:id', (req, res) => {
+		const id = req.params.id;
+
+		if (!ObjectID.isValid(id)) {
+			res.status(404).send('Resource not found')
+			return;
+		}
+
+		if (mongoose.connection.readyState != 1) {
+				log('Issue with mongoose connection')
+				res.status(500).send('Internal server error')
+				return;
+		}
+
+		Goal.findByIdAndRemove(id).then(goal => {
+				if (!goal) {
+					res.status(404).send()
+				} else {
+					res.send(goal)
+				}
+		})
+		.catch((error) => {
+				res.status(500).send()
+		})
+});
+
 app.post('/add-comment/:goalTitle', (req, res) => {
 
     const goal = req.params.goalTitle;
@@ -191,7 +316,6 @@ app.post('/add-progress/:goalTitle', (req, res) => {
 
 })
 
-
 app.get('/get-goal-detail/:goalTitle', (req, res) => {
     const goal = req.params.goalTitle;
     Goal.findOne({"title": goal}).then(result => {
@@ -207,136 +331,7 @@ app.get('/get-goal-detail/:goalTitle', (req, res) => {
     })
 })
 
-/*** API Routes below ************************************/
-/** User resource routes **/
-
-// a PATCH route for changing properties of a resource.
-app.patch("/users/:username", (req, res) => {
-    const currUsername = req.params.username;
-
-    const newGoal = {
-        "title": req.body.title,
-        "description": req.body.description,
-        "duration": req.body.duration
-    }
-
-    User.find({ username: currUsername }).then((user) => {
-        if (!user) {
-            res.status(404).send('Resource not found')
-        } else{
-            //console.log(user[0]);
-            user[0].goals.push(newGoal);
-            //console.log(user[0].goals);
-            user[0].save();
-            res.send({ user }) // this returns a list with one user -> if need to access take the first index
-        }
-    }).catch((error) => {
-        res.status(500).send(error) // server error
-    })
-
-});
-
-// a GET route to get all users
-app.get("/users", (req, res) => {
-    User.find().then(
-        users => {
-            res.send({ users });
-        },
-        error => {
-            res.status(500).send(error); // server error
-        }
-    );
-});
-
-app.delete('/users/:username', (req, res) => {
-		const targetUser = req.params.username;
-
-		if (mongoose.connection.readyState != 1) {
-				log('Issue with mongoose connection')
-				res.status(500).send('Internal server error')
-				return;
-		}
-
-		User.deleteOne({ username: targetUser }).then(user => {
-				if (!user) {
-					res.status(404).send()
-				} else {
-					res.send(user)
-				}
-		})
-		.catch((error) => {
-				res.status(500).send()
-		})
-});
-
-/** Goal resource routes **/
-// a POST route to *create* a goal
-app.post("/goals", (req, res) => {
-
-    // Create a new student using the Goal mongoose model
-    const goal = new Goal({
-        title: req.body.title,
-        description: req.body.description,
-        duration: req.body.duration,
-        comments: req.body.comments,
-        kudos: req.body.kudos,
-        // ** ADD ATTRIBUTE HERE **
-				flagged: req.body.flagged,
-        creator: req.body.creator
-    });
-
-    // Save goal to the database
-    goal.save().then(
-        result => {
-            res.send(result);
-        },
-        error => {
-            res.status(400).send(error); // 400 for bad request
-        }
-    );
-});
-
-// a GET route to get all students
-app.get("/goals", (req, res) => {
-    Goal.find().then(
-        goals => {
-            res.send({ goals });
-        },
-        error => {
-            res.status(500).send(error); // server error
-        }
-    );
-});
-
-app.delete('/goals/:id', (req, res) => {
-		const id = req.params.id;
-
-		if (!ObjectID.isValid(id)) {
-			res.status(404).send('Resource not found')
-			return;
-		}
-
-		if (mongoose.connection.readyState != 1) {
-				log('Issue with mongoose connection')
-				res.status(500).send('Internal server error')
-				return;
-		}
-
-		Goal.findByIdAndRemove(id).then(goal => {
-				if (!goal) {
-					res.status(404).send()
-				} else {
-					res.send(goal)
-				}
-		})
-		.catch((error) => {
-				res.status(500).send()
-		})
-});
-
-// profile routes
-//
-
+/** Profile resource routes **/
 
 app.get("/profile/:username", (req, res) => {
     
