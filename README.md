@@ -16,7 +16,9 @@ Contributors:
 
 ## How to Use the Application
 
-... ?
+User can access the deployed website at this URL: https://csc309.doomer.cf/
+
+User can choose to sign up as a new user, or sign in with the credentials provided below.
 
 ## User Features
 
@@ -63,6 +65,7 @@ The home page of this website shows the list of goals created by different users
 * **Goal List** - Below the "Add New Goal Form" tab, there is a list of goals that are currently in the `goals` database.
   For each goal, users can view the title, description, and duration of the goal. 
   - Also, there is a "More Info" button and "Report" button for each goal. The "More Info" button will redirect the user to Goal Details page for each goal. The "Report" button will report the goal to the Admin, where Admin can review and delete the reported goals.
+  ![Image of reported goal](https://github.com/csc309-summer-2020/team29/blob/master/readme_img/reported.png)
 
 ### Goal Details
 
@@ -72,13 +75,10 @@ In the goal details page, user can see the details of specific goals.
 
 * **Progress Status** - Users can log their progress of this goal by clicking on the "Log Your Progress" button. Once the button is clicked, the status of goal progress will be shown in the progress circle in the left top corner. 
 
-  ![Image of progress status](https://github.com/csc309-summer-2020/team29/blob/master/readme_img/progress.png)
-
 * **Select Color** - Users customize their goal details tab by selecting colors.
 * **Kudos, Comment, Share, Rating **  - Users can give Kudos, leave comments, share goal, or give rating to the goal.
   - User can leave comments by using the comment text box section. They can view their comments after submitting.
-    ![Image of comment](https://github.com/csc309-summer-2020/team29/blob/master/readme_img/comment.png)
-  - Users can also 
+  - User can also give Kudos or Ratings in this section.
 
 ### Profile Page
 
@@ -124,24 +124,38 @@ The Admin page can be accessed and viewed when logged in successfully with admin
 
 ## Overview of Routes in Express Server
 
-There are two main routes in the Express server: `users` and `goals`.
+There are two main routes in the Express server: `goals` and `users`.
 The database can be connected through MongoDB using the connection string: "mongodb+srv://jerrylai:tg12345678@team29.gh6gt.mongodb.net/UserInfo?retryWrites=true&w=majority"
 
+
+
+### Goals
+The `/goals` route holds the list of goals registered in the database. The goals are added to the database when a user creates a goal using the Goal Form from the home page. Here, a new Goal object is created using the GoalSchema Model. Each goal has title, description, duration, creator, comments, progress, kudos, ratings, flagged attributes. 
+
+The following are the API routes for `/goals` database:
+- `app.post("/goals", ...)`: This `POST` request requires all the attributes to create a new Goal object. It adds the new Goal object into the `/goals` database then returns that goal. It is used in `addGoalJSON()` function in `goalActions.js`, which is called when a user clicks the submit button of Goal Form. 
+- `app.get("/goals", ...)`: This `GET` request returns the list of goals currently logged in the database. This request is called in the function `getGoals()` in `goalActions.js`. This function retrieves the list of goals then sends it to the Goal List element, where the list of goals are rendered in the home page.
+- `app.delete('/goals/:id',...)`: This `DELETE` request requires the id of the goal to be deleted from the `/goals` database. It returns the goal that has been deleted. 
+- `app.get('/get-goal-detail/:goalTitle',...)`: This `GET` request requires the title of the Goal, then returns the attritubes of that goal. I
+
 ### Users
-The `users` route holds the list of users registered in the database. The users are added to the database when a user signs up on the SignUp page. Here, a new User object is created using the UserSchema Model. 
+The `/users` route holds the list of users registered in the database. The users are added to the database when a user signs up on the SignUp page. Here, a new User object is created using the UserSchema Model. 
 
-
-
-The following are the API routes for `users` database:
+The following are the API routes for `/users` database:
 
 ** Note: `usersAction.js` and `goalActions.js` can be found in `client/src/actions` folder. **
 
 - `app.get("/users", ...)`: This `GET` request returns the list of users currently logged in the database. This request is made in the function `getUsers()` in `usersActions.js` and is used in various functions where the list of users are needed.
-- `app.patch("/users/:username", ...)`: This `PATCH` request requires a username of the user and the new attributes to be changed inside of that user. It returns a user with the updated attributes. This request is made in the function `setOwner()` in `goalActions.js` to add the newly created goal into the `goals` attribute of the current User. 
-- `app.delete("/users/:username", ...)`: This `DELETE` request requires the username of the user to be deleted. This request is made in the funtion `deleteUser` in `usersAction.js` and lets admins to delete users from the admin page.
+- `app.patch("/users/:username", ...)`: This `PATCH` request requires a username of the user and the new attributes to be changed inside of that user. It returns a user with the updated attributes. This request is made in the function `setOwner()` in `goalActions.js` to add the newly created goal into the `/goals` attribute of the current User. 
+- `app.delete("/users/:username", ...)`: This `DELETE` request requires the username of the user to be deleted. This request is made in the funtion `deleteUser` in `usersAction.js` and lets admins to delete users from the admin page. This route is used to retrieve detail so that it can be sent to goal details page.
 
-### Goals
-The `goals` route holds the list of goals registered in the database. T
+### Login
+These API routes are used to communicate with the database in the SignUp/Login sections. It is used in the functions in `userActions.js`
+- `app.use()`: This is used for the session cookie, as a middleware for keeping the login session.
+- `app.get('/loginAuth',...)`: This is used to send `GET` request for all the user from the database in order for comparison.
+- `app.post('/loginSession',...)`: This `POST` request takes in the username of the user. It is used to assign the cookie session to a user in order for the user to stay logged in within a period of time.
+- `app.post('/signup',...)`: This `POST` request takes in the username, email, password of the user from the sign up page. The newly created user is returned as it is registered into the database.
+- `app.get('/check-session',...)`: This `GET` request checks if a user is logged in in the current session.
 
 
 ## Development Instructions - Making Changes
