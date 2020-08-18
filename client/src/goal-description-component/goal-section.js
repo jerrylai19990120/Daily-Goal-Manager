@@ -8,6 +8,7 @@ import TextareaAutosize from 'react-textarea-autosize';
 import 'emoji-mart/css/emoji-mart.css';
 import { Picker } from 'emoji-mart';
 import Ratings from './rateit';
+import { Link } from 'react-router-dom';
 
 
 
@@ -205,6 +206,11 @@ class GoalSection extends React.Component{
                 
                 <ul className='buttonGroup'> 
                     <li><Button className='btn' type="primary" onClick={this.logProgress}>Log Your Progress</Button></li>
+                    <li>
+                        <Link to="/home">
+                            <Button type="primary" className="btn">Back</Button>
+                        </Link>
+                    </li>
                 </ul>
                 <div className='description'>
                     <h2>{this.props.title}</h2>
